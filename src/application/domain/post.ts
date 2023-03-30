@@ -1,5 +1,5 @@
-type PostPublic = "Private" | "Public";
-type PostType = "Post" | "Page";
+export type PostPublic = "Private" | "Public";
+export type PostType = "Post" | "Page";
 
 export class Post {
   id: string;
@@ -17,24 +17,11 @@ export class Post {
   }[];
   title: string;
   status: PostPublic[];
-  createTime: string;
+  createdTime: string;
   fullWidth: boolean;
   thumbnail?: string;
 
-  constructor({
-    id,
-    date,
-    type,
-    slug,
-    tags,
-    summary,
-    author,
-    title,
-    status,
-    createTime,
-    fullWidth,
-    thumbnail,
-  }: Post) {
+  constructor({ id, date, type, slug, tags, summary, author, title, status, createdTime, fullWidth, thumbnail }: Post) {
     this.id = id;
     this.date = date;
     this.type = type;
@@ -45,7 +32,7 @@ export class Post {
     this.author = author;
     this.title = title;
     this.status = status;
-    this.createTime = createTime;
+    this.createdTime = createdTime;
     this.fullWidth = fullWidth;
     this.thumbnail = thumbnail;
   }

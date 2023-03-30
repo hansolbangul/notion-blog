@@ -8,6 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 export default async function Home() {
   const service = new PostService();
   const isInit = await service.init();
-  const res = service.getPost();
+  const res = await service.getAllPost();
+  console.log(res);
+  
   return <main className={styles.main}>zz</main>;
 }
