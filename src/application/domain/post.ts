@@ -1,5 +1,5 @@
-type PostPublic = "Private" | "Public";
-type PostType = "Post" | "Page";
+export type PostStatus = "Private" | "Public";
+export type PostType = "Post" | "Page";
 
 export class Post {
   id: string;
@@ -16,8 +16,8 @@ export class Post {
     profile_photo?: string;
   }[];
   title: string;
-  status: PostPublic[];
-  createTime: string;
+  status: PostStatus[];
+  createdTime: string;
   fullWidth: boolean;
   thumbnail?: string;
 
@@ -31,7 +31,7 @@ export class Post {
     author,
     title,
     status,
-    createTime,
+    createdTime,
     fullWidth,
     thumbnail,
   }: Post) {
@@ -45,7 +45,7 @@ export class Post {
     this.author = author;
     this.title = title;
     this.status = status;
-    this.createTime = createTime;
+    this.createdTime = createdTime;
     this.fullWidth = fullWidth;
     this.thumbnail = thumbnail;
   }
