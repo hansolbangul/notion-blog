@@ -112,6 +112,11 @@ export default class PostApiService {
     return properties;
   }
 
+  async getPostBlocks(id: string) {
+    const pageBlock = await this.api.getPage(id);
+    return pageBlock;
+  }
+
   customMapImageUrl = (url: string, block: Block): string => {
     if (!url) {
       throw new Error("URL can't be empty");

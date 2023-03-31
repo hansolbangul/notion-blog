@@ -1,4 +1,4 @@
-export type PostPublic = "Private" | "Public";
+export type PostStatus = "Private" | "Public";
 export type PostType = "Post" | "Page";
 
 export class Post {
@@ -16,7 +16,7 @@ export class Post {
     profile_photo?: string;
   }[];
   title: string;
-  status: PostPublic[];
+  status: PostStatus[];
   createdTime: string;
   fullWidth: boolean;
   thumbnail?: string;

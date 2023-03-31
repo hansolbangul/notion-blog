@@ -3,7 +3,7 @@ import PostApiService from "@/networks/postAPIService";
 import { Post, PostStatus, PostType } from "../domain/post";
 
 type GetFilterPostsReq = {
-  options: {
+  options?: {
     status: PostStatus[];
     type: PostType;
   };
@@ -44,5 +44,35 @@ export default class PostService {
     return data.map((post) => new Post(post));
   }
 
-  getFilterPosts({ options = { status: ["Public"], type: "Post" } }: GetFilterPostsReq) {}
+  async getFilterPosts({ options = { status: ["Public"], type: "Post" } }: GetFilterPostsReq) {
+    const { status, type } = options;
+    const current = new Date();
+    const tomorrow = new Date(current);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    const posts = await this.getAllPost();
+    const filterPosts = posts
+      // filter data
+      .filter((post) => {
+        const postDate = new Date(post?.date?.start_date || post.createdTime);
+        if (!post.title || !post.slug || postDate > tomorrow) return false;
+        return true;
+      })
+      // filter status
+      .filter((post) => {
+        const postStatus = post.status[0];
+        return status.includes(postStatus);
+      })
+      // filter type
+      .filter((post) => {
+        const postType = post.type[0];
+        return type.includes(postType);
+      })
+      .map((post) => new Post(post));
+    return filterPosts;
+  }
+
+  async getPostBlock(id: string) {
+    return this._postApiService.getPostBlocks(id);
+  }
 }
