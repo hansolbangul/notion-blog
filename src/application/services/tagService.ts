@@ -15,6 +15,6 @@ export class TagService {
       }
     });
 
-    return tagObj;
+    return { All: posts.length, ...tagObj };
   }
 }

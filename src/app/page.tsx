@@ -1,38 +1,46 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "./page.module.css";
 import PostService from "@/application/services/postService";
 import { CONFIG } from "../../site.config";
 import { TagService } from "@/application/services/tagService";
 import { Metadata } from "next";
-import { Fragment } from "react";
 import Tag from "@/components/Tag/Tag";
+import Home from "@/components/Home/Home";
+import Container from "@/components/Elements/Container";
 
+type Props = {
+  searchParams: {
+    tag: string;
+  };
+};
 
-async function getFetch() {
+async function getFetch(tag: string) {
   const postService = new PostService();
   const tagService = new TagService();
   await postService.init();
 
   const posts = await postService.getFilterPosts({});
   const tags = tagService.getAllTag(posts);
-  
-  return {posts, tags};
 
+  // filter tag
+  const filterPost = posts.filter((post) => {
+    if (tag === "All") return true;
+    const postTag = post.tags;
+
+    return postTag?.includes(tag);
+  });
+
+  return { posts: filterPost, tags };
 }
 
-export async function generateMetadata({
-  
-}): Promise<Metadata> {
-  const {posts, tags} = await getFetch();
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { posts, tags } = await getFetch(searchParams.tag || "All");
   return {
-    title: CONFIG.metadata.title || 'V-BLOG',
-    description: '',
+    title: CONFIG.metadata.title || "V-BLOG",
+    description: "",
     openGraph: {
       images: [
         {
-          url: '',
-          alt: ''
+          url: "",
+          alt: "",
         },
       ],
     },
@@ -40,25 +48,13 @@ export async function generateMetadata({
   };
 }
 
+export default async function Page({ searchParams }: Props) {
+  const { posts, tags } = await getFetch(searchParams.tag || "All");
 
-export default async function Home() {
-  const {posts, tags} = await getFetch();
-  // console.log(posts);
-  
-  // const service = new PostService();
-  // const tagService = new TagService();
-  // const isInit = await service.init();
-  // const res = await service.getFilterPosts({});
-  // const tags = tagService.getAllTag(res);
-  // console.log(tags);
-
-  return <div className="w-full flex h-auto relative">
-    <Tag tags={tags} />
-    <div className="">
-      <div className=" min-h-screen"></div>
-      <div className=" min-h-screen"></div>
-      <div className=" min-h-screen"></div>
-      <div className=" min-h-screen"></div>
-    </div>
-  </div>;
+  return (
+    <Container.Flex>
+      <Tag tags={tags} />
+      <Home posts={posts} />
+    </Container.Flex>
+  );
 }
