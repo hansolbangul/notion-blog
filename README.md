@@ -45,6 +45,6 @@ To contribute to the project, follow the steps below:
 2. Make your changes to the code.
 3. Create a pull request.
 
-## License
+<!-- ## License
 
-This project is licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
