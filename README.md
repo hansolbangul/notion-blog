@@ -13,6 +13,7 @@ The following features are included in the project:
 - Support for formats other than Notion's table, tag's page, and post
 - Error and loading page implementation
 - Implementation of dark mode and white mode using Tailwind
+- Background music set using YouTube Music
 
 ## Installation
 
