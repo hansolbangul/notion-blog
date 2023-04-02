@@ -12,7 +12,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["www.notion.so"],
+    domains: ["www.notion.so", "s3-us-west-2.amazonaws.com"],
   },
 };
 
