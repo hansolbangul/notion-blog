@@ -3,9 +3,11 @@ import React from "react";
 import Container from "../Elements/Container";
 import { PostItem } from "./PostItem";
 import Link from "next/link";
+import { TPost } from "@/types";
 
 type Props = {
-  post: Post;
+  // post: Post;
+  post: TPost;
 };
 
 export default function PostComponent({ post }: Props) {
