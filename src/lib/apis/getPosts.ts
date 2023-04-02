@@ -4,12 +4,13 @@ import { CONFIG } from "../../../site.config";
 import getAllPageIds from "../utils/notion/getAllPageIds";
 import getPageProperties from "../utils/notion/getPageProperties";
 import { TPosts } from "@/types";
+import { cache } from "react";
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
-export async function getPosts() {
+export const getPosts = cache(async () => {
   let id = process.env.NOTION_PAGE_ID;
   // let id = CONFIG.notionConfig.pageId as string
   const api = new NotionAPI();
@@ -46,4 +47,4 @@ export async function getPosts() {
     });
     return data as TPosts;
   }
-}
+});
