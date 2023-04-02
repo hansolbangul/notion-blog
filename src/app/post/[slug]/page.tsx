@@ -42,7 +42,9 @@ export async function generateStaticParams() {
     acceptType: ["Paper", "Post", "Page"],
   });
 
-  return filteredPost.map((row) => `/${row.slug}`);
+  return filteredPost.map((row) => {
+    slug: row.slug;
+  });
 }
 
 async function getFetch(slug: string) {
