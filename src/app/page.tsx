@@ -8,11 +8,22 @@ import Container from "@/components/Elements/Container";
 import { getPosts } from "@/lib/apis";
 import { filterPosts, getAllSelectItemsFromPosts } from "@/lib/utils/notion";
 
+export const revalidate = 1;
 type Props = {
   searchParams: {
     tag: string;
   };
 };
+
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  const filteredPost = filterPosts(posts, {
+    acceptStatus: ["Public", "PublicOnDetail"],
+    acceptType: ["Paper", "Post", "Page"],
+  });
+
+  return filteredPost.map((row) => `/${row.slug}`);
+}
 
 async function getFetch() {
   const posts = await getPosts();

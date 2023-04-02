@@ -8,6 +8,7 @@ import "react-notion-x/src/styles.css";
 import NotionPage from "@/components/Notion/NotionPage";
 import { getPostBlocks, getPosts } from "@/lib/apis";
 
+export const revalidate = 1;
 // type Props = {
 //   post: Post;
 //   blockMap: any;
