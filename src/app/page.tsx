@@ -15,16 +15,6 @@ type Props = {
   };
 };
 
-export async function generateStaticParams() {
-  const posts = await getPosts();
-  const filteredPost = filterPosts(posts, {
-    acceptStatus: ["Public", "PublicOnDetail"],
-    acceptType: ["Paper", "Post", "Page"],
-  });
-
-  return filteredPost.map((row) => `/${row.slug}`);
-}
-
 async function getFetch() {
   const posts = await getPosts();
   const filteredPost = filterPosts(posts);

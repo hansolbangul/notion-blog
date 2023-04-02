@@ -7,6 +7,7 @@ import { NotionRenderer } from "react-notion-x";
 import "react-notion-x/src/styles.css";
 import NotionPage from "@/components/Notion/NotionPage";
 import { getPostBlocks, getPosts } from "@/lib/apis";
+import { filterPosts } from "@/lib/utils/notion";
 
 export const revalidate = 1;
 // type Props = {
@@ -34,6 +35,15 @@ type Props = {
 //     blockMap,
 //   };
 // }
+export async function generateStaticParams() {
+  const posts = await getPosts();
+  const filteredPost = filterPosts(posts, {
+    acceptStatus: ["Public", "PublicOnDetail"],
+    acceptType: ["Paper", "Post", "Page"],
+  });
+
+  return filteredPost.map((row) => `/${row.slug}`);
+}
 
 async function getFetch(slug: string) {
   //includePages: true
