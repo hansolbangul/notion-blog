@@ -1,7 +1,8 @@
 import { Post } from "@/application/domain/post";
-import Image from "next/image";
 import React from "react";
 import Container from "../Elements/Container";
+import { PostItem } from "./PostItem";
+import Link from "next/link";
 
 type Props = {
   post: Post;
@@ -9,17 +10,16 @@ type Props = {
 
 export default function PostComponent({ post }: Props) {
   return (
-    <Container.Col>
-      {post.thumbnail && (
-        <div className="w-full h-96 relative">
-          <Image placeholder="blur" blurDataURL="/icons/img_loading.svg" style={{ objectFit: "cover" }} fill src={post.thumbnail} alt="thumbnail" />
-        </div>
-      )}
-      <div>{post.thumbnail}</div>
-      <div>{post.title}</div>
-      <div>{post.summary}</div>
-      <div>{post.tags}</div>
-      <div>{post.date.start_date}</div>
+    <Container.Col className="border-t py-8 md:py-16 border-gray-400 dark:border-white first:border-t-0">
+      {post.thumbnail && <PostItem.Thumbnail slug={post.slug} thumbnail={post.thumbnail} />}
+      <PostItem.Title slug={post.slug} title={post.title} />
+      {post.summary && <PostItem.Summary summary={post.summary} />}
+      <div className="flex gap-1 flex-wrap">
+        {post.tags?.map((tag) => (
+          <PostItem.TagIcon key={tag} tag={tag} />
+        ))}
+      </div>
+      <PostItem.Footer start_date={post.date.start_date} profile={post.author} />
     </Container.Col>
   );
 }

@@ -1,23 +1,18 @@
-import React from 'react'
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
+};
+
+export default function Container({ children, className = "" }: Props) {
+  return <div className={`w-full relative ${className}`}>{children}</div>;
 }
 
-export default function Container({children, ...props}: Props) {
-  return (
-    <div {...props} className='w-full relative'>{children}</div>
-  )
-}
+Container.Flex = ({ children, className = "" }: Props) => {
+  return <div className={`w-full relative flex ${className}`}>{children}</div>;
+};
 
-Container.Flex = ({children, ...props}: Props) => {
-  return (
-    <div {...props} className='w-full flex relative'>{children}</div>
-  )
-}
-
-Container.Col = ({children, ...props}: Props) => {
-  return (
-    <div {...props} className='w-full flex flex-col relative'>{children}</div>
-  )
-}
+Container.Col = ({ children, className = "" }: Props) => {
+  return <div className={`w-full relative flex flex-col ${className}`}>{children}</div>;
+};

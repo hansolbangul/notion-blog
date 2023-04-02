@@ -1,4 +1,4 @@
-import Loader from "../../public/icons/img_loading.svg";
+import Loader from "../../public/icons/spinner.svg";
 import React from "react";
 
 export default function Loading() {

@@ -9,7 +9,7 @@ type Props = {
 
 export default function Home({ posts }: Props) {
   return (
-    <Container.Col>
+    <Container.Col className="px-4">
       {posts.map((post) => (
         <PostComponent key={post.id} post={post} />
       ))}
