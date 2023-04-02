@@ -24,7 +24,6 @@ const Collection = dynamic(() => import("react-notion-x/build/third-party/collec
 const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").then((m) => m.Modal), { ssr: false });
 
 type Props = {
-  post: string;
   blockMap: string;
 };
 
@@ -38,7 +37,7 @@ const mapPageUrl = (id: string) => {
   return "https://www.notion.so/" + id.replace(/-/g, "");
 };
 
-export default function NotionPage({ blockMap, post }: Props) {
+export default function NotionPage({ blockMap }: Props) {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   return (

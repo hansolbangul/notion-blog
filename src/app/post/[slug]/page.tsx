@@ -6,6 +6,7 @@ import Link from "next/link";
 import { NotionRenderer } from "react-notion-x";
 import "react-notion-x/src/styles.css";
 import NotionPage from "@/components/Notion/NotionPage";
+import { getPostBlocks, getPosts } from "@/lib/apis";
 
 // type Props = {
 //   post: Post;
@@ -18,14 +19,26 @@ type Props = {
   };
 };
 
+// async function getFetch(slug: string) {
+//   const service = new PostService();
+//   await service.init();
+
+//   const posts = await service.getFilterPosts({});
+
+//   const post = posts.find((p) => p.slug === slug);
+//   const blockMap = await service.getPostBlock(post?.id!);
+
+//   return {
+//     post,
+//     blockMap,
+//   };
+// }
+
 async function getFetch(slug: string) {
-  const service = new PostService();
-  await service.init();
-
-  const posts = await service.getFilterPosts({});
-
-  const post = posts.find((p) => p.slug === slug);
-  const blockMap = await service.getPostBlock(post?.id!);
+  //includePages: true
+  const posts = await getPosts();
+  const post = posts.find((t) => t.slug === slug);
+  const blockMap = await getPostBlocks(post?.id!);
 
   return {
     post,
@@ -33,15 +46,25 @@ async function getFetch(slug: string) {
   };
 }
 
+// async function getFetch() {
+//   const BASE_URL = "https://notion-api.splitbee.io/v1/page";
+//   const block = await fetch(BASE_URL + `/${process.env.NOTION_PAGE_ID}`);
+//   return {
+//     blockMap: await block.json(),
+//   };
+// }
+
 export default async function PostDetail({ params: { slug } }: Props) {
   const { blockMap, post } = await getFetch(slug);
+  // const { blockMap } = await getFetch();
   console.log(blockMap);
 
   return (
     <>
       {blockMap && (
         <div className="-mt-4">
-          <NotionPage blockMap={JSON.stringify(blockMap)} post={JSON.stringify(post!)} />
+          {/* <NotionPage blockMap={JSON.stringify(blockMap)} post={JSON.stringify(post!)} /> */}
+          <NotionPage blockMap={JSON.stringify(blockMap)} />
         </div>
       )}
     </>
