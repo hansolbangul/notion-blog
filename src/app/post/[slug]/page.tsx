@@ -8,7 +8,7 @@ import "react-notion-x/src/styles.css";
 import NotionPage from "@/components/Notion/NotionPage";
 import { getPostBlocks, getPosts } from "@/lib/apis";
 import { filterPosts } from "@/lib/utils/notion";
-
+export const dynamicParams = true;
 export const revalidate = 1;
 // type Props = {
 //   post: Post;
@@ -37,14 +37,11 @@ type Props = {
 // }
 export async function generateStaticParams() {
   const posts = await getPosts();
-  const filteredPost = filterPosts(posts, {
-    acceptStatus: ["Public", "PublicOnDetail"],
-    acceptType: ["Paper", "Post", "Page"],
-  });
+  const filteredPost = filterPosts(posts);
 
-  return filteredPost.map((row) => {
-    slug: row.slug;
-  });
+  return filteredPost.map((post) => ({
+    slug: post.slug,
+  }));
 }
 
 async function getFetch(slug: string) {
