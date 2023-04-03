@@ -15,57 +15,59 @@ type Props = {
   };
 };
 
-async function getFetch() {
-  const posts = await getPosts();
-  const filteredPost = filterPosts(posts);
-  const tags = getAllSelectItemsFromPosts("tags", filteredPost);
-  const categories = getAllSelectItemsFromPosts("category", filteredPost);
+// async function getFetch() {
+//   const posts = await getPosts();
+//   const filteredPost = filterPosts(posts);
+//   const tags = getAllSelectItemsFromPosts("tags", filteredPost);
+//   const categories = getAllSelectItemsFromPosts("category", filteredPost);
 
-  return {
-    posts: filteredPost,
-    tags: tags,
-  };
-}
-
-// async function getFetch(tag: string) {
-//   const postService = new PostService();
-//   const tagService = new TagService();
-//   await postService.init();
-
-//   const posts = await postService.getFilterPosts({});
-//   const tags = tagService.getAllTag(posts);
-
-//   // filter tag
-//   const filterPost = posts.filter((post) => {
-//     if (tag === "All") return true;
-//     const postTag = post.tags;
-
-//     return postTag?.includes(tag);
-//   });
-
-//   return { posts: filterPost, tags };
-// }
-
-// export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
-//   const { posts, tags } = await getFetch(searchParams.tag || "All");
 //   return {
-//     title: CONFIG.metadata.title || "V-BLOG",
-//     description: "",
-//     openGraph: {
-//       images: [
-//         {
-//           url: "",
-//           alt: "",
-//         },
-//       ],
-//     },
-//     keywords: Object.keys(tags).map((tag) => tag),
+//     posts: filteredPost,
+//     tags: tags,
 //   };
 // }
 
+async function getFetch(tag: string) {
+  console.log(tag);
+
+  const postService = new PostService();
+  const tagService = new TagService();
+  await postService.init();
+
+  const posts = await postService.getFilterPosts({});
+  const tags = tagService.getAllTag(posts);
+
+  // filter tag
+  const filterPost = posts.filter((post) => {
+    if (tag === "All") return true;
+    const postTag = post.tags;
+
+    return postTag?.includes(tag);
+  });
+
+  return { posts: filterPost, tags };
+}
+
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
+  const { posts, tags } = await getFetch(searchParams.tag || "All");
+  return {
+    title: CONFIG.metadata.title || "V-BLOG",
+    description: "",
+    openGraph: {
+      images: [
+        {
+          url: "",
+          alt: "",
+        },
+      ],
+    },
+    keywords: Object.keys(tags).map((tag) => tag),
+  };
+}
+
 export default async function Page({ searchParams }: Props) {
-  // const { posts, tags } = await getFetch(searchParams.tag || "All");
-  const { posts, tags } = await getFetch();
+  const { posts, tags } = await getFetch(searchParams.tag || "All");
+  // const { posts, tags } = await getFetch();
 
   return (
     <Container.Flex>
