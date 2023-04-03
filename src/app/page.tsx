@@ -8,6 +8,7 @@ import Container from "@/components/Elements/Container";
 import { getPosts } from "@/lib/apis";
 import { filterPosts, getAllSelectItemsFromPosts } from "@/lib/utils/notion";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 1;
 type Props = {
   searchParams: {
