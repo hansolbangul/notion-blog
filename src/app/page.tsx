@@ -23,6 +23,7 @@ async function getFetch() {
 
   return {
     posts: filteredPost,
+    tags: tags,
   };
 }
 
@@ -64,11 +65,11 @@ async function getFetch() {
 
 export default async function Page({ searchParams }: Props) {
   // const { posts, tags } = await getFetch(searchParams.tag || "All");
-  const { posts } = await getFetch();
+  const { posts, tags } = await getFetch();
 
   return (
     <Container.Flex>
-      {/* <Tag tags={tags} /> */}
+      <Tag tags={tags} />
       <Home posts={posts} />
     </Container.Flex>
   );

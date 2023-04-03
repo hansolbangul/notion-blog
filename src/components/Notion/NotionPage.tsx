@@ -12,13 +12,8 @@ import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
 import { useTheme } from "next-themes";
 
-const Equation = dynamic(() => import("react-notion-x/build/third-party/equation").then((m) => m.Equation));
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
   ssr: false,
-});
-
-const Collection = dynamic(() => import("react-notion-x/build/third-party/collection").then((m) => m.Collection), {
-  ssr: true,
 });
 
 const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").then((m) => m.Modal), { ssr: false });
@@ -49,14 +44,13 @@ export default function NotionPage({ blockMap }: Props) {
             recordMap={JSON.parse(blockMap)}
             mapPageUrl={mapPageUrl}
             fullPage={true}
+            showCollectionViewDropdown={false}
             disableHeader
             // mapImageUrl={mapImgUrl}
             components={{
               //   nextImage: Image,
               //   nextLink: Link,
               Code,
-              // Collection,
-              // Equation,
               Modal,
               Pdf,
             }}
