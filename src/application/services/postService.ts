@@ -1,7 +1,7 @@
 import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 import PostApiService from "@/networks/postAPIService";
-import { Post, PostStatus, PostType } from "../domain/post";
-import { cache } from "react";
+import { PostStatus, PostType } from "../domain/post";
+import { TPosts } from "@/networks/network";
 
 type GetFilterPostsReq = {
   options?: {
@@ -19,7 +19,7 @@ export default class PostService {
     return await this._postApiService.init();
   }
 
-  async getAllPost() {
+  async getAllPost(): Promise<TPosts> {
     const service = this._postApiService;
     const blockValue = service.block as BlockMap;
     const pageAllId = service.getPageAllId();
@@ -42,16 +42,15 @@ export default class PostService {
       const dateB: any = new Date(b?.date?.start_date || b.createdTime);
       return dateB - dateA;
     });
-    return data.map((post) => new Post(post));
+    return data;
   }
 
-  async getFilterPosts({ options = { status: ["Public"], type: "Post" } }: GetFilterPostsReq) {
+  async getFilterPosts({ options = { status: ["Public"], type: "Post" } }: GetFilterPostsReq): Promise<TPosts> {
     const { status, type } = options;
     const current = new Date();
     const tomorrow = new Date(current);
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(0, 0, 0, 0);
-    // const posts = await this.getAllPost();
     const posts = await this.getAllPost();
     const filterPosts = posts
       // filter data
@@ -69,8 +68,7 @@ export default class PostService {
       .filter((post) => {
         const postType = post.type[0];
         return type.includes(postType);
-      })
-      .map((post) => new Post(post));
+      });
     return filterPosts;
   }
 

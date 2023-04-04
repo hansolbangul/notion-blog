@@ -1,9 +1,11 @@
+"use client";
+
 import { Post } from "@/application/domain/post";
 import React from "react";
 import Container from "../Elements/Container";
 import { PostItem } from "./PostItem";
 import Link from "next/link";
-import { TPost } from "@/types";
+import { TPost } from "@/networks/network";
 
 type Props = {
   // post: Post;

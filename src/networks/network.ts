@@ -1,20 +1,15 @@
-import {
-  Block,
-  BlockMap,
-  ExtendedRecordMap,
-  ID,
-  CollectionPropertySchemaMap,
-} from "notion-types";
+import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 
-export type TPostStstus = "Private" | "Public" | "PublicOnDetail";
-export type TPostType = "Post" | "Paper" | "Page";
+export type PostStatus = "Private" | "Public";
+export type PostType = "Post" | "Page";
 
 export type TPost = {
   id: string;
   date: { start_date: string };
-  type: TPostType[];
+  type: PostType[];
   slug: string;
   tags?: string[];
+  category?: string[];
   summary?: string;
   author?: {
     id: string;
@@ -22,7 +17,7 @@ export type TPost = {
     profile_photo?: string;
   }[];
   title: string;
-  status: TPostStstus[];
+  status: PostStatus[];
   createdTime: string;
   fullWidth: boolean;
   thumbnail?: string;
@@ -32,6 +27,9 @@ export type TPosts = TPost[];
 
 export type TTags = {
   [tagName: string]: number;
+};
+export type TCategories = {
+  [category: string]: number;
 };
 
 export type ThemeType = "dark" | "light";
