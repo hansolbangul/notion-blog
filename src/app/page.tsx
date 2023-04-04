@@ -40,9 +40,9 @@ export default async function Page() {
   const { posts, tags } = await getFetch();
 
   return (
-    <Container.Flex>
+    <Container.Col className="md:flex-row">
       <Tag tags={tags} />
       <Home posts={posts} />
-    </Container.Flex>
+    </Container.Col>
   );
 }

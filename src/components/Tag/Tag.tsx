@@ -2,6 +2,7 @@
 import { Tags } from "@/application/domain/tag";
 import React from "react";
 import useQuery from "@/hook/useQuery";
+import TagIcon from "../Post/PostItem/TagIcon";
 
 type Props = {
   tags: Tags;
@@ -25,7 +26,9 @@ export default function Tag({ tags }: Props) {
         {Object.keys(tags).map((tag) => (
           <div
             onClick={() => setTag(tag)}
-            className={`p-1 hover:text-slate-500 hover:cursor-pointer flex items-center space-x-1 ${selectTag === tag && "text-slate-400"}`}
+            className={`p-1 hover:text-slate-500 hover:cursor-pointer flex items-center space-x-1 ${
+              selectTag === tag && "text-slate-400"
+            }`}
             key={tag}
           >
             <span className="text-sm truncate">{tag}</span>
@@ -33,6 +36,11 @@ export default function Tag({ tags }: Props) {
           </div>
         ))}
       </div>
+      {/* <div className="md:invisible overflow-x-scroll scrollbar-hide flex">
+        {Object.keys(tags).map((tag) => (
+          <TagIcon tag={tag} />
+        ))}
+      </div> */}
     </>
   );
 }
