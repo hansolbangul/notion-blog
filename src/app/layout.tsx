@@ -11,9 +11,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
+        <div id='modal-root' />
         <Providers>
           <Header />
-          <div className="max-w-3xl mx-auto">{children}</div>
+          <div className="max-w-3xl mx-auto">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
