@@ -43,7 +43,7 @@ export default async function PostDetail({ params: { slug } }: Props) {
   return (
     <>
       {blockMap && (
-        <div className="-mt-4">
+        <div className="mt-4">
           <NotionPage blockMap={blockMap} />
         </div>
       )}

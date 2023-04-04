@@ -36,11 +36,11 @@ export default function Tag({ tags }: Props) {
           </div>
         ))}
       </div>
-      {/* <div className="md:invisible overflow-x-scroll scrollbar-hide flex">
+      <div className="md:invisible overflow-x-scroll scrollbar-hide flex space-x-1 px-2">
         {Object.keys(tags).map((tag) => (
-          <TagIcon tag={tag} />
+          <TagIcon key={tag} tag={tag} />
         ))}
-      </div> */}
+      </div>
     </>
   );
 }
