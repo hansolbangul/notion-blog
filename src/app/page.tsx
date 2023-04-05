@@ -23,14 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
   const { posts, tags } = await getFetch();
   return {
     title: CONFIG.metadata.title || "V-BLOG",
-    description: "",
+    description: CONFIG.blog.description,
     openGraph: {
-      images: [
-        {
-          url: "",
-          alt: "",
-        },
-      ],
+      images: posts.map((post) => ({url: post?.thumbnail || '', alt: post.title}))
     },
     keywords: Object.keys(tags).map((tag) => tag),
   };
