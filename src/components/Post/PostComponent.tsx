@@ -1,10 +1,8 @@
 "use client";
 
-import { Post } from "@/application/domain/post";
 import React from "react";
 import Container from "../Elements/Container";
 import { PostItem } from "./PostItem";
-import Link from "next/link";
 import { TPost } from "@/networks/network";
 
 type Props = {
@@ -14,7 +12,7 @@ type Props = {
 
 export default function PostComponent({ post }: Props) {
   return (
-    <Container.Col className="border-t py-8 md:py-16 border-gray-400 dark:border-white first:border-t-0">
+    <Container.Col className="border-t py-8 md:py-16 border-gray-400 dark:border-white">
       {post.thumbnail && <PostItem.Thumbnail slug={post.slug} thumbnail={post.thumbnail} />}
       <PostItem.Title slug={post.slug} title={post.title} />
       {post.summary && <PostItem.Summary summary={post.summary} />}

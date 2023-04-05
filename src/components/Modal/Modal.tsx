@@ -7,7 +7,7 @@ type BackdropProps = {
 }
 
 const Backdrop = ({onClick}: BackdropProps) => {
-  return <div onClick={onClick} className="w-screen h-screen backdrop-opacity-10 absolute z-20" />;
+  return <div onClick={onClick} className="w-screen h-screen backdrop-brightness-75 fixed z-20" />;
 };
 
 type props = {
@@ -29,7 +29,7 @@ export default function Modal({children, outClick}: props) {
     {ReactDom.createPortal(
       <>
         <Backdrop onClick={outClick} />
-        <div className='z-30 absolute'>
+        <div className='z-30 center-potion'>
           {children}
         </div>      
       </>

@@ -2,7 +2,6 @@ import React from "react";
 import Container from "../Elements/Container";
 import DarkModeSwitch from "./DarkModeSwitch";
 import { HeaderItem } from "./Items";
-import Search from "./Items/Search";
 
 export default function Header() {
   return (
@@ -10,7 +9,6 @@ export default function Header() {
       <div className="flex max-w-3xl items-center m-auto w-full px-2">
         <HeaderItem.Title />
         <div className="flex space-x-2 items-center">
-          <HeaderItem.Search />
           <DarkModeSwitch />
         </div>
       </div>
