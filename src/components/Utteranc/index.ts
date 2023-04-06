@@ -1,1 +1,0 @@
-export default Comment from "./Comment";
