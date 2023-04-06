@@ -37,7 +37,7 @@ export default function NotionPage({ blockMap, post }: Props) {
         <div className="-mt-4">
           {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail}/>}
           <NotionRenderer
-            className={`dark:${TextTheme.darkBgColor} bg-white`}
+            className="dark:bg-zinc-950 bg-white"
             recordMap={blockMap}
             mapPageUrl={mapPageUrl}
             fullPage={true}

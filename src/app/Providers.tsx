@@ -12,7 +12,7 @@ export default function Providers({ children }: Props) {
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       <div
-        className={`dark:${TextTheme.darkBgColor} dark:${TextTheme.darkText} ${TextTheme.text} transition-colors duration-300 min-h-screen select-none`}
+        className='dark:bg-zinc-950 dark:text-gray-200 text-gray-900 transition-colors duration-300 min-h-screen select-none'
       >
         {children}
       </div>

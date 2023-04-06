@@ -27,7 +27,7 @@ export default function Tag({ tags }: Props) {
         {Object.keys(tags).map((tag) => (
           <div
             onClick={() => setTag(tag)}
-            className={`p-1 hover:${TextTheme.hover} hover:cursor-pointer flex items-center space-x-1 ${
+            className={`p-1 hover:text-slate-500 hover:cursor-pointer flex items-center space-x-1 ${
               selectTag === tag && "text-slate-400"
             }`}
             key={tag}
