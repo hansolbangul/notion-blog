@@ -2,13 +2,14 @@
 import * as React from "react";
 import { NotionRenderer } from "react-notion-x";
 import "react-notion-x/src/styles.css";
+import "prismjs/themes/prism-tomorrow.css";
+import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
 import { useTheme } from "next-themes";
 import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import Link from "next/link";
 import Image from "next/image";
-import { TextTheme } from "@/type/theme";
 import NotionThumbnail from "./NotionItem/Thumbnail";
 import Comment from "../Utteranc/Comment";
 
@@ -20,7 +21,7 @@ const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").the
 
 type Props = {
   blockMap: NotionExtendedRecordMap;
-  post: TPost
+  post: TPost;
 };
 
 const mapPageUrl = (id: string) => {
@@ -30,12 +31,12 @@ const mapPageUrl = (id: string) => {
 export default function NotionPage({ blockMap, post }: Props) {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
-  
+
   return (
     <>
       {blockMap && (
         <div className="-mt-4">
-          {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail}/>}
+          {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail} />}
           <NotionRenderer
             className="dark:bg-zinc-950 bg-white"
             recordMap={blockMap}
