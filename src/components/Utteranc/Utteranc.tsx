@@ -1,39 +1,44 @@
-import { useEffect } from "react"
-import { CONFIG } from "../../../site.config"
+"use client";
+import { useEffect } from "react";
+import { CONFIG } from "../../../site.config";
+import { useTheme } from "next-themes";
 
 type Props = {
-  issueTerm: string
-}
+  issueTerm: string;
+};
 
 const Utterances: React.FC<Props> = ({ issueTerm }) => {
-  useEffect(() => {
-    const theme = "github-light"
-    // 'github-dark'
-    const script = document.createElement("script")
-    const anchor = document.getElementById("comments")
-    if (!anchor) return
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
-    script.setAttribute("src", "https://utteranc.es/client.js")
-    script.setAttribute("crossorigin", "anonymous")
-    script.setAttribute("async", `true`)
-    script.setAttribute("issue-term", issueTerm)
-    script.setAttribute("theme", theme)
-    const config: { [key: string]: string } = CONFIG.utterances.config
+  useEffect(() => {
+    const theme = currentTheme === "dark" ? "github-dark" : "github-light";
+    // 'github-dark'
+    const script = document.createElement("script");
+    const anchor = document.getElementById("comments");
+    if (!anchor) return;
+
+    script.setAttribute("src", "https://utteranc.es/client.js");
+    script.setAttribute("crossorigin", "anonymous");
+    script.setAttribute("async", `true`);
+    script.setAttribute("issue-term", issueTerm);
+    script.setAttribute("theme", theme);
+    const config: { [key: string]: string } = CONFIG.utterances.config;
     Object.keys(config).forEach((key) => {
-      script.setAttribute(key, config[key])
-    })
-    anchor.appendChild(script)
+      script.setAttribute(key, config[key]);
+    });
+    anchor.appendChild(script);
     return () => {
-      anchor.innerHTML = ""
-    }
-  })
+      anchor.innerHTML = "";
+    };
+  });
   return (
     <>
       <div id="comments" className="md:-ml-16">
         <div className="utterances-frame"></div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Utterances
+export default Utterances;
