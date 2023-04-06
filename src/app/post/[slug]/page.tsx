@@ -30,11 +30,14 @@ async function getFetch(slug: string) {
 
   const posts = await service.getFilterPosts({});
 
-  const post = posts.find((p) => p.slug === slug);
-  const blockMap = await service.getPostBlock(post?.id!);
+  // const post = posts.find((p) => p.slug === slug);
+  const postId = posts.findIndex((p) => p.slug === slug);
+
+  // const blockMap = await service.getPostBlock(post?.id!);
+  const blockMap = await service.getPostBlock(posts[postId].id!);
 
   return {
-    post,
+    post: posts[postId],
     blockMap,
   };
 }
@@ -63,7 +66,7 @@ export default async function PostDetail({ params: { slug } }: Props) {
     <>
       {blockMap && (
         <div className="mt-4">
-          <NotionPage blockMap={blockMap} />
+          <NotionPage blockMap={blockMap} post={post!} />
         </div>
       )}
     </>

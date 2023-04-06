@@ -5,10 +5,11 @@ import "react-notion-x/src/styles.css";
 import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
 import { useTheme } from "next-themes";
-import { NotionExtendedRecordMap } from "@/networks/network";
+import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import Link from "next/link";
 import Image from "next/image";
 import { TextTheme } from "@/app/type/theme";
+import NotionThumbnail from "./NotionItem/Thumbnail";
 
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
   ssr: false,
@@ -18,21 +19,24 @@ const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").the
 
 type Props = {
   blockMap: NotionExtendedRecordMap;
+  post: TPost
 };
 
 const mapPageUrl = (id: string) => {
   return "https://www.notion.so/" + id.replace(/-/g, "");
 };
 
-export default function NotionPage({ blockMap }: Props) {
+export default function NotionPage({ blockMap, post }: Props) {
   const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
+  
   return (
     <>
       {blockMap && (
         <div className="-mt-4">
+          {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail}/>}
           <NotionRenderer
-            className={`dark:${TextTheme.bgColor} bg-white`}
+            className={`dark:${TextTheme.darkBgColor} bg-white`}
             recordMap={blockMap}
             mapPageUrl={mapPageUrl}
             fullPage={true}
