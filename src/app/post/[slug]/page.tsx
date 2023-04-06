@@ -3,7 +3,6 @@ import PostService from "@/application/services/postService";
 import "react-notion-x/src/styles.css";
 import NotionPage from "@/components/Notion/NotionPage";
 import { Metadata } from "next";
-import { CONFIG } from "../../../../site.config";
 export const dynamicParams = true;
 export const revalidate = 1;
 
@@ -42,22 +41,22 @@ async function getFetch(slug: string) {
   };
 }
 
-export async function generateMetadata({params: {slug}}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { slug } }: Props): Promise<Metadata> {
   const { post } = await getFetch(slug);
-    return {
+  return {
+    title: post?.title,
+    description: post?.summary || post?.title,
+    openGraph: {
       title: post?.title,
-      description: post?.summary || post?.title,
-      openGraph: {
-        title: post?.title,
-        images: [
-          {
-            url: post?.thumbnail || '',
-            alt: post?.title,
-          },
-        ],
-      },
-      keywords: post?.tags?.map((tag) => tag),
-    }
+      images: [
+        {
+          url: post?.thumbnail || "",
+          alt: post?.title,
+        },
+      ],
+    },
+    keywords: post?.tags?.map((tag) => tag),
+  };
 }
 
 export default async function PostDetail({ params: { slug } }: Props) {
