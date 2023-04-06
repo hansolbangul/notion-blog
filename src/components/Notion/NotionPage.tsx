@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { TextTheme } from "@/app/type/theme";
 import NotionThumbnail from "./NotionItem/Thumbnail";
+import Comment from "../Utteranc/Comment";
 
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
   ssr: false,
@@ -51,6 +52,11 @@ export default function NotionPage({ blockMap, post }: Props) {
             }}
             darkMode={currentTheme === "dark"}
           />
+          {post.type[0] === "Post" && (
+            <>
+              <Comment post={post} />
+            </>
+          )}
         </div>
       )}
     </>
