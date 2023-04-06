@@ -37,7 +37,7 @@ export default function Tag({ tags }: Props) {
           </div>
         ))}
       </div>
-      <div className="md:hidden px-2 overflow-hidden">
+      <div className="md:hidden px-2 overflow-hidden mb-4">
         <div className="overflow-x-scroll scrollbar-hide flex space-x-1">
           {Object.keys(tags).map((tag) => (
             <TagIcon key={tag} tag={tag} />
