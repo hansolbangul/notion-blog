@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import React from "react";
-import { TextTheme } from "./type/theme";
+import { TextTheme } from "../type/theme";
 
 type Props = {
   children: React.ReactNode;

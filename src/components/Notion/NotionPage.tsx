@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import Link from "next/link";
 import Image from "next/image";
-import { TextTheme } from "@/app/type/theme";
+import { TextTheme } from "@/type/theme";
 import NotionThumbnail from "./NotionItem/Thumbnail";
 import Comment from "../Utteranc/Comment";
 
