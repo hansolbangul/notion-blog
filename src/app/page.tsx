@@ -25,7 +25,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: CONFIG.metadata.title || "V-BLOG",
     description: CONFIG.blog.description,
     openGraph: {
-      images: posts.map((post) => ({url: post?.thumbnail || '', alt: post.title}))
+      images: posts.map((post) => ({ url: post?.thumbnail || "", alt: post.title })),
     },
     keywords: Object.keys(tags).map((tag) => tag),
   };

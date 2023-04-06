@@ -1,7 +1,7 @@
 import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 
 export type PostStatus = "Private" | "Public";
-export type PostType = "Post" | "Page";
+export type PostType = "Post" | "Paper";
 
 export type TPost = {
   id: string;

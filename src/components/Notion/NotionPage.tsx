@@ -8,6 +8,7 @@ import { useTheme } from "next-themes";
 import { NotionExtendedRecordMap } from "@/networks/network";
 import Link from "next/link";
 import Image from "next/image";
+import { TextTheme } from "@/app/type/theme";
 
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
   ssr: false,
@@ -31,7 +32,7 @@ export default function NotionPage({ blockMap }: Props) {
       {blockMap && (
         <div className="-mt-4">
           <NotionRenderer
-            className="dark:bg-zinc-950 bg-white"
+            className={`dark:${TextTheme.bgColor} bg-white`}
             recordMap={blockMap}
             mapPageUrl={mapPageUrl}
             fullPage={true}

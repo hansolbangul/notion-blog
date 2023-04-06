@@ -1,5 +1,5 @@
 export type PostStatus = "Private" | "Public";
-export type PostType = "Post" | "Page";
+export type PostType = "Post" | "Paper";
 
 export class Post {
   id: string;
