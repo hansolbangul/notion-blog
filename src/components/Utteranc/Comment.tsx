@@ -18,7 +18,7 @@ type Props = {
 export default function Comment({post}: Props) {
   return (
     <>
-      {CONFIG.utterances.enable && <UtterancesComponent issueTerm={post.id} />}
+      {CONFIG.utterances.enable && <UtterancesComponent issueTerm={post.title} />}
     </>
   )
 }
