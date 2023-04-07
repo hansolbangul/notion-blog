@@ -16,7 +16,7 @@ export default function NotionPage({ blockMap, post }: Props) {
       {blockMap && (
         <div className="-mt-4">
           {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail} />}
-          <NotionRender blockMap={blockMap}/>
+          <NotionRender post={post} blockMap={blockMap}/>
           {post.type[0] === "Post" && (
             <>
               <Comment post={post} />
