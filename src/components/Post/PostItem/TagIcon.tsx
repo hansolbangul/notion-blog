@@ -1,18 +1,19 @@
 "use client";
 import useQuery from "@/hook/useQuery";
-import Link from "next/link";
 import React from "react";
 
 type Props = {
   tag: string;
+  isRouter?: boolean;
 };
 
-export default function TagIcon({ tag }: Props) {
+export default function TagIcon({ tag, isRouter = true }: Props) {
   const params = useQuery();
   const selectTag = params.get("tag") || "All";
 
   const setTag = (event: React.MouseEvent<HTMLSpanElement>) => {
     event.stopPropagation();
+    if (!isRouter) return;
     if (selectTag === tag) {
       params.set("tag", "");
     } else {

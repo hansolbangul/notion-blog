@@ -2,7 +2,6 @@
 
 import TagIcon from "@/components/Post/PostItem/TagIcon";
 import { TPost } from "@/networks/network";
-import { useRouter } from "next/navigation";
 import React from "react";
 import { IoShareSocialSharp } from "react-icons/io5";
 
@@ -25,7 +24,7 @@ export default function NotionHeader({ post }: Props) {
           <span className="font-normal">태그</span>
           <span className="flex space-x-2">
             {post.tags?.slice(0, 2).map((tag) => (
-              <TagIcon key={tag} tag={tag} />
+              <TagIcon isRouter={false} key={tag} tag={tag} />
             ))}
           </span>
         </div>
@@ -33,7 +32,7 @@ export default function NotionHeader({ post }: Props) {
           <span className="font-normal">작성자</span>
           <span className="font-bold">{post.author ? post.author[0].name : "미등록"}</span>
         </div>
-        <div className="flex flex-auto justify-en cursor-pointer">
+        <div className="flex flex-auto justify-end cursor-pointer">
           <IoShareSocialSharp />
         </div>
       </div>
