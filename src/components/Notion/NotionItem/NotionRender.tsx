@@ -42,6 +42,8 @@ export default function NotionRender({ blockMap, post }: Props) {
     setTheme(currentTheme);
   }, [theme]);
 
+  console.log(isDark);
+
   return (
     <>
       {isDark && (
