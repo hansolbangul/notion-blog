@@ -1,6 +1,8 @@
 # NextNotion Blog
 
-This project is a web application developed with Next.js version 13 based on React. The application serves as an interface to interlock with Notion posts using the Notion API. The project is being developed with an emphasis on SEO-friendly development and uses DDD architecture to change business logic.
+[notion-blog](https://bangul-log.vercel.app/) This project is a web application developed with Next.js version 13 based on React. The application serves as an interface to interlock with Notion posts using the Notion API. The project is being developed with an emphasis on SEO-friendly development and uses DDD architecture to change business logic.
+
+<img width="1710" alt="스크린샷 2023-04-10 오전 1 59 49" src="https://user-images.githubusercontent.com/71314689/230786065-27ce299b-b8e8-4855-b35d-8f552a4a6c42.png">
 
 ## Features
 
