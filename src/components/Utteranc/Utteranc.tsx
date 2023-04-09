@@ -7,8 +7,8 @@ type Props = {
   issueTerm: string;
 };
 
-const Utterances: React.FC<Props> = ({ issueTerm }) => {
-  const { systemTheme, theme, setTheme } = useTheme();
+export default function Utterances({ issueTerm }: Props) {
+  const { systemTheme, theme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
 
   useEffect(() => {
@@ -39,6 +39,4 @@ const Utterances: React.FC<Props> = ({ issueTerm }) => {
       </div>
     </>
   );
-};
-
-export default Utterances;
+}
