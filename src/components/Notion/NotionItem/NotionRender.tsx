@@ -51,7 +51,7 @@ export default function NotionRender({ blockMap, post }: Props) {
           mapPageUrl={mapPageUrl}
           fullPage={true}
           showCollectionViewDropdown={false}
-          pageTitle={<NotionHeader post={post} />}
+          pageTitle={post.type[0] === "Post" && <NotionHeader post={post} />}
           disableHeader
           components={{
             nextImage: Image,
