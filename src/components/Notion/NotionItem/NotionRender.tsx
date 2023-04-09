@@ -40,7 +40,7 @@ export default function NotionRender({ blockMap, post }: Props) {
   useEffect(() => {
     const currentTheme = theme === "system" ? systemTheme : theme;
     setTheme(currentTheme);
-  }, [systemTheme]);
+  }, [systemTheme, theme]);
 
   return (
     <>
