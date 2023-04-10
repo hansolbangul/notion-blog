@@ -11,7 +11,7 @@
   border-bottom-color: transparent;
 }
 
-hr {
+.notion-frame hr {
   border-width: 1px !important;
   border-style: inset !important;
 }
