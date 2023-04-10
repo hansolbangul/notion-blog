@@ -10,3 +10,8 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
   border-bottom-color: transparent;
 }
+
+hr {
+  border-width: 1px !important;
+  border-style: inset !important;
+}
