@@ -51,8 +51,3 @@ To contribute to the project, follow the steps below:
 ## License
 
 The [MIT License](LICENSE).
-
-
-<!-- ## License
-
-This project is licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
