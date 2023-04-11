@@ -17,6 +17,7 @@ export default function Home({ posts }: Props) {
   const params = useQuery();
   const [filter, setFilter] = useState(posts);
   const [search, setSearch] = useState("");
+  const tagQuery = params.get("tag") || "All";
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,7 +26,6 @@ export default function Home({ posts }: Props) {
     },
     [search]
   );
-  const tagQuery = params.get("tag") || "All";
 
   useEffect(() => {
     setFilter(() => {

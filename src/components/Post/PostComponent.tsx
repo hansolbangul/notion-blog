@@ -6,7 +6,6 @@ import { PostItem } from "./PostItem";
 import { TPost } from "@/networks/network";
 
 type Props = {
-  // post: Post;
   post: TPost;
 };
 
