@@ -15,50 +15,27 @@ type Props = {
 
 export default function Home({ posts }: Props) {
   const params = useQuery();
-  // const query = useSearchParams();
   const [filter, setFilter] = useState(posts);
-  // const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-  // const onChange = useCallback(
-  //   (e: React.ChangeEvent<HTMLInputElement>) => {
-  //     const { value } = e.target;
-  //     setSearch(value);
-  //   },
-  //   [search]
-  // );
-
-  // const tagQuery = query.get("tag") || "All";
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.target;
+      setSearch(value);
+    },
+    [search]
+  );
   const tagQuery = params.get("tag") || "All";
 
-  // useEffect(() => {
-  //   console.log(tagQuery);
-  //   setFilter(() => {
-  //     let filters = posts;
-
-  //     filters = filters.filter(
-  //       (post) =>
-  //         post.title.toLowerCase().includes(search.toLowerCase()) ||
-  //         post.summary?.toLowerCase().includes(search.toLowerCase())
-  //     );
-
-  //     if (tagQuery !== "All") {
-  //       filters = filters.filter((post) => post && post.tags && post.tags.includes(tagQuery));
-  //     }
-
-  //     return filters;
-  //   });
-  // }, [tagQuery]);
-
   useEffect(() => {
-    console.log(tagQuery);
     setFilter(() => {
       let filters = posts;
 
-      // filters = filters.filter(
-      //   (post) =>
-      //     post.title.toLowerCase().includes(search.toLowerCase()) ||
-      //     post.summary?.toLowerCase().includes(search.toLowerCase())
-      // );
+      filters = filters.filter(
+        (post) =>
+          post.title.toLowerCase().includes(search.toLowerCase()) ||
+          post.summary?.toLowerCase().includes(search.toLowerCase())
+      );
 
       if (tagQuery !== "All") {
         filters = filters.filter((post) => post && post.tags && post.tags.includes(tagQuery));
@@ -70,7 +47,7 @@ export default function Home({ posts }: Props) {
 
   return (
     <Container.Col className="px-4">
-      {/* <Search onChange={onChange} value={search} /> */}
+      <Search onChange={onChange} value={search} />
       {filter.map((post) => (
         <PostComponent key={post.id} post={post} />
       ))}
