@@ -1,12 +1,13 @@
 "use client";
 
 import { Post } from "@/application/domain/post";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Container from "../Elements/Container";
 import PostComponent from "../Post/PostComponent";
 import useQuery from "@/hook/useQuery";
 import { TPosts } from "@/networks/network";
 import Search from "./Search/Search";
+import { useSearchParams } from "next/navigation";
 
 type Props = {
   posts: TPosts;
@@ -14,31 +15,63 @@ type Props = {
 
 export default function Home({ posts }: Props) {
   const params = useQuery();
-  const [filter, setFilter] = useState<TPosts>([]);
-  const [search, setSearch] = useState('');
+  // const query = useSearchParams();
+  const [filter, setFilter] = useState(posts);
+  // const [search, setSearch] = useState("");
 
-  const onChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      setSearch(value);
-    },
-    [search]
-  );
+  // const onChange = useCallback(
+  //   (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     const { value } = e.target;
+  //     setSearch(value);
+  //   },
+  //   [search]
+  // );
 
+  // const tagQuery = query.get("tag") || "All";
   const tagQuery = params.get("tag") || "All";
 
+  // useEffect(() => {
+  //   console.log(tagQuery);
+  //   setFilter(() => {
+  //     let filters = posts;
+
+  //     filters = filters.filter(
+  //       (post) =>
+  //         post.title.toLowerCase().includes(search.toLowerCase()) ||
+  //         post.summary?.toLowerCase().includes(search.toLowerCase())
+  //     );
+
+  //     if (tagQuery !== "All") {
+  //       filters = filters.filter((post) => post && post.tags && post.tags.includes(tagQuery));
+  //     }
+
+  //     return filters;
+  //   });
+  // }, [tagQuery]);
+
   useEffect(() => {
-    if (tagQuery === "All") {
-      setFilter(posts);
-    } else {
-      setFilter(() => posts.filter((post) => post.tags?.includes(tagQuery)));
-    }
+    console.log(tagQuery);
+    setFilter(() => {
+      let filters = posts;
+
+      // filters = filters.filter(
+      //   (post) =>
+      //     post.title.toLowerCase().includes(search.toLowerCase()) ||
+      //     post.summary?.toLowerCase().includes(search.toLowerCase())
+      // );
+
+      if (tagQuery !== "All") {
+        filters = filters.filter((post) => post && post.tags && post.tags.includes(tagQuery));
+      }
+
+      return filters;
+    });
   }, [tagQuery]);
 
   return (
     <Container.Col className="px-4">
-      <Search onChange={onChange} value={search}/>
-      {filter.filter((post) => post.title.includes(search) || post.summary?.includes(search)).map((post) => (
+      {/* <Search onChange={onChange} value={search} /> */}
+      {filter.map((post) => (
         <PostComponent key={post.id} post={post} />
       ))}
     </Container.Col>
