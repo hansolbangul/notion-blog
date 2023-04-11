@@ -1,8 +1,9 @@
 "use client";
 
 import TagIcon from "@/components/Post/PostItem/TagIcon";
+import Toast from "@/components/Toast/Toast";
 import { TPost } from "@/networks/network";
-import React from "react";
+import React, { useState } from "react";
 import { IoShareSocialSharp } from "react-icons/io5";
 
 type Props = {
@@ -10,6 +11,34 @@ type Props = {
 };
 
 export default function NotionHeader({ post }: Props) {
+  const [visible, setVisible] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const copyUrl = async () => {
+    if (visible) return;
+    const href = window.location.href;
+    const clipboard = await navigator.clipboard.readText();
+
+    if (clipboard === href) {
+      setTime("이미 저장하였습니다.");
+    } else {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        setTime("클립보드에 저장하였습니다.");
+      } catch {
+        setTime("클립보드에 저장 실패하였습니다.");
+      }
+    }
+  };
+
+  const setTime = (message: string) => {
+    setTimeout(() => {
+      setVisible(false);
+    }, 3000);
+    setMessage(message);
+    setVisible(true);
+  };
+
   return (
     <div className="flex flex-col py-7 border-y">
       <h1 className="font-bold text-transparent tracking-tight max-w-2xl text-5xl">
@@ -33,9 +62,10 @@ export default function NotionHeader({ post }: Props) {
           <span className="font-bold">{post.author ? post.author[0].name : "미등록"}</span>
         </div>
         <div className="flex flex-auto justify-end cursor-pointer">
-          <IoShareSocialSharp />
+          <IoShareSocialSharp onClick={copyUrl} />
         </div>
       </div>
+      {visible && <Toast message={message} />}
     </div>
   );
 }

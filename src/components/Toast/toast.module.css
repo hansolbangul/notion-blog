@@ -1,0 +1,31 @@
+@keyframes toast-bounce-bottom {
+  0% {
+    transform: translateY(0px);
+    opacity: 0;
+    visibility: visible;
+  }
+  8% {
+    transform: translateY(70px);
+  }
+  17% {
+    transform: translateY(60px);
+    opacity: 1;
+  }
+  84% {
+    transform: translateY(60px);
+    opacity: 1;
+  }
+  92% {
+    transform: translateY(70px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.toast {
+  opacity: 0;
+  visibility: hidden;
+  animation: toast-bounce-bottom 3s;
+}
