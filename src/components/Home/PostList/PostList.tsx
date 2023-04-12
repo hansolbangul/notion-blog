@@ -14,11 +14,8 @@ export default function PostList({ search, posts }: Props) {
   const params = useQuery();
   const tagQuery = params.get("tag") || "All";
   const [filter, setFilter] = useState(posts);
-  console.log('filter', filter);
-  
 
   useEffect(() => {
-    console.log('posts', posts);
     
     setFilter(() => {
       let filters = posts;

@@ -12,7 +12,6 @@ type Props = {
 
 export default function Home({ posts }: Props) {
   const [search, setSearch] = useState("");
-  console.log(posts);
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

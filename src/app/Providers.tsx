@@ -1,6 +1,8 @@
 'use client'
 
+import useScrollRestoration from "@/hook/useScrollRestoration";
 import { ThemeProvider } from "next-themes";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 type Props = {
@@ -8,6 +10,11 @@ type Props = {
 };
 
 export default function Providers({ children }: Props) {
+  const pathname = usePathname()
+  // console.log(pathname);
+  console.log(pathname)
+  
+  useScrollRestoration(pathname);
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       <div
