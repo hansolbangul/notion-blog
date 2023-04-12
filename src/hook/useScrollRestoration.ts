@@ -8,8 +8,7 @@ function saveScrollPos(url: string) {
 function restoreScrollPos(url: string) {
   const json = sessionStorage.getItem(url);
   const scrollPos = json ? JSON.parse(json) : undefined;
-  if (url === window.location.pathname) saveScrollPos(url);
-  else if (scrollPos) {
+  if (scrollPos) {
     window.scrollTo(scrollPos.x, scrollPos.y);
   }
 }
