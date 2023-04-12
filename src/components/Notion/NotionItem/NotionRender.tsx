@@ -54,8 +54,6 @@ export default function NotionRender({ blockMap, post }: Props) {
           pageTitle={post.type[0] === "Post" && <NotionHeader post={post} />}
           disableHeader
           components={{
-            nextImage: Image,
-            nextLink: Link,
             Code,
             Modal,
             Pdf,
