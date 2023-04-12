@@ -1,4 +1,5 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useCallback } from "react";
 
 /**
  * @param {string} name query 이름
@@ -14,8 +15,19 @@ export default function useQuery() {
     return query.get(name);
   }
 
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(query);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [query]
+  );
+
   function set(name: string, value: string) {
-    router.push(pathName + "?" + `${name}=${value}`);
+    router.push(pathName + "?" + createQueryString(name, value));
   }
+
   return { get, set };
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Container from "../Elements/Container";
 import { PostItem } from "./PostItem";
