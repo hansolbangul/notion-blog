@@ -12,7 +12,8 @@ export default function TagIcon({ tag, isRouter = true }: Props) {
   const selectTag = params.get("tag") || "All";
 
   const setTag = (event: React.MouseEvent<HTMLSpanElement>) => {
-    event.stopPropagation();
+    event.preventDefault();
+    // event.stopPropagation();
     if (!isRouter) return;
     if (selectTag === tag) {
       params.set("tag", "");

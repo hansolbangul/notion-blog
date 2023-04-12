@@ -10,11 +10,11 @@ type Props = {
 };
 
 export default function Providers({ children }: Props) {
-  const pathname = usePathname()
-  // console.log(pathname);
-  console.log(pathname)
+  // const pathname = usePathname()
+  // // console.log(pathname);
+  // console.log(pathname)
   
-  useScrollRestoration(pathname);
+  // useScrollRestoration(pathname);
   return (
     <ThemeProvider enableSystem={true} attribute="class">
       <div
