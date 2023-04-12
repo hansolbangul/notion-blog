@@ -7,8 +7,6 @@ import "prismjs/themes/prism-tomorrow.css";
 import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
-import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import { useTheme } from "next-themes";
