@@ -16,7 +16,6 @@ export default function PostList({ search, posts }: Props) {
   const [filter, setFilter] = useState(posts);
 
   useEffect(() => {
-    
     setFilter(() => {
       let filters = posts;
 

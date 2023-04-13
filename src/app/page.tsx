@@ -6,8 +6,6 @@ import Tag from "@/components/Tag/Tag";
 import Home from "@/components/Home/Home";
 import Container from "@/components/Elements/Container";
 
-export const revalidate = 'force-cache'
-
 async function getFetch() {
   const postService = new PostService();
   const tagService = new TagService();
