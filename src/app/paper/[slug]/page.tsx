@@ -36,21 +36,21 @@ async function getFetch(slug: string) {
   };
 }
 
-export async function generateMetadata({params: {slug}}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { slug } }: Props): Promise<Metadata> {
   const { post } = await getFetch(slug);
-    return {
-      title: post?.title,
-      description: post?.summary || post?.title,
-      openGraph: {
-        images: [
-          {
-            url: post?.thumbnail || '',
-            alt: post?.title,
-          },
-        ],
-      },
-      keywords: post?.tags?.map((tag) => tag),
-    }
+  return {
+    title: post?.title,
+    description: post?.summary || post?.title,
+    openGraph: {
+      images: [
+        {
+          url: post?.thumbnail || "",
+          alt: post?.title,
+        },
+      ],
+    },
+    keywords: post?.tags?.map((tag) => tag),
+  };
 }
 
 export default async function PaperDetail({ params: { slug } }: Props) {

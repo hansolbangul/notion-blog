@@ -8,11 +8,11 @@ import PrevNextBtn from "./NotionItem/PrevNextBtn";
 type Props = {
   blockMap: NotionExtendedRecordMap;
   post: TPost;
-  next: string | null;
-  prev: string | null;
+  next?: string | null;
+  prev?: string | null;
 };
 
-export default function NotionPage({ blockMap, post, next, prev }: Props) {
+export default function NotionPage({ blockMap, post, next = null, prev = null }: Props) {
   return (
     <>
       {blockMap && (
