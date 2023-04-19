@@ -23,8 +23,8 @@ export default function PrevNextBtn({ next, prev }: Props) {
           <span className="text-sm font-semibold">back</span>
         </Link>
       ) : (
-        <div className="flex items-center gap-x-1">
-          <IoArrowUpSharp className="cursor-pointer" onClick={scrollUp} />
+        <div className="flex items-center gap-x-1" onClick={scrollUp}>
+          <IoArrowUpSharp className="cursor-pointer" />
           <span className="text-sm font-semibold">up</span>
         </div>
       )}
@@ -34,9 +34,9 @@ export default function PrevNextBtn({ next, prev }: Props) {
           <IoArrowForwardSharp className="text-base" />
         </Link>
       ) : (
-        <div className="flex items-center gap-x-1">
+        <div className="flex items-center gap-x-1" onClick={scrollUp}>
           <span className="text-sm font-semibold">up</span>
-          <IoArrowUpSharp className="cursor-pointer" onClick={scrollUp} />
+          <IoArrowUpSharp className="cursor-pointer" />
         </div>
       )}
     </div>
