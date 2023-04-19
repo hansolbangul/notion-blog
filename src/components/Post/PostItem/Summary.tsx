@@ -5,5 +5,5 @@ type Props = {
 };
 
 export default function Summary({ summary }: Props) {
-  return <div className="mb-2 text-xs md:text-sm">{summary}</div>;
+  return <h3 className="mb-2 text-xs md:text-sm">{summary}</h3>;
 }

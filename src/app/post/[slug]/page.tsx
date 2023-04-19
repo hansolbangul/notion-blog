@@ -35,8 +35,13 @@ async function getFetch(slug: string) {
   // const blockMap = await service.getPostBlock(post?.id!);
   const blockMap = await service.getPostBlock(posts[postId].id!);
 
+  const prev = postId === posts.length - 1 ? null : posts[postId + 1].slug;
+  const next = postId === 0 ? null : posts[postId - 1].slug;
+
   return {
     post: posts[postId],
+    prev,
+    next,
     blockMap,
   };
 }
@@ -60,13 +65,13 @@ export async function generateMetadata({ params: { slug } }: Props): Promise<Met
 }
 
 export default async function PostDetail({ params: { slug } }: Props) {
-  const { blockMap, post } = await getFetch(slug);
+  const { blockMap, post, next, prev } = await getFetch(slug);
 
   return (
     <>
       {blockMap && (
         <div className="mt-4">
-          <NotionPage blockMap={blockMap} post={post!} />
+          <NotionPage blockMap={blockMap} post={post!} next={next} prev={prev} />
         </div>
       )}
     </>

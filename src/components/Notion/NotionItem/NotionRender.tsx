@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import { useTheme } from "next-themes";
 import NotionHeader from "./NotionHeader";
+import PrevNextBtn from "./PrevNextBtn";
 
 // 'dark' | 'light'
 type ThemeStatus = string | undefined;
@@ -18,6 +19,8 @@ type ThemeStatus = string | undefined;
 type Props = {
   blockMap: NotionExtendedRecordMap;
   post: TPost;
+  next: string | null;
+  prev: string | null;
 };
 
 const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
@@ -30,7 +33,7 @@ const mapPageUrl = (id: string) => {
   return "https://www.notion.so/" + id.replace(/-/g, "");
 };
 
-export default function NotionRender({ blockMap, post }: Props) {
+export default function NotionRender({ blockMap, post, next, prev }: Props) {
   const { systemTheme, theme } = useTheme();
 
   const [isDark, setTheme] = useState<ThemeStatus>();
@@ -50,6 +53,7 @@ export default function NotionRender({ blockMap, post }: Props) {
           fullPage={true}
           showCollectionViewDropdown={false}
           pageTitle={post.type[0] === "Post" && <NotionHeader post={post} />}
+          footer={post.type[0] === "Post" && <PrevNextBtn next={next} prev={prev} />}
           disableHeader
           components={{
             Code,
