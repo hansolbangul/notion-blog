@@ -3,7 +3,6 @@ import { Tags } from "@/application/domain/tag";
 import React from "react";
 import useQuery from "@/hook/useQuery";
 import TagIcon from "../Post/PostItem/TagIcon";
-import { TextTheme } from "@/type/theme";
 
 type Props = {
   tags: Tags;
