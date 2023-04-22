@@ -1,0 +1,29 @@
+@keyframes modal-bounce-bottom {
+  0% {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* @keyframes modal-bounce-up {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+} */
+
+.modal_in {
+  animation: modal-bounce-bottom 0.8s;
+}
+
+/* .modal_out {
+  animation: modal-bounce-up 0.8s;
+} */

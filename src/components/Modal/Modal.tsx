@@ -1,40 +1,38 @@
-'use client'
-import { useEffect, useState } from 'react';
-import ReactDom from 'react-dom'
+"use client";
+import { useEffect, useState } from "react";
+import ReactDom from "react-dom";
 
 type BackdropProps = {
-  onClick: () => void
-}
+  onClick: () => void;
+};
 
-const Backdrop = ({onClick}: BackdropProps) => {
+const Backdrop = ({ onClick }: BackdropProps) => {
   return <div onClick={onClick} className="w-screen h-screen backdrop-brightness-75 fixed z-20" />;
 };
 
 type props = {
   children: React.ReactNode;
   outClick: () => void;
-}
+};
 
-export default function Modal({children, outClick}: props) {
+export default function Modal({ children, outClick }: props) {
   const [isCSR, setIsCSR] = useState<boolean>(false);
 
   useEffect(() => {
     setIsCSR(true);
-  }, [])
-  
-  if (typeof window === 'undefined') return <></>;
+  }, []);
+
+  if (typeof window === "undefined") return <></>;
   if (!isCSR) return <></>;
   return (
     <>
-    {ReactDom.createPortal(
-      <>
-        <Backdrop onClick={outClick} />
-        <div className='z-30 center-potion'>
-          {children}
-        </div>      
-      </>
-      , document.getElementById('modal-root')!
-    )}
+      {ReactDom.createPortal(
+        <>
+          <Backdrop onClick={outClick} />
+          <div className="z-30 right-2/4 top-2/4 transform translate-x-2/4 -translate-y-2/4 fixed">{children}</div>
+        </>,
+        document.getElementById("modal-root")!
+      )}
     </>
-  )
+  );
 }
