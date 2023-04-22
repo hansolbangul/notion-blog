@@ -1,7 +1,7 @@
 import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 
 export type PostStatus = "Private" | "Public";
-export type PostType = "Post" | "Paper";
+export type PostType = "Post" | "Paper" | "Schedule";
 
 export type TPost = {
   id: string;
@@ -34,6 +34,20 @@ export type TCategories = {
 };
 
 export type ThemeType = "dark" | "light";
+
+export type TSchedule = {
+  id: string;
+  date: string;
+  title: string;
+  createAt: string;
+  author?: {
+    id: string;
+    name: string;
+    profile_photo?: string;
+  }[];
+};
+
+export type TSchedules = TSchedule[];
 
 export type NotionBlock = Block;
 

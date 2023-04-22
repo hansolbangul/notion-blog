@@ -134,7 +134,11 @@ export default class PostApiService {
       const u = new URL(url);
 
       if (u.pathname.startsWith("/secure.notion-static.com") && u.hostname.endsWith(".amazonaws.com")) {
-        if (u.searchParams.has("X-Amz-Credential") && u.searchParams.has("X-Amz-Signature") && u.searchParams.has("X-Amz-Algorithm")) {
+        if (
+          u.searchParams.has("X-Amz-Credential") &&
+          u.searchParams.has("X-Amz-Signature") &&
+          u.searchParams.has("X-Amz-Algorithm")
+        ) {
           url = u.origin + u.pathname;
         }
       }

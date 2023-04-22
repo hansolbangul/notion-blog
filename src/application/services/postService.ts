@@ -1,7 +1,7 @@
 import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 import PostApiService from "@/networks/postAPIService";
 import { PostStatus, PostType } from "../domain/post";
-import { TPosts } from "@/networks/network";
+import { TPost, TPosts, TSchedules } from "@/networks/network";
 
 type GetFilterPostsReq = {
   options?: {
@@ -52,6 +52,7 @@ export default class PostService {
     tomorrow.setDate(tomorrow.getDate() + 1);
     tomorrow.setHours(0, 0, 0, 0);
     const posts = await this.getAllPost();
+
     const filterPosts = posts
       // filter data
       .filter((post) => {
@@ -69,6 +70,40 @@ export default class PostService {
         const postType = post.type[0];
         return type.includes(postType);
       });
+    return filterPosts;
+  }
+
+  async getFilterSchedule(): Promise<TSchedules> {
+    const status = ["Public"],
+      type = "Schedule";
+    const year = String(new Date().getFullYear());
+    const month = String(new Date().getMonth() + 1).padStart(2, "0");
+    const posts = await this.getAllPost();
+
+    const filterPosts = posts
+      // filter status
+      .filter((post) => {
+        const postStatus = post.status[0];
+        return status.includes(postStatus);
+      })
+      // filter type
+      .filter((post) => {
+        const postType = post.type[0];
+        return type.includes(postType);
+      })
+      // filter month
+      .filter((post) => {
+        const [postYear, postMonth] = post.date?.start_date?.split("-");
+        return postMonth === month.toString() && year === postYear;
+      })
+      // format
+      .map((post) => ({
+        id: post.id,
+        date: post.date?.start_date,
+        title: post.title,
+        createAt: post.createdTime,
+        author: post.author,
+      }));
     return filterPosts;
   }
 
