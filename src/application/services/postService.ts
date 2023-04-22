@@ -1,7 +1,7 @@
 import { Block, BlockMap, ExtendedRecordMap, ID, CollectionPropertySchemaMap } from "notion-types";
 import PostApiService from "@/networks/postAPIService";
 import { PostStatus, PostType } from "../domain/post";
-import { TPost, TPosts, TSchedules } from "@/networks/network";
+import { TPost, TPosts, TScheduleObj, TSchedules } from "@/networks/network";
 
 type GetFilterPostsReq = {
   options?: {
@@ -9,6 +9,7 @@ type GetFilterPostsReq = {
     type: PostType;
   };
 };
+
 export default class PostService {
   _postApiService: PostApiService;
   constructor() {
@@ -73,14 +74,15 @@ export default class PostService {
     return filterPosts;
   }
 
-  async getFilterSchedule(): Promise<TSchedules> {
+  async getFilterSchedule(): Promise<TScheduleObj> {
     const status = ["Public"],
       type = "Schedule";
     const year = String(new Date().getFullYear());
     const month = String(new Date().getMonth() + 1).padStart(2, "0");
     const posts = await this.getAllPost();
+    let filterPosts: TScheduleObj = {};
 
-    const filterPosts = posts
+    const filters = posts
       // filter status
       .filter((post) => {
         const postStatus = post.status[0];
@@ -103,7 +105,18 @@ export default class PostService {
         title: post.title,
         createAt: post.createdTime,
         author: post.author,
+        slug: post.slug,
       }));
+
+    filters.forEach((filter) => {
+      const date = filter.date.split("-")[2].padStart(2, "0");
+      if (filterPosts[date]) {
+        filterPosts[date].push(filter);
+      } else {
+        filterPosts[date] = [filter];
+      }
+    });
+
     return filterPosts;
   }
 

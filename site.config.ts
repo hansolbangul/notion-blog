@@ -12,6 +12,7 @@ export const CONFIG = {
     title: "데굴데굴 블로그",
     description: "한솔방울의 돌아버린 프론트엔드 개발 블로그~",
     todayWords: ["hello world", "hansolbangul", "V-log"],
+    calendarTitle: "이번달 채용 공고",
   },
   utterances: {
     enable: true,

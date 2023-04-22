@@ -40,6 +40,7 @@ export type TSchedule = {
   date: string;
   title: string;
   createAt: string;
+  slug: string;
   author?: {
     id: string;
     name: string;
@@ -48,6 +49,10 @@ export type TSchedule = {
 };
 
 export type TSchedules = TSchedule[];
+
+export type TScheduleObj = {
+  [date: string]: TSchedules;
+};
 
 export type NotionBlock = Block;
 

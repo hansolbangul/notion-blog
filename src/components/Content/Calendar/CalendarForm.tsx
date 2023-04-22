@@ -1,6 +1,7 @@
 import React, { use } from "react";
 import Calendar from "./Calendar";
 import PostService from "@/application/services/postService";
+import { CONFIG } from "../../../../site.config";
 
 async function getFetch() {
   const postService = new PostService();
@@ -17,9 +18,9 @@ export default function CalendarForm() {
   return (
     <>
       <div className="w-full h-8 flex items-center justify-center">
-        <h3 className="text-center text-xs font-bold">Calendar</h3>
+        <h3 className="text-center text-xs font-bold">{CONFIG.blog.calendarTitle}</h3>
       </div>
-      <Calendar schedule={schedule} />
+      <Calendar schedules={schedule} />
     </>
   );
 }
