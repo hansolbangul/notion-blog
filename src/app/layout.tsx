@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <div className="max-w-3xl mx-auto relative">
             {children}
-            <Content />
+            {/* <Content /> */}
           </div>
         </Providers>
       </body>
