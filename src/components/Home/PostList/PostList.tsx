@@ -31,7 +31,7 @@ export default function PostList({ search, posts }: Props) {
 
       return filters;
     });
-  }, [tagQuery]);
+  }, [tagQuery, search]);
 
   return (
     <>
