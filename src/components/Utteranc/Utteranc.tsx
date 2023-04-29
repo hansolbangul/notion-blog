@@ -35,7 +35,7 @@ export default function Utterances({ issueTerm }: Props) {
   return (
     <>
       <div id="comments" className="md:-ml-16">
-        <div className="utterances-frame"></div>
+        <div className="utterances-frame" style={{ position: "relative" }}></div>
       </div>
     </>
   );
