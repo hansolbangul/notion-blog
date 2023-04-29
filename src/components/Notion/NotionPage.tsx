@@ -1,9 +1,8 @@
 "use client";
 import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import NotionThumbnail from "./NotionItem/Thumbnail";
-import Comment from "../Utteranc/Comment";
 import NotionRender from "./NotionItem/NotionRender";
-import PrevNextBtn from "./NotionItem/PrevNextBtn";
+import Comment from "../Utteranc/Comment";
 
 type Props = {
   blockMap: NotionExtendedRecordMap;

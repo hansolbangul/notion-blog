@@ -27,6 +27,8 @@ export default class PostApiService {
   getPageAllId(): string[] {
     if (!this.notionRes) throw Error("init()을 먼저 실행해주세요.");
     const collectionQuery = this.notionRes.collection_query;
+    console.log(collectionQuery);
+
     const views = Object.values(collectionQuery)[0];
 
     const pageSet = new Set<ID>();
