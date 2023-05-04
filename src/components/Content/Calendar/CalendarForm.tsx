@@ -1,5 +1,3 @@
-"use client";
-
 import React, { use } from "react";
 import Calendar from "./Calendar";
 import PostService from "@/application/services/postService";
