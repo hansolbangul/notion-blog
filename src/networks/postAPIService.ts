@@ -27,7 +27,7 @@ export default class PostApiService {
   getPageAllId(): string[] {
     if (!this.notionRes) throw Error("init()을 먼저 실행해주세요.");
     const collectionQuery = this.notionRes.collection_query;
-    console.log(collectionQuery);
+    // console.log(collectionQuery);
 
     const views = Object.values(collectionQuery)[0];
 
@@ -115,7 +115,11 @@ export default class PostApiService {
   }
 
   async getPostBlocks(id: string) {
+    console.log(id);
+
     const pageBlock = await this.api.getPage(id);
+    console.log("pageBlock", id, pageBlock);
+
     return pageBlock;
   }
 
