@@ -1,7 +1,7 @@
 import React from 'react'
 import { CONFIG } from '../../../site.config'
 import dynamic from "next/dynamic"
-import { TPost } from '@/type'
+import { TPost } from '@/src/types'
 
 
 // const UtterancesComponent = dynamic(
