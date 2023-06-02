@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextNotion Blog
 
-## Getting Started
+[notion-blog](https://bangul-log.vercel.app/) This project is a web application developed with Next.js version 13 based on React. The application serves as an interface to interlock with Notion posts using the Notion API. The project is being developed with an emphasis on SEO-friendly development and uses DDD architecture to change business logic.
 
-First, run the development server:
+<img width="1710" alt="스크린샷 2023-04-10 오전 1 59 49" src="https://user-images.githubusercontent.com/71314689/230786065-27ce299b-b8e8-4855-b35d-8f552a4a6c42.png">
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The following features are included in the project:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Interlocking with Notion posts using Notion API
+- Implementation of DDD architecture (Currently refactoring)
+- SEO-friendly development
+- Project development with SSG and dynamic programming with partial CSR
+- Support for formats other than Notion's table, tag's page, and post
+- Error and loading page implementation
+- Implementation of dark mode and white mode using Tailwind
+- Background music set using YouTube Music
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Installation
 
-## Learn More
+To install the project, follow the steps below:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository.
+2. Navigate to the project directory in the terminal.
+3. Run `yarn install` to install the required packages.
+4. Run `yarn dev` to start the development server.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To use the project, follow the steps below:
 
-## Deploy on Vercel
+1. Clone the repository.
+2. Navigate to the project directory in the terminal.
+3. Modify the `site.config.ts` file to suit your project needs.
+4. Modify the `.env` file to include your Notion page ID and Vercel project ID.
+   - `NOTION_PAGE_ID`: This is the ID of the Notion page you want to use as the source for your blog posts. You can find this ID in the URL of the page.
+   - `V_ID`: this is the ID of the Notion page..
+5. Run `yarn install` to install the required packages.
+6. Run `yarn dev` to start the development server.
+7. Open the project in a web browser and start using the blog.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To contribute to the project, follow the steps below:
+
+1. Fork the repository.
+2. Make your changes to the code.
+3. Create a pull request.
+
+## License
+
+The [MIT License](LICENSE).
