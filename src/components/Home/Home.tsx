@@ -2,9 +2,9 @@
 
 import React, { useCallback, useState } from "react";
 import Container from "../Elements/Container";
-import { TPosts } from "@/networks/network";
 import Search from "./Search/Search";
 import PostList from "./PostList/PostList";
+import { TPosts } from "@/src/types";
 
 type Props = {
   posts: TPosts;

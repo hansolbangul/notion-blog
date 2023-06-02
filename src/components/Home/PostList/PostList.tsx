@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import useQuery from "@/hook/useQuery";
-import { TPosts } from "@/networks/network";
-import PostComponent from "@/components/Post/PostComponent";
+import useQuery from "@/src/hook/useQuery";
+import { TPosts } from "@/src/types";
+import PostComponent from "../../Post/PostComponent";
 
 type Props = {
   search: string;

@@ -8,16 +8,18 @@ import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
 import { useEffect, useState } from "react";
-import { NotionExtendedRecordMap, TPost } from "@/networks/network";
-import { useTheme } from "next-themes";
-import NotionHeader from "./NotionHeader";
+// import { NotionExtendedRecordMap, TPost } from "@/networks/network";
+// import { useTheme } from "next-themes";
 import PrevNextBtn from "./PrevNextBtn";
+import { BlockMap, ExtendedRecordMap } from "notion-types";
+import { TPost } from "@/src/types";
+import NotionHeader from "./NotionHeader";
 
 // 'dark' | 'light'
 type ThemeStatus = string | undefined;
 
 type Props = {
-  blockMap: NotionExtendedRecordMap;
+  blockMap: ExtendedRecordMap;
   post: TPost;
   next: string | null;
   prev: string | null;
@@ -34,20 +36,11 @@ const mapPageUrl = (id: string) => {
 };
 
 export default function NotionRender({ blockMap, post, next, prev }: Props) {
-  const { systemTheme, theme } = useTheme();
-
-  const [isDark, setTheme] = useState<ThemeStatus>();
-
-  useEffect(() => {
-    const currentTheme = theme === "system" ? systemTheme : theme;
-    setTheme(currentTheme);
-  }, [systemTheme, theme]);
-
   return (
     <>
-      {isDark && (
+      {blockMap && (
         <NotionRenderer
-          className="dark:bg-zinc-950 bg-white"
+          className="bg-white"
           recordMap={blockMap}
           mapPageUrl={mapPageUrl}
           fullPage={true}
@@ -60,7 +53,7 @@ export default function NotionRender({ blockMap, post, next, prev }: Props) {
             Modal,
             Pdf,
           }}
-          darkMode={isDark === "dark"}
+          // darkMode={isDark === "dark"}
         />
       )}
     </>

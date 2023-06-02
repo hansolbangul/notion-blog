@@ -1,15 +1,15 @@
 import React from 'react'
 import { CONFIG } from '../../../site.config'
 import dynamic from "next/dynamic"
-import { TPost } from '@/networks/network'
+import { TPost } from '@/type'
 
 
-const UtterancesComponent = dynamic(
-  () => {
-    return import("./Utteranc")
-  },
-  { ssr: false }
-)
+// const UtterancesComponent = dynamic(
+//   () => {
+//     return import("./Utteranc")
+//   },
+//   { ssr: false }
+// )
 
 type Props = {
   post: TPost
@@ -18,7 +18,7 @@ type Props = {
 export default function Comment({post}: Props) {
   return (
     <>
-      {CONFIG.utterances.enable && <UtterancesComponent issueTerm={post.title} />}
+      {/* {CONFIG.utterances.enable && <UtterancesComponent issueTerm={post.title} />} */}
     </>
   )
 }

@@ -1,43 +1,43 @@
-import PostService from "@/application/services/postService";
-import { CONFIG } from "../../site.config";
-import { TagService } from "@/application/services/tagService";
-import { Metadata } from "next";
-import Tag from "@/components/Tag/Tag";
-import Home from "@/components/Home/Home";
-import Container from "@/components/Elements/Container";
-
-export const revalidate = 60;
+import Image from 'next/image'
+import Link from 'next/link'
+import Container from '../components/Elements/Container'
+import Home from '../components/Home/Home'
+import Tag from '../components/Tag/Tag'
+import { DEFAULT_CATEGORY } from '../constants'
+import { getPosts } from '../libs/apis'
+import { filterPosts, getAllSelectItemsFromPosts } from '../libs/utils/notion'
 
 async function getFetch() {
-  const postService = new PostService();
-  const tagService = new TagService();
-  await postService.init();
+  try {
+    const posts = await getPosts()
+    const filteredPost = filterPosts(posts)
+    const tags = getAllSelectItemsFromPosts("tags", filteredPost)
+    const categories = getAllSelectItemsFromPosts("category", filteredPost)
 
-  const posts = await postService.getFilterPosts({});
-  const tags = tagService.getAllTag(posts);
-
-  return { posts, tags };
+    return {
+        tags: {
+          ...tags,
+        },
+        categories: {
+          [DEFAULT_CATEGORY]: filteredPost.length,
+          ...categories,
+        },
+        posts: filteredPost,
+    }
+  } catch (error) {
+    throw error
+  }
 }
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { posts, tags } = await getFetch();
-  return {
-    title: CONFIG.metadata.title || "V-BLOG",
-    description: CONFIG.blog.description,
-    openGraph: {
-      images: posts.map((post) => ({ url: post?.thumbnail || "", alt: post.title })),
-    },
-    keywords: Object.keys(tags).map((tag) => tag),
-  };
-}
 
 export default async function Page() {
-  const { posts, tags } = await getFetch();
-
+  const {tags, categories, posts} = await getFetch();
+  console.log(posts);
+  
   return (
     <Container.Col className="md:flex-row">
       <Tag tags={tags} />
       <Home posts={posts} />
     </Container.Col>
-  );
+  )
 }

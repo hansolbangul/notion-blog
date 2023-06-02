@@ -34,7 +34,7 @@ export default function useQuery() {
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
-      const params = new URLSearchParams(query);
+      const params = new URLSearchParams(query.toString());
       params.set(name, value);
 
       return params.toString();

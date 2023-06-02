@@ -1,20 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
-    });
-    return config;
-  },
-  experimental: {
-    appDir: true,
-  },
   images: {
-    domains: ["www.notion.so", "s3-us-west-2.amazonaws.com"],
+    domains: ['www.notion.so', 'lh5.googleusercontent.com', 's3-us-west-2.amazonaws.com'],
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

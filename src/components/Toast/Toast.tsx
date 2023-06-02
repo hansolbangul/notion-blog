@@ -10,7 +10,7 @@ function Toast({ message }: ToastProps) {
   return ReactDOM.createPortal(
     <div
       className={
-        "flex items-center w-full max-w-xs p-3 text-gray-500 bg-slate-200 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 justify-center " +
+        "flex items-center w-full max-w-xs p-3 text-gray-500 bg-slate-200 rounded-lg shadow justify-center " +
         style.toast
       }
     >

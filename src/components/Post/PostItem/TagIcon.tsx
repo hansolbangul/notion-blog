@@ -1,5 +1,5 @@
 "use client";
-import useQuery from "@/hook/useQuery";
+import useQuery from "@/src/hook/useQuery";
 import React from "react";
 
 type Props = {
@@ -25,7 +25,7 @@ export default function TagIcon({ tag, isRouter = true }: Props) {
   return (
     <span
       onClick={(event) => setTag(event)}
-      className="hover:bg-neutral-500 dark:hover:bg-gray-400 text-xs md:text-sm rounded-md px-2 py-1 bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 font-semibold cursor-pointer flex-none"
+      className="hover:bg-neutral-500 text-xs md:text-sm rounded-md px-2 py-1 bg-neutral-900 text-white font-semibold cursor-pointer flex-none"
     >
       {tag}
     </span>

@@ -1,11 +1,11 @@
 "use client";
-import { Tags } from "@/application/domain/tag";
 import React from "react";
-import useQuery from "@/hook/useQuery";
 import TagIcon from "../Post/PostItem/TagIcon";
+import { TTags } from "@/src/types";
+import useQuery from "@/src/hook/useQuery";
 
 type Props = {
-  tags: Tags;
+  tags: TTags;
 };
 
 export default function Tag({ tags }: Props) {

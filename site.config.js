@@ -1,4 +1,4 @@
-export const CONFIG = {
+const CONFIG = {
   user: {
     name: "",
     age: "",
@@ -22,4 +22,9 @@ export const CONFIG = {
       label: "💬 Utterances",
     },
   },
-};
+  notionConfig: {
+    pageId: process.env.NOTION_PAGE_ID,
+  },
+}
+
+module.exports = { CONFIG }

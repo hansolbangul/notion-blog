@@ -1,8 +1,8 @@
 "use client";
 
-import TagIcon from "@/components/Post/PostItem/TagIcon";
-import Toast from "@/components/Toast/Toast";
-import { TPost } from "@/networks/network";
+import { TPost } from "@/src/types";
+import TagIcon from "@components/Post/PostItem/TagIcon";
+import Toast from "@components/Toast/Toast";
 import React, { useState } from "react";
 import { IoShareSocialSharp } from "react-icons/io5";
 
