@@ -7,9 +7,9 @@ type Props = {
 };
 
 export default function Utterances({ issueTerm }: Props) {
-
   useEffect(() => {
     // 'github-dark'
+    const theme = "github-light";
     const script = document.createElement("script");
     const anchor = document.getElementById("comments");
     if (!anchor) return;
@@ -18,7 +18,7 @@ export default function Utterances({ issueTerm }: Props) {
     script.setAttribute("crossorigin", "anonymous");
     script.setAttribute("async", `true`);
     script.setAttribute("issue-term", issueTerm);
-    script.setAttribute("theme", 'white');
+    script.setAttribute("theme", theme);
     const config: { [key: string]: string } = CONFIG.utterances.config;
     Object.keys(config).forEach((key) => {
       script.setAttribute(key, config[key]);
