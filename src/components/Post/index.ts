@@ -1,1 +1,1 @@
-export * as Post from "./PostComponent";
+export * as Post from "./ListComponent";

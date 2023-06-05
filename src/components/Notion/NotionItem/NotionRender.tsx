@@ -9,7 +9,6 @@ import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
 import { useEffect, useState } from "react";
 // import { NotionExtendedRecordMap, TPost } from "@/networks/network";
-// import { useTheme } from "next-themes";
 import PrevNextBtn from "./PrevNextBtn";
 import { BlockMap, ExtendedRecordMap } from "notion-types";
 import { TPost } from "@/src/types";
@@ -45,8 +44,8 @@ export default function NotionRender({ blockMap, post, next, prev }: Props) {
           mapPageUrl={mapPageUrl}
           fullPage={true}
           showCollectionViewDropdown={false}
-          pageTitle={post.type[0] === "Post" && <NotionHeader post={post} />}
-          footer={post.type[0] === "Post" && <PrevNextBtn next={next} prev={prev} />}
+          pageTitle={<NotionHeader post={post} />}
+          footer={<PrevNextBtn next={next} prev={prev} />}
           disableHeader
           components={{
             Code,

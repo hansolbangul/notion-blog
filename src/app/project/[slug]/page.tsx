@@ -55,8 +55,9 @@ export async function generateMetadata({ params: { slug } }: Props): Promise<Met
   };
 }
 
-export default async function PostDetail({ params: { slug } }: Props) {
+export default async function ProjectDetailPage({ params: { slug } }: Props) {
   const { blockMap, post, next, prev } = await getFetch(slug);
+  console.log(post);
 
   return (
     <>

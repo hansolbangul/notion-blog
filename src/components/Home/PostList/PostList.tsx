@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import useQuery from "@/src/hook/useQuery";
 import { TPosts } from "@/src/types";
-import PostComponent from "../../Post/PostComponent";
+import ListComponent from "../../Post/ListComponent";
 
 type Props = {
   search: string;
@@ -36,7 +36,7 @@ export default function PostList({ search, posts }: Props) {
   return (
     <>
       {filter.map((post) => (
-        <PostComponent key={post.id} post={post} />
+        <ListComponent key={post.id} post={post} />
       ))}
     </>
   );
