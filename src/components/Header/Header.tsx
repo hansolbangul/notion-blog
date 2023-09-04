@@ -9,7 +9,7 @@ export default function Header() {
       <div className="flex max-w-3xl items-center m-auto w-full px-2">
         <HeaderItem.Title />
         <div className="flex space-x-3 items-center flex-auto justify-end">
-          <Menus />
+          {/*<Menus />*/}
         </div>
       </div>
     </Container.Flex>
