@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import useQuery from "@/src/hook/useQuery";
 import { TPosts } from "@/src/types";
 import ListComponent from "../../Post/ListComponent";
+import ComponentTitle from "../../Common/ComponentTitle";
 
 type Props = {
   search: string;
@@ -34,10 +35,10 @@ export default function PostList({ search, posts }: Props) {
   }, [tagQuery, search]);
 
   return (
-    <>
+    <ComponentTitle title="New">
       {filter.map((post) => (
         <ListComponent key={post.id} post={post} />
       ))}
-    </>
+    </ComponentTitle>
   );
 }
