@@ -27,6 +27,8 @@
       "@pages/*": ["./src/pages/*"],
       "@hook/*": ["./src/hook/*"],
       "@customTypes/*": ["./src/types/*"],
+      "@elements/*": ["./src/components/Elements/*"],
+      "@common/*": ["./src/components/Common/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "site.config.js"],
