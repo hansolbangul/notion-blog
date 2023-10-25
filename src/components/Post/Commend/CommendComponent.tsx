@@ -19,8 +19,8 @@ const CommendComponent = ({ slug, thumbnail, title }: Props) => {
           src={thumbnail}
           alt="commend_thumbnail"
         />
-        <div className="w-full absolute pt-[60px] pb-[24px] px-[34px] bottom-0 bg-gradient-custom z-10 truncate">
-          <Text.H2 className="text-white text-3xl mt-2 font-bold">{title}</Text.H2>
+        <div className="w-full absolute pt-[60px] md:pb-[24px] md:px-[34px] pb-[12px] px-[16px] bottom-0 bg-gradient-custom z-10">
+          <Text.H2 className="text-white text-3xl mt-2 font-bold truncate">{title}</Text.H2>
         </div>
       </Link>
     </>
