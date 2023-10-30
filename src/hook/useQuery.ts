@@ -46,6 +46,10 @@ export default function useQuery() {
     router.push(pathName + "?" + createQueryString(name, value));
   }
 
+  function customSet(path: string, name: string, value: string) {
+    router.push(path + "?" + createQueryString(name, value));
+  }
+
   function push(url: string, cache: boolean) {
     if (cache) {
       saveScrollPos(window.location.pathname);
@@ -55,5 +59,5 @@ export default function useQuery() {
     router.push(url);
   }
 
-  return { get, set, push };
+  return { get, set, push, customSet };
 }

@@ -16,6 +16,11 @@ const Dropdown = ({ tags }: Props) => {
   const selectTag = params.get("tag") || "All";
 
   const setTag = (tag: string) => {
+    if (window.location.pathname !== "/") {
+      params.customSet("/", "tag", tag);
+      return;
+    }
+
     if (selectTag === tag) {
       params.set("tag", "");
     } else {
@@ -24,7 +29,7 @@ const Dropdown = ({ tags }: Props) => {
   };
 
   return (
-    <div className="">
+    <div>
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
