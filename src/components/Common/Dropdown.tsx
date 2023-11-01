@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { Bars4Icon } from "@heroicons/react/20/solid";
 import useQuery from "@/src/hook/useQuery";
 
@@ -53,7 +53,7 @@ const Dropdown = ({ tags }: Props) => {
                     <button
                       onClick={() => setTag(key)}
                       className={`${
-                        active ? "bg-violet-500 text-white" : "text-gray-900"
+                        key === selectTag ? "bg-gray-300" : active ? "bg-violet-500 text-white" : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm justify-between`}
                     >
                       <span>{key}</span>

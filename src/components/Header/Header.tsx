@@ -14,6 +14,7 @@ async function getFetch() {
 
     return {
       tags: {
+        All: filteredPost.length,
         ...tags,
       },
     };
