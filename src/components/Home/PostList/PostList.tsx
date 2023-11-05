@@ -35,7 +35,7 @@ export default function PostList({ search, posts }: Props) {
   }, [tagQuery, search]);
 
   return (
-    <ComponentTitle title="New">
+    <ComponentTitle title={tagQuery}>
       {filter.map((post) => (
         <ListComponent key={post.id} post={post} />
       ))}
