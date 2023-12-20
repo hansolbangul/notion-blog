@@ -47,10 +47,13 @@ export async function generateMetadata({params: {slug}}: Props): Promise<Metadat
         description: post?.summary || post?.title,
         openGraph: {
             title: post?.title,
+            description: post?.summary || post?.title,
             images: [
                 {
                     url: post?.thumbnail || "",
                     alt: post?.title,
+                    width: 1200,
+                    height: 630
                 },
             ],
         },
