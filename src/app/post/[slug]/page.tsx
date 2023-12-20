@@ -3,6 +3,7 @@ import "react-notion-x/src/styles.css";
 import {Metadata} from "next";
 import {getPostBlocks, getPosts} from "@/src/libs/apis";
 import NotionPage from "@/src/components/Notion/NotionPage";
+import config from "tailwindcss/defaultConfig";
 
 export const dynamic = 'force-static';
 
@@ -47,6 +48,8 @@ export async function generateMetadata({params: {slug}}: Props): Promise<Metadat
         description: post?.summary || post?.title,
         openGraph: {
             title: post?.title,
+            type: 'website',
+            url: `https://blog.hansolbangul.com/post/${post?.slug}`,
             description: post?.summary || post?.title,
             images: [
                 {
