@@ -27,6 +27,8 @@ const Commend = ({ commendPosts }: Props) => {
     isSwiper?.slidePrev();
   };
 
+  if (!commendPosts.length) return null;
+
   return (
     <ComponentTitle
       title={"Tech"}
