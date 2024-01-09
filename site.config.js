@@ -5,14 +5,14 @@ const CONFIG = {
     profile: "",
   },
   metadata: {
-    title: "데굴데굴 포스팅 | hansolbangul",
+    title: "우당탕탕 도서관",
     description: "",
   },
   blog: {
-    title: "데굴데굴 블로그",
-    description: "한솔방울의 돌아버린 프론트엔드 개발 블로그~",
-    todayWords: ["hello world", "hansolbangul", "V-log"],
-    calendarTitle: "이번달 채용 공고",
+    title: "우당탕탕 도서관",
+    description: "우리만의 책내음 가득한 공간~",
+    todayWords: ["hello world", "udangtangtang", "V-log"],
+    calendarTitle: "",
   },
   utterances: {
     enable: true,
