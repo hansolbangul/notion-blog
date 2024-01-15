@@ -25,7 +25,7 @@ export default function Footer({ start_date, profile }: Props) {
         <span className="text-sm font-semibold">{profile && profile[0].name}</span>
       </div>
       <span className="text-xs md:text-sm">
-        {new Intl.DateTimeFormat("ko", { dateStyle: "full" }).format(new Date(start_date))}
+        {new Intl.DateTimeFormat("ko", { dateStyle: "short" }).format(new Date(start_date))}
       </span>
     </div>
   );

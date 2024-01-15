@@ -7,15 +7,8 @@ type Props = {
 
 export default function Thumbnail({ thumbnail }: Props) {
   return (
-    <div className="w-full aspect-video md:h-96 relative cursor-pointer ">
-      <Image
-        className="rounded-sm"
-        style={{ objectFit: "cover" }}
-        fill
-        sizes="(max-width: 768px) 100%"
-        src={thumbnail}
-        alt="thumbnail"
-      />
+    <div className="w-[180px] min-x-[180px] aspect-video rounded-md relative cursor-pointer">
+      <Image className="rounded-md" fill sizes="(max-width: 768px) 100%" src={thumbnail} alt="thumbnail" />
     </div>
   );
 }

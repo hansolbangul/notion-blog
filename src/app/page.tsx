@@ -34,7 +34,7 @@ export default async function Page() {
     // <Container.Col className="md:flex-row">
     <Container.Col>
       {/* <Tag tags={tags} /> */}
-      <Home posts={posts} />
+      <Home posts={posts} tags={tags} />
     </Container.Col>
   );
 }

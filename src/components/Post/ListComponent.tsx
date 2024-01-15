@@ -12,19 +12,21 @@ type Props = {
 export default function ListComponent({ post, type = "Post" }: Props) {
   return (
     <Link href={`/${type.toLocaleLowerCase()}/${post.slug}`}>
-      <Container.Col className="border-t py-8 md:py-16 border-gray-400">
+      <Container.Flex className="rounded-lg py-2 my-2 px-2 md:py-8 md:px-4 border-gray-400 space-x-4 items-center shadow-lg relative hover:-translate-y-2 transition-transform">
         {post.thumbnail && <PostItem.Thumbnail thumbnail={post.thumbnail} />}
-        <PostItem.Title title={post.title} />
-        {post.summary && <PostItem.Summary summary={post.summary} />}
-        {type === "Post" && (
-          <div className="flex gap-1 flex-wrap">
-            {post.tags?.map((tag) => (
-              <PostItem.TagIcon key={tag} tag={tag} />
-            ))}
-          </div>
-        )}
-        <PostItem.Footer start_date={post.date.start_date} profile={post.author} />
-      </Container.Col>
+        <div className="flex flex-col flex-1">
+          <PostItem.Title title={post.title} />
+          {post.summary && <PostItem.Summary summary={post.summary} />}
+          {type === "Post" && (
+            <div className="flex gap-1 flex-wrap">
+              {post.tags?.map((tag) => (
+                <PostItem.TagIcon key={tag} tag={tag} />
+              ))}
+            </div>
+          )}
+          <PostItem.Footer start_date={post.date.start_date} profile={post.author} />
+        </div>
+      </Container.Flex>
     </Link>
   );
 }

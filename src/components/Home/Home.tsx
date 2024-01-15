@@ -9,9 +9,10 @@ import Commend from "../Post/Commend";
 
 type Props = {
   posts: TPosts;
+  tags: { [tag: string]: number };
 };
 
-export default function Home({ posts }: Props) {
+export default function Home({ posts, tags }: Props) {
   const [search, setSearch] = useState("");
 
   const onChange = useCallback(
@@ -25,8 +26,7 @@ export default function Home({ posts }: Props) {
   return (
     <Container.Col className="px-4">
       <Search onChange={onChange} value={search} />
-      <Commend commendPosts={posts.filter((post) => post.tags?.includes("Recommend"))} />
-      <PostList search={search} posts={posts} />
+      <PostList search={search} posts={posts} tags={tags} />
     </Container.Col>
   );
 }
