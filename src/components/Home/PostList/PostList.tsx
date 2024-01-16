@@ -18,8 +18,6 @@ export default function PostList({ search, posts, tags }: Props) {
   const [filterPost, setFilterPost] = useState(posts);
   const selectTag = params.get("tag") || "All";
 
-  console.log(selectTag);
-
   useEffect(() => {
     setFilterPost(() => {
       let filters = posts;
@@ -31,7 +29,9 @@ export default function PostList({ search, posts, tags }: Props) {
       );
 
       if (selectTag !== "All") {
-        filters = filters.filter((post) => post && post.tags && post.tags.includes(selectTag));
+        filters = filters.filter(
+          (post) => post && post.tags && post.tags.includes(selectTag)
+        );
       }
 
       return filters;
@@ -49,7 +49,7 @@ export default function PostList({ search, posts, tags }: Props) {
   };
 
   return (
-    <div className="flex flex-col space-y-4">
+    <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {Object.keys(tags).map(
         (tag) =>
           (selectTag === tag || selectTag === "All") && (
@@ -61,7 +61,7 @@ export default function PostList({ search, posts, tags }: Props) {
                   onClick={(e) => setTag(e, tag)}
                   className="flex text-sm items-center space-x-2 font-semibold cursor-pointer"
                 >
-                  <span>모두보기</span>
+                  <span>태그보기</span>
                   <BsChevronRight />
                 </div>
               }
@@ -72,11 +72,6 @@ export default function PostList({ search, posts, tags }: Props) {
                 .map((post) => (
                   <ListComponent key={post.id} post={post} />
                 ))}
-              {!!filterPost.length && (
-                <div className="flex justify-center rounded-lg py-2 my-2 px-2 md:py-8 md:px-4 border-gray-400 space-x-4 items-center shadow-lg relative hover:-translate-y-2 transition-transform cursor-pointer">
-                  <span className="font-bold md:text-lg text-base">더보기</span>
-                </div>
-              )}
             </ComponentTitle>
           )
       )}
