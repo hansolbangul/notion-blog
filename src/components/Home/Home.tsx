@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import Container from "../Elements/Container";
 import Search from "./Search/Search";
 import PostList from "./PostList/PostList";
-import { TPosts } from "@/src/types";
-import Commend from "../Post/Commend";
+import { TPosts, TTags } from "@/src/types";
+import Tags from "./Tags/Tags";
 
 type Props = {
   posts: TPosts;
-  tags: { [tag: string]: number };
+  tags: TTags;
 };
 
 export default function Home({ posts, tags }: Props) {
@@ -24,9 +23,10 @@ export default function Home({ posts, tags }: Props) {
   );
 
   return (
-    <Container.Col className="px-4">
+    <>
       <Search onChange={onChange} value={search} />
+      <Tags tags={tags} />
       <PostList search={search} posts={posts} tags={tags} />
-    </Container.Col>
+    </>
   );
 }

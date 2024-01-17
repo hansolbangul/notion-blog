@@ -10,13 +10,13 @@ interface Props {
 
 const ComponentTitle = ({ children, title = "", rightBtn = "" }: Props) => {
   return (
-    <Container.Col className="mb-4">
+    <div className="flex flex-col">
       <Container.Flex className="w-full justify-between items-center mb-4">
         <Text.H2>{title}</Text.H2>
         {rightBtn}
       </Container.Flex>
       {children}
-    </Container.Col>
+    </div>
   );
 };
 
