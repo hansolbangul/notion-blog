@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
-import Search from "./Search/Search";
+import React, { FormEvent, useCallback, useState } from "react";
 import PostList from "./PostList/PostList";
 import { TPosts, TTags } from "@/src/types";
 import Tags from "./Tags/Tags";
+import Header from "../Header/Header";
 
 type Props = {
   posts: TPosts;
@@ -14,19 +14,18 @@ type Props = {
 export default function Home({ posts, tags }: Props) {
   const [search, setSearch] = useState("");
 
-  const onChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.target;
-      setSearch(value);
-    },
-    [search]
-  );
+  const handleFormChange = (e: FormEvent<HTMLFormElement>) => {
+    const formData = new FormData(e.currentTarget);
+    const object = Object.fromEntries(formData.entries());
+
+    setSearch(object["search-keyword-input"] as string);
+  };
 
   return (
-    <>
-      <Search onChange={onChange} value={search} />
+    <form onChange={handleFormChange}>
+      <Header tags={tags} />
       <Tags tags={tags} />
       <PostList search={search} posts={posts} tags={tags} />
-    </>
+    </form>
   );
 }

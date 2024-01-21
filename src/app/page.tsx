@@ -31,9 +31,7 @@ export default async function Page() {
   const { tags, posts } = await getFetch();
 
   return (
-    // <Container.Col className="md:flex-row">
     <Container.Col>
-      {/* <Tag tags={tags} /> */}
       <Home posts={posts} tags={tags} />
     </Container.Col>
   );
