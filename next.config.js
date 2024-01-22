@@ -2,7 +2,23 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['www.notion.so', 'lh5.googleusercontent.com', 'lh3.googleusercontent.com', 's3-us-west-2.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.notion.so',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.amazonaws.com',
+        port: '',
+      },
+    ],
   },
 }
 

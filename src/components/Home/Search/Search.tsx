@@ -1,20 +1,12 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-
-type Props = {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-}
-
-export default function Search({value, onChange}: Props) {
-
+export default function Search() {
   return (
-    <div className='mb-4 w-full'>
-      <input 
-        type="text" className='border-none bg-gray-200 rounded-2xl w-full py-2 px-3 flex-auto' 
-        placeholder='Search Keyword' value={value} onChange={onChange} 
-      />
-    </div>
-  )
+    <input
+      type="text"
+      name="search-keyword-input"
+      className="w-full sm:w-80 border-none bg-gray-200 rounded-md p-2 focus:outline-none place-self-center align-middle"
+      placeholder="Search Keyword"
+    />
+  );
 }

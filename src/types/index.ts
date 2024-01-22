@@ -1,5 +1,10 @@
 export type TPostStatus = "Private" | "Public" | "PublicOnDetail";
 export type TPostType = "Post" | "Paper" | "Page" | "Project";
+export interface Author {
+  id: string;
+  name: string;
+  profile_photo?: string;
+}
 
 export type TPost = {
   id: string;
@@ -9,11 +14,7 @@ export type TPost = {
   tags?: string[];
   category?: string[];
   summary?: string;
-  author?: {
-    id: string;
-    name: string;
-    profile_photo?: string;
-  }[];
+  author?: Author[];
   title: string;
   status: TPostStatus[];
   createdTime: string;

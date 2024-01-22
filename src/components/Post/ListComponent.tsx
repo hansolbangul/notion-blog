@@ -1,38 +1,88 @@
 import React from "react";
-import Container from "../Elements/Container";
-import { PostItem } from "./PostItem";
 import Link from "next/link";
-import { TPost, TPostType } from "@/src/types";
+import { Author, TPost, TPostType } from "@/src/types";
+import ImageWithFallback from "../common/ImageWithFallback";
 
 type Props = {
   post: TPost;
-  type?: TPostType;
 };
 
-export default function ListComponent({ post, type = "Post" }: Props) {
+function Thumbnail(props: { thumbnail: string }) {
+  const { thumbnail } = props;
+
+  return (
+    <div className="relative rounded-xl aspect-[340/190] min-w-max w-full h-fit overflow-hidden self-center flex-auto sm:flex-1">
+      <ImageWithFallback
+        alt="thumbnail"
+        src={thumbnail}
+        fill
+        style={{ objectFit: "cover" }}
+      />
+    </div>
+  );
+}
+
+function Profile(props: { authorName: string; profile: string; date: string }) {
+  const { authorName, profile, date } = props;
+
+  return (
+    <div className="w-full flex gap-2 items-center p-4 bg-slate-50 rounded-lg h-[64px]">
+      <ImageWithFallback
+        alt="profile"
+        className="rounded-xl object-cover aspect-square"
+        src={profile ?? ""}
+        width={44}
+        height={44}
+      />
+      <div className="h-full flex flex-col justify-between">
+        <div className="text-sm">{authorName}</div>
+        <div className="text-xs">{date}</div>
+      </div>
+    </div>
+  );
+}
+
+function Contents(props: { title: string; summary?: string }) {
+  const { title, summary } = props;
+
+  return (
+    <div className="p-2 w-full flex gap-4 flex-col">
+      <div className="w-full text-base mt-4 truncate">{title}</div>
+      <div className="w-full text-sm truncate">{summary}</div>
+    </div>
+  );
+}
+
+export default function ListComponent({ post }: Props) {
+  const {
+    title,
+    type: types,
+    thumbnail = "",
+    author: authors,
+    summary,
+    tags,
+    date,
+  } = post;
+  const { start_date } = date;
+
+  const [author] = authors ?? [];
+  const [type] = types;
+  const href = `/${type.toLocaleLowerCase()}/${post.slug}`;
+
   return (
     <Link
-      className="h-full place-items-stretch"
-      href={`/${type.toLocaleLowerCase()}/${post.slug}`}
+      className="p-2 h-full flex flex-wrap gap-2 bg-white shadow-[0_0_32px_0_rgba(0,0,0,0.07)] rounded-xl overflow-hidden"
+      href={href}
     >
-      <Container.Flex className="h-full rounded-lg py-2 my-2 px-2 md:py-8 md:px-4 border-gray-400 space-x-4 items-center shadow-lg relative hover:-translate-y-2 transition-transform">
-        {post.thumbnail && <PostItem.Thumbnail thumbnail={post.thumbnail} />}
-        <div className="flex flex-col flex-1">
-          <PostItem.Title title={post.title} />
-          {post.summary && <PostItem.Summary summary={post.summary} />}
-          {type === "Post" && (
-            <div className="flex gap-1 flex-wrap">
-              {post.tags?.map((tag) => (
-                <PostItem.TagIcon key={tag} tag={tag} />
-              ))}
-            </div>
-          )}
-          <PostItem.Footer
-            start_date={post.date.start_date}
-            profile={post.author}
-          />
-        </div>
-      </Container.Flex>
+      <Thumbnail thumbnail={thumbnail} />
+      <div className="w-full flex-1 flex-shrink flex flex-col justify-between min-w-0">
+        <Contents title={title} summary={summary} />
+        <Profile
+          authorName={author.name}
+          profile={author.profile_photo ?? ""}
+          date={start_date}
+        />
+      </div>
     </Link>
   );
 }
