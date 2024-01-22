@@ -24,7 +24,7 @@ export default function Home({ posts, tags }: Props) {
   return (
     <form onChange={handleFormChange}>
       <Header tags={tags} />
-      <Tags tags={tags} />
+      {/* <Tags tags={tags} /> */}
       <PostList search={search} posts={posts} tags={tags} />
     </form>
   );
