@@ -17,11 +17,11 @@ type Props = {
 export default function NotionPage({ blockMap, post, next = null, prev = null }: Props) {
   const router = useRouter();
 
-  if(post.URL) {
+  if(typeof window !== 'undefined' && post.URL) {
       window.open(post.URL);
       router.back();
   }
-  
+
   return (
     <>
       {blockMap && (

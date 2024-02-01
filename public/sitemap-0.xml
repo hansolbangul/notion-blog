@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<<<<<<< Updated upstream
-<url><loc>https://blog.hansolbangul.com</loc><lastmod>2024-01-22T14:17:30.439Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://blog.hansolbangul.com/post/javascript-intellisence</loc><lastmod>2024-01-22T14:17:30.439Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://blog.hansolbangul.com/post/react-reconciliation</loc><lastmod>2024-01-22T14:17:30.439Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-=======
-<url><loc>https://uddangtangtang-write.vercel.app/project</loc><lastmod>2024-02-01T01:56:10.482Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://uddangtangtang-write.vercel.app</loc><lastmod>2024-02-01T01:56:10.483Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://uddangtangtang-write.vercel.app/post/javascript-intellisence</loc><lastmod>2024-02-01T01:56:10.483Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://uddangtangtang-write.vercel.app/post/react-reconciliation</loc><lastmod>2024-02-01T01:56:10.483Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://uddangtangtang-write.vercel.app/project/javascript-intellisence</loc><lastmod>2024-02-01T01:56:10.483Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://uddangtangtang-write.vercel.app/project/react-reconciliation</loc><lastmod>2024-02-01T01:56:10.483Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
->>>>>>> Stashed changes
+<url><loc>https://uddangtangtang-write.vercel.app</loc><lastmod>2024-02-01T02:37:33.251Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://uddangtangtang-write.vercel.app/post/1st-my-object</loc><lastmod>2024-02-01T02:37:33.252Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://uddangtangtang-write.vercel.app/post/javascript-intellisence</loc><lastmod>2024-02-01T02:37:33.252Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://uddangtangtang-write.vercel.app/post/1st-my-new</loc><lastmod>2024-02-01T02:37:33.252Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>
