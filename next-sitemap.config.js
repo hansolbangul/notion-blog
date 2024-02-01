@@ -1,5 +1,5 @@
 module.exports = {
-    siteUrl: 'https://blog.hansolbangul.com',
+    siteUrl: 'https://uddangtangtang-write.vercel.app/',
     generateRobotsTxt: true,
     sitemapSize: 7000
 }

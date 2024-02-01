@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blog.hansolbangul.com
+Host: https://uddangtangtang-write.vercel.app/
 
 # Sitemaps
-Sitemap: https://blog.hansolbangul.com/sitemap.xml
+Sitemap: https://uddangtangtang-write.vercel.app/sitemap.xml

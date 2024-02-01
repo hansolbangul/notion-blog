@@ -27,7 +27,9 @@ export async function getPosts() {
   let id = CONFIG.notionConfig.pageId as string;
   const api = new NotionAPI();
 
+
   const response = await api.getPage(id);
+  console.log(response);
   id = idToUuid(id);
   const collection = Object.values(response.collection)[0]?.value;
   const block = response.block;
