@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Author, TPost, TPostType } from "@/src/types";
-import ImageWithFallback from "../Common/ImageWithFallback";
+import ImageWithFallback from "../Common/Images/ImageWithFallback";
 
 type Props = {
   post: TPost;
