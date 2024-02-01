@@ -54,12 +54,13 @@ export default function ListComponent({ post }: Props) {
 
   const [author] = authors ?? [];
   const [type] = types;
-  const href = `/${type.toLocaleLowerCase()}/${post.slug}`;
+  const href = post.URL || `/${type.toLocaleLowerCase()}/${post.slug}`;
 
   return (
     <Link
       className="p-2 h-full flex flex-wrap gap-2 bg-white shadow-[0_0_32px_0_rgba(0,0,0,0.07)] rounded-xl overflow-hidden"
       href={href}
+      target={post.URL ? "_blank" : undefined}
     >
       <Thumbnail thumbnail={thumbnail} />
       <div className="w-full flex-1 flex-shrink flex flex-col justify-between min-w-0">
