@@ -18,8 +18,8 @@ export default function NotionPage({ blockMap, post, next = null, prev = null }:
   const router = useRouter();
 
   if(typeof window !== 'undefined' && post.URL) {
-      window.open(post.URL);
-      router.back();
+    router.back();
+    window.open(post.URL);
   }
 
   return (
