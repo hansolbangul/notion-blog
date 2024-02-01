@@ -5,6 +5,7 @@ import NotionRender from "./NotionItem/NotionRender";
 import { BlockMap, ExtendedRecordMap } from "notion-types";
 import { TPost } from "@/src/types";
 import Comment from "../Utteranc/Comment";
+import { useRouter } from "next/navigation";
 
 type Props = {
   blockMap: ExtendedRecordMap;
@@ -14,6 +15,13 @@ type Props = {
 };
 
 export default function NotionPage({ blockMap, post, next = null, prev = null }: Props) {
+  const router = useRouter();
+
+  if(post.URL) {
+      window.open(post.URL);
+      router.back();
+  }
+  
   return (
     <>
       {blockMap && (

@@ -20,6 +20,7 @@ export type TPost = {
   createdTime: string;
   fullWidth: boolean;
   thumbnail?: string;
+  URL?: string;
 };
 
 export type TPosts = TPost[];
