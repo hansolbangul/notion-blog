@@ -27,6 +27,22 @@ async function getFetch() {
   }
 }
 
+export const metadata = {
+  title: "우당탕탕 도서관",
+  openGraph: {
+    title: "우당탕탕 도서관",
+    description: "FE 개발자의 지식이 담긴 도서관",
+    images: [
+      {
+        url: "https://uddangtangtang-write.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75",
+        alt: "https://uddangtangtang-write.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
 export default async function Page() {
   const { tags, posts } = await getFetch();
 
