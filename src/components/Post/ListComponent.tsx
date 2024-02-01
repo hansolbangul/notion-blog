@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Author, TPost, TPostType } from "@/src/types";
-import ImageWithFallback from "../Common/Images/ImageWithFallback";
+import { TPost } from "@/src/types";
+import ImageWithFallback from "@common/Images/ImageWithFallback";
 
 type Props = {
   post: TPost;
@@ -12,7 +12,12 @@ function Thumbnail(props: { thumbnail: string }) {
 
   return (
     <div className="relative rounded-xl aspect-[340/190] min-w-max w-full h-fit overflow-hidden self-center flex-auto sm:flex-1">
-      <ImageWithFallback alt="thumbnail" src={thumbnail} fill style={{ objectFit: "cover" }} />
+      <ImageWithFallback
+        alt="thumbnail"
+        src={thumbnail}
+        fill
+        style={{ objectFit: "cover" }}
+      />
     </div>
   );
 }
@@ -49,7 +54,14 @@ function Contents(props: { title: string; summary?: string }) {
 }
 
 export default function ListComponent({ post }: Props) {
-  const { title, type: types, thumbnail = "", author: authors, summary, tags, date } = post;
+  const {
+    title,
+    type: types,
+    thumbnail = "",
+    author: authors,
+    summary,
+    date,
+  } = post;
   const { start_date } = date;
 
   const [author] = authors ?? [];
@@ -65,7 +77,11 @@ export default function ListComponent({ post }: Props) {
       <Thumbnail thumbnail={thumbnail} />
       <div className="w-full flex-1 flex-shrink flex flex-col justify-between min-w-0">
         <Contents title={title} summary={summary} />
-        <Profile authorName={author.name} profile={author.profile_photo ?? ""} date={start_date} />
+        <Profile
+          authorName={author.name}
+          profile={author.profile_photo ?? ""}
+          date={start_date}
+        />
       </div>
     </Link>
   );
