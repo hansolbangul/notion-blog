@@ -5,6 +5,7 @@ import { HeaderItem } from "./Items";
 import Dropdown from "../Common/Dropdown";
 import { TTags } from "@/src/types";
 import Search from "../Home/Search/Search";
+import { Suspense } from "react";
 
 export default function Header({ tags }: { tags: TTags }) {
   return (
@@ -14,7 +15,9 @@ export default function Header({ tags }: { tags: TTags }) {
       </div>
       <div className="flex space-x-3 items-center flex-auto justify-end">
         <Search />
-        <Dropdown tags={tags} />
+        <Suspense>
+          <Dropdown tags={tags} />
+        </Suspense>
       </div>
     </Container.Flex>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent, useCallback, useState } from "react";
+import React, { FormEvent, Suspense, useCallback, useState } from "react";
 import PostList from "./PostList/PostList";
 import { TPosts, TTags } from "@/src/types";
 import Tags from "./Tags/Tags";
@@ -24,8 +24,9 @@ export default function Home({ posts, tags }: Props) {
   return (
     <form onChange={handleFormChange}>
       <Header tags={tags} />
-      {/* <Tags tags={tags} /> */}
-      <PostList search={search} posts={posts} tags={tags} />
+      <Suspense>
+        <PostList search={search} posts={posts} tags={tags} />
+      </Suspense>
     </form>
   );
 }
