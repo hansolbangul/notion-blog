@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, ComponentProps } from "react";
 import Image from "next/image";
@@ -9,7 +9,7 @@ export default function ImageWithFallback(props: ComponentProps<typeof Image>) {
   return (
     <Image
       {...props}
-      src={isImgError ? "/logo.png" : props.src}
+      src={isImgError ? "/logo.png" : props.src ? props.src : "/logo.png"}
       onError={() => setIsImgError(true)}
     />
   );

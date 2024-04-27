@@ -1,11 +1,8 @@
-"use client";
-// import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import NotionThumbnail from "./NotionItem/Thumbnail";
 import NotionRender from "./NotionItem/NotionRender";
-import { BlockMap, ExtendedRecordMap } from "notion-types";
+import { ExtendedRecordMap } from "notion-types";
 import { TPost } from "@/src/types";
 import Comment from "../Utteranc/Comment";
-import { useRouter } from "next/navigation";
 
 type Props = {
   blockMap: ExtendedRecordMap;
@@ -14,27 +11,46 @@ type Props = {
   prev?: string | null;
 };
 
-export default function NotionPage({ blockMap, post, next = null, prev = null }: Props) {
-  const router = useRouter();
-
-  if (typeof window !== "undefined" && post.URL) {
-    window.open(post.URL);
-    router.back();
+//TODO: 나중에 AI로 요약하는 것 추가
+const fetchExternalUrl = async (url?: string) => {
+  try {
+    const res = await fetch(url ?? "", {
+      method: "GET",
+      headers: {
+        "Content-type": "text/plain",
+      },
+    });
+    return await res.text();
+  } catch (e) {
+    return undefined;
   }
+};
+
+export default async function NotionPage({
+  blockMap,
+  post,
+  next = null,
+  prev = null,
+}: Props) {
+  const externalPost = await fetchExternalUrl(post.URL);
 
   return (
     <>
-      {blockMap && (
-        <div className="-mt-4">
-          {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail} />}
-          <NotionRender post={post} blockMap={blockMap} next={next} prev={prev} />
-          {post.type[0] === "Post" && (
-            <>
-              <Comment post={post} />
-            </>
-          )}
-        </div>
-      )}
+      <div className="-mt-4">
+        {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail} />}
+        <NotionRender
+          post={post}
+          blockMap={blockMap}
+          next={next}
+          prev={prev}
+          externalPost={externalPost}
+        />
+        {post.type[0] === "Post" && (
+          <>
+            <Comment post={post} />
+          </>
+        )}
+      </div>
     </>
   );
 }
