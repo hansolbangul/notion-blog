@@ -29,7 +29,7 @@ export async function getPosts() {
 
 
   const response = await api.getPage(id);
-  console.log(response);
+  
   id = idToUuid(id);
   const collection = Object.values(response.collection)[0]?.value;
   const block = response.block;
