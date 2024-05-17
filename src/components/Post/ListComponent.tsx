@@ -7,12 +7,13 @@ type Props = {
     post: TPost;
 };
 
-function Thumbnail(props: { thumbnail: string }) {
-    const {thumbnail} = props;
+function Thumbnail(props: { thumbnail: string, tag: string }) {
+    const {thumbnail, tag} = props;
 
     return (
         <div
             className="relative rounded-xl aspect-[340/190] min-w-max w-full h-fit overflow-hidden self-center flex-auto sm:flex-1">
+            <Tag tag={tag}/>
             <ImageWithFallback
                 alt="thumbnail"
                 src={thumbnail}
@@ -21,6 +22,14 @@ function Thumbnail(props: { thumbnail: string }) {
             />
         </div>
     );
+}
+
+function Tag({tag}: {tag:string}) {
+    return (
+        <span className="absolute left-1 bottom-1 p-2 z-10 bg-blue-500 text-white text-sm rounded-lg">
+            {tag}
+        </span>
+    )
 }
 
 //
@@ -84,6 +93,7 @@ export default function ListComponent({post}: Props) {
         author_new,
         summary,
         date,
+        tags
     } = post;
     const {start_date} = date;
 
@@ -98,7 +108,7 @@ export default function ListComponent({post}: Props) {
             href={href}
             target={post.URL ? "_blank" : undefined}
         >
-            <Thumbnail thumbnail={thumbnail}/>
+            <Thumbnail thumbnail={thumbnail} tag={tags[0]}/>
             <div className="w-full flex-1 flex-shrink flex flex-col justify-between min-w-0">
                 <Contents title={title} summary={summary}/>
                 <Profile
