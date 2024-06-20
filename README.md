@@ -1,4 +1,4 @@
-# NextNotion Blog
+# UDangTangTang Blog
 
 [notion-blog](https://bangul-log.vercel.app/) This project is a web application developed with Next.js version 13 based on React. The application serves as an interface to interlock with Notion posts using the Notion API. The project is being developed with an emphasis on SEO-friendly development
 
