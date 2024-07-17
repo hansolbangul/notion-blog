@@ -4,6 +4,7 @@ import Tag from "../components/Tag/Tag";
 import { DEFAULT_CATEGORY } from "../constants";
 import { getPosts } from "../libs/apis";
 import { filterPosts, getAllSelectItemsFromPosts } from "../libs/utils/notion";
+import { CONFIG } from "@/site.config";
 
 async function getFetch() {
   try {
@@ -26,6 +27,25 @@ async function getFetch() {
     throw error;
   }
 }
+
+export const metadata = {
+    title: CONFIG.blog.title,
+    description: CONFIG.metadata.description,
+    openGraph: {
+        title: CONFIG.blog.title,
+        type: 'website',
+        url: 'https://blog.hansolbangul.com',
+        description: CONFIG.metadata.description,
+        images: [
+            {
+                url: 'https://media.licdn.com/dms/image/D5603AQEKayUKeemZsw/profile-displayphoto-shrink_200_200/0/1703051207462?e=1710374400&v=beta&t=pceNUTihMi7jIhgT7w6lamOda_nygzCuPgKOJAOZDqk' || '',
+                alt: '지한솔방울 썸넬',
+                width: 1200,
+                height: 630
+            }
+        ]
+    }
+};
 
 export default async function Page() {
   const { tags, posts } = await getFetch();
