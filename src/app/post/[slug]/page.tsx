@@ -48,8 +48,6 @@ export async function generateMetadata({params: {slug}}: Props): Promise<Metadat
         description: post?.summary || post?.title,
         openGraph: {
             title: post?.title,
-            type: 'website',
-            url: `https://blog.hansolbangul.com/post/${post?.slug}`,
             description: post?.summary || post?.title,
             images: [
                 {

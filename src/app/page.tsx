@@ -33,8 +33,6 @@ export const metadata = {
     description: CONFIG.metadata.description,
     openGraph: {
         title: CONFIG.blog.title,
-        type: 'website',
-        url: 'https://blog.hansolbangul.com',
         description: CONFIG.metadata.description,
         images: [
             {
