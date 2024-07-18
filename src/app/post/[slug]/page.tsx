@@ -38,11 +38,12 @@ async function getFetch(slug: string) {
         prev,
         next,
         blockMap,
+        thumbnail: post?.thumbnail || "",
     };
 }
 
 export async function generateMetadata({params: {slug}}: Props): Promise<Metadata> {
-    const {post} = await getFetch(slug);
+    const {post, thumbnail} = await getFetch(slug);
     return {
         title: post?.title,
         description: post?.summary || post?.title,
@@ -51,7 +52,7 @@ export async function generateMetadata({params: {slug}}: Props): Promise<Metadat
             description: post?.summary || post?.title,
             images: [
                 {
-                    url: post?.thumbnail || "",
+                    url: thumbnail,
                     alt: post?.title,
                     width: 1200,
                     height: 630
