@@ -3,7 +3,7 @@ import "react-notion-x/src/styles.css";
 import {Metadata} from "next";
 import {getPostBlocks, getPosts} from "@/src/libs/apis";
 import NotionPage from "@/src/components/Notion/NotionPage";
-import config from "tailwindcss/defaultConfig";
+import {Suspense} from "react";
 
 export const dynamic = 'force-static';
 
@@ -69,7 +69,9 @@ export default async function PostDetail({params: {slug}}: Props) {
         <>
             {blockMap && (
                 <div className="mt-4">
-                    <NotionPage blockMap={blockMap} post={post!} next={next} prev={prev}/>
+                    <Suspense>
+                        <NotionPage blockMap={blockMap} post={post!} next={next} prev={prev}/>
+                    </Suspense>
                 </div>
             )}
         </>

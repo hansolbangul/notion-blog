@@ -36,7 +36,7 @@ export const metadata = {
         description: CONFIG.metadata.description,
         images: [
             {
-                url: 'https://media.licdn.com/dms/image/D5603AQEKayUKeemZsw/profile-displayphoto-shrink_200_200/0/1703051207462?e=1710374400&v=beta&t=pceNUTihMi7jIhgT7w6lamOda_nygzCuPgKOJAOZDqk' || '',
+                url: '/main_img.webp' || '',
                 alt: '지한솔방울 썸넬',
                 width: 1200,
                 height: 630
