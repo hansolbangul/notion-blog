@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {Suspense} from "react";
 import TagIcon from "../Post/PostItem/TagIcon";
 import { TTags } from "@/src/types";
 import useQuery from "@/src/hook/useQuery";
@@ -39,7 +39,9 @@ export default function Tag({ tags }: Props) {
       <div className="md:hidden px-2 overflow-hidden mb-4">
         <div className="overflow-x-scroll scrollbar-hide flex space-x-1">
           {Object.keys(tags).map((tag) => (
-            <TagIcon key={tag} tag={tag} />
+            <Suspense>
+                <TagIcon key={tag} tag={tag} />
+            </Suspense>
           ))}
         </div>
       </div>

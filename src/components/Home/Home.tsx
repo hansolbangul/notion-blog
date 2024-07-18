@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, {Suspense, useCallback, useState} from "react";
 import Container from "../Elements/Container";
 import Search from "./Search/Search";
 import PostList from "./PostList/PostList";
@@ -26,7 +26,9 @@ export default function Home({ posts }: Props) {
     <Container.Col className="px-4">
       <Search onChange={onChange} value={search} />
       <Commend commendPosts={posts.filter((post) => post.tags?.includes("Recommend"))} />
-      <PostList search={search} posts={posts} />
+      <Suspense>
+          <PostList search={search} posts={posts} />
+      </Suspense>
     </Container.Col>
   );
 }

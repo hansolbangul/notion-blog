@@ -3,7 +3,7 @@
 import {TPost} from "@/src/types";
 import TagIcon from "@components/Post/PostItem/TagIcon";
 import Toast from "@components/Toast/Toast";
-import React, {useState} from "react";
+import React, {Suspense, useState} from "react";
 import {IoShareSocialSharp} from "react-icons/io5";
 
 type Props = {
@@ -54,7 +54,9 @@ export default function NotionHeader({post}: Props) {
                     <span className="font-normal">태그</span>
                     <span className="flex space-x-2">
                         {post.tags?.slice(0, 2).map((tag) => (
-                            <TagIcon isRouter={false} key={tag} tag={tag}/>
+                            <Suspense>
+                                <TagIcon isRouter={false} key={tag} tag={tag}/>
+                            </Suspense>
                         ))}
                     </span>
                 </div>

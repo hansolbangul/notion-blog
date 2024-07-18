@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import Container from "../Elements/Container";
 import { HeaderItem } from "./Items";
 import Dropdown from "../Common/Dropdown";
@@ -31,7 +31,9 @@ export default async function Header() {
       <div className="flex max-w-3xl items-center m-auto w-full px-2">
         <HeaderItem.Title />
         <div className="flex space-x-3 items-center flex-auto justify-end">
-          <Dropdown tags={tags} />
+          <Suspense>
+              <Dropdown tags={tags} />
+          </Suspense>
         </div>
       </div>
     </Container.Flex>
