@@ -2,6 +2,9 @@
 User-agent: *
 Allow: /
 
+User-agent: Googlebot
+Allow: /
+
 # Host
 Host: https://blog.hansolbangul.com
 
