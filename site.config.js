@@ -11,7 +11,7 @@ const CONFIG = {
   blog: {
     title: "데굴데굴 블로그",
     todayWords: ["hello world", "hansolbangul", "V-log"],
-    calendarTitle: "이번달 채용 공고",
+    scheme: "dark", // 'light' | 'dark' | 'system'
   },
   utterances: {
     enable: true,

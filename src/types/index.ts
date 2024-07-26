@@ -1,5 +1,6 @@
 export type TPostStatus = "Private" | "Public" | "PublicOnDetail";
 export type TPostType = "Post" | "Paper" | "Page" | "Project";
+import { ExtendedRecordMap } from "notion-types"
 
 export type TPost = {
   id: string;
@@ -31,3 +32,9 @@ export type TCategories = {
 };
 
 export type ThemeType = "dark" | "light";
+
+export type PostDetail = TPost & {
+    recordMap: ExtendedRecordMap
+}
+
+export type SchemeType = "light" | "dark"

@@ -1,10 +1,9 @@
 import Container from "../components/Elements/Container";
 import Home from "../components/Home/Home";
-import Tag from "../components/Tag/Tag";
 import { DEFAULT_CATEGORY } from "../constants";
-import { getPosts } from "../libs/apis";
 import { filterPosts, getAllSelectItemsFromPosts } from "../libs/utils/notion";
 import { CONFIG } from "@/site.config";
+import {getPosts} from "@/src/apis";
 
 async function getFetch() {
   try {

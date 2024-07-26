@@ -2,9 +2,8 @@ import React, {Suspense} from "react";
 import Container from "../Elements/Container";
 import { HeaderItem } from "./Items";
 import Dropdown from "../Common/Dropdown";
-import { getPosts } from "@/src/libs/apis";
-import { DEFAULT_CATEGORY } from "@/src/constants";
 import { filterPosts, getAllSelectItemsFromPosts } from "@/src/libs/utils/notion";
+import {getPosts} from "@/src/apis";
 
 async function getFetch() {
   try {
