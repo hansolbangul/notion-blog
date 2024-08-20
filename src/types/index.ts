@@ -1,6 +1,10 @@
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
+import { AppProps } from "next/app";
+import { ExtendedRecordMap } from "notion-types";
+
 export type TPostStatus = "Private" | "Public" | "PublicOnDetail";
 export type TPostType = "Post" | "Paper" | "Page" | "Project";
-import { ExtendedRecordMap } from "notion-types"
 
 export type TPost = {
   id: string;
@@ -34,7 +38,15 @@ export type TCategories = {
 export type ThemeType = "dark" | "light";
 
 export type PostDetail = TPost & {
-    recordMap: ExtendedRecordMap
-}
+  recordMap: ExtendedRecordMap;
+};
 
-export type SchemeType = "light" | "dark"
+export type SchemeType = "light" | "dark";
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+export type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};

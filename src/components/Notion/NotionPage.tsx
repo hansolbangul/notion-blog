@@ -1,27 +1,28 @@
 "use client";
-// import { NotionExtendedRecordMap, TPost } from "@/networks/network";
 import NotionThumbnail from "./NotionItem/Thumbnail";
 import NotionRender from "./NotionItem/NotionRender";
-import {BlockMap, ExtendedRecordMap} from "notion-types";
-import {TPost} from "@/src/types";
+import { BlockMap, ExtendedRecordMap } from "notion-types";
+import { TPost } from "@/src/types";
 import Comment from "../Utteranc/Comment";
 import usePostQuery from "@hook/usePostQuery";
+import { useGetPostDetail } from "@/src/service/usePostService";
+import { useParams } from "next/navigation";
 
 export default function NotionPage() {
-    const post = usePostQuery();
+  const params = useParams();
 
-    if (!post) return null
-    return (
+  const { data: post } = useGetPostDetail(params.slug);
+
+  if (!post) return null;
+  return (
+    <>
+      <div className="-mt-4">
+        {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail} />}
+        <NotionRender post={post} blockMap={post.recordMap} />
         <>
-            <div className="-mt-4">
-                {post.thumbnail && <NotionThumbnail thumbnail={post.thumbnail}/>}
-                <NotionRender post={post} blockMap={post.recordMap}/>
-                {post.type[0] === "Post" && (
-                    <>
-                        <Comment post={post}/>
-                    </>
-                )}
-            </div>
+          <Comment post={post} />
         </>
-    );
+      </div>
+    </>
+  );
 }
