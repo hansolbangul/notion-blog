@@ -10,7 +10,6 @@ import {
   HydrationBoundary,
   DehydratedState,
 } from "@tanstack/react-query";
-import { queryKey } from "@/src/constants/queryKey";
 import { TPost, TPosts } from "@/src/types";
 import { ExtendedRecordMap } from "notion-types";
 import postQueryOptions from "@/src/service/postService";
@@ -24,70 +23,13 @@ type Props = {
 
 type FetchType = {
   // filterPosts: TPosts;
+  posts: TPosts
   post: TPost;
   prev: string | null;
   next: string | null;
-  // recordMap: ExtendedRecordMap;
+  recordMap: ExtendedRecordMap;
   thumbnail: string;
-  dehydratedState: DehydratedState;
 };
-
-async function getFetch(slug: string): Promise<FetchType> {
-  const { queryKey: postQueryKey } = postQueryOptions.all();
-
-  const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
-  const posts = filterPosts(await getPosts());
-
-  const detailPosts = filterPosts(posts);
-  const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
-  if (!postDetail) throw new Error("Post not found");
-  const recordMap = await getRecordMap(postDetail.id);
-
-  const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
-  const prev =
-    postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
-  const next = postId === 0 ? null : detailPosts[postId - 1].slug;
-
-  return {
-    dehydratedState: await getDehydratedQueries([
-      {
-        queryKey: postQueryKey,
-        queryFn: () => posts,
-      },
-      {
-        queryKey: postDetailQueryKey,
-        queryFn: () => ({
-          ...postDetail,
-          recordMap,
-        }),
-      },
-    ]),
-    prev,
-    next,
-    post: postDetail,
-    thumbnail: postDetail.thumbnail || "",
-  };
-
-  // const posts = await getPosts();
-  // const detailPosts = filterPosts(posts);
-  // const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
-  // if (!postDetail) throw new Error("Post not found");
-  // const recordMap = await getRecordMap(postDetail.id);
-  //
-  // const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
-  // const prev =
-  //   postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
-  // const next = postId === 0 ? null : detailPosts[postId - 1].slug;
-  //
-  // return {
-  //   filterPosts: detailPosts,
-  //   post: postDetail,
-  //   prev,
-  //   next,
-  //   recordMap,
-  //   thumbnail: postDetail.thumbnail || "",
-  // };
-}
 
 export async function generateMetadata({
   params: { slug },
@@ -121,8 +63,73 @@ export async function generateStaticParams() {
   }));
 }
 
+async function getPreFetch(slug: string): Promise<DehydratedState> {
+  const { queryKey: postQueryKey } = postQueryOptions.all();
+
+  const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
+
+  const {recordMap, post, posts} = await getFetch(slug);
+
+  return await getDehydratedQueries([
+    {
+      queryKey: postQueryKey,
+      queryFn: () => posts,
+    },
+    {
+      queryKey: postDetailQueryKey,
+      queryFn: () => ({
+        ...post,
+        recordMap,
+      }),
+    },
+  ]);
+}
+
+async function getFetch(slug: string): Promise<FetchType> {
+  const posts = filterPosts(await getPosts());
+
+  const detailPosts = filterPosts(posts);
+  const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
+  if (!postDetail) throw new Error("Post not found");
+  const recordMap = await getRecordMap(postDetail.id);
+
+  const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
+  const prev =
+    postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
+  const next = postId === 0 ? null : detailPosts[postId - 1].slug;
+
+  return {
+    prev,
+    next,
+    posts,
+    post: postDetail,
+    recordMap,
+    thumbnail: postDetail.thumbnail || "",
+  };
+
+  // const posts = await getPosts();
+  // const detailPosts = filterPosts(posts);
+  // const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
+  // if (!postDetail) throw new Error("Post not found");
+  // const recordMap = await getRecordMap(postDetail.id);
+  //
+  // const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
+  // const prev =
+  //   postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
+  // const next = postId === 0 ? null : detailPosts[postId - 1].slug;
+  //
+  // return {
+  //   filterPosts: detailPosts,
+  //   post: postDetail,
+  //   prev,
+  //   next,
+  //   recordMap,
+  //   thumbnail: postDetail.thumbnail || "",
+  // };
+}
+
 export default async function PostContent({ params }: Props) {
-  const dehydratedState = await getFetch(params.slug);
+  const dehydratedState = await getPreFetch(params.slug);
   return (
     <Hydrate state={dehydratedState}>
       <div className="mt-4">
