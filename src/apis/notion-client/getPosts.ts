@@ -1,29 +1,17 @@
+import { CONFIG } from "@/site.config";
 import { NotionAPI } from "notion-client";
 import { idToUuid } from "notion-utils";
-import { CONFIG } from "../../../site.config";
 
-import getAllPageIds from "@libs/utils/notion/getAllPageIds";
-import getPageProperties from "@libs/utils/notion/getPageProperties";
-import { TPosts } from "@customTypes/index";
-
-declare global {
-  var notionDatas: { TPosts: TPosts; savedDate: Date };
-}
+import getAllPageIds from "@/src/libs/utils/notion/getAllPageIds";
+import getPageProperties from "@/src/libs/utils/notion/getPageProperties";
+import { TPosts } from "@/src/types";
 
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
 
-export async function getPosts() {
-  if (global?.notionDatas) {
-    const saved = global.notionDatas.savedDate;
-    const now = new Date();
-    const diff = (now.getTime() - saved.getTime()) / 1000;
-    if (diff < 60 * 60) {
-      return global.notionDatas.TPosts;
-    }
-  }
-
+// TODO: react query를 사용해서 처음 불러온 뒤로는 해당데이터만 사용하도록 수정
+export const getPosts = async (): Promise<TPosts> => {
   let id = CONFIG.notionConfig.pageId as string;
   const api = new NotionAPI();
 
@@ -36,7 +24,10 @@ export async function getPosts() {
   const rawMetadata = block[id].value;
 
   // Check Type
-  if (rawMetadata?.type !== "collection_view_page" && rawMetadata?.type !== "collection_view") {
+  if (
+    rawMetadata?.type !== "collection_view_page" &&
+    rawMetadata?.type !== "collection_view"
+  ) {
     return [];
   } else {
     // Construct Data
@@ -46,10 +37,17 @@ export async function getPosts() {
       const id = pageIds[i];
       const properties = (await getPageProperties(id, block, schema)) || null;
       // Add fullwidth, createdtime to properties
-      properties.createdTime = new Date(block[id].value?.created_time).toString();
-      properties.fullWidth = (block[id].value?.format as any)?.page_full_width ?? false;
 
-      data.push(properties);
+      // console.log('block', block[id])
+      if (block[id]) {
+        properties.createdTime = new Date(
+          block[id].value?.created_time,
+        ).toString();
+        properties.fullWidth =
+          (block[id].value?.format as any)?.page_full_width ?? false;
+
+        data.push(properties);
+      }
     }
 
     // Sort by date
@@ -59,8 +57,7 @@ export async function getPosts() {
       return dateB - dateA;
     });
 
-    global.notionDatas = { TPosts: data, savedDate: new Date() };
-
-    return data as TPosts;
+    const posts = data as TPosts;
+    return posts;
   }
-}
+};
