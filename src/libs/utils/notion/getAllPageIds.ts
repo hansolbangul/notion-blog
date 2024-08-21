@@ -20,7 +20,7 @@ export default function getAllPageIds(
         pageSet.add(id)
       )
     })
-    pageIds = [...pageSet]
+    pageIds = Array.from(pageSet) // 여기서 스프레드 연산자 대신 Array.from() 사용
   }
   return pageIds
 }
