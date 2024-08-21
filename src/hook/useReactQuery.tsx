@@ -28,9 +28,7 @@ export default function ReactQueryProviders({
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      {typeof window !== "undefined" && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

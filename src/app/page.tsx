@@ -9,6 +9,7 @@ import { getDehydratedQueries, Hydrate } from "@/src/app/react-query";
 import React from "react";
 import { useGetPosts } from "@/src/service/usePostService";
 import Test from "@/src/app/(component)/Test";
+import { getCachedPosts } from "@/src/app/posts-cache";
 
 // async function getFetch() {
 //   const posts = await getPosts();
@@ -46,9 +47,8 @@ export const metadata = {
 };
 
 export default async function Page() {
+  const posts = await getCachedPosts()
   const { queryKey } = postQueryOptions.all();
-  const posts = filterPosts(await getPosts());
-  console.log(posts.map((post) => post.date));
 
   const dehydratedState = await getDehydratedQueries([
     {

@@ -14,6 +14,7 @@ import { TPost, TPosts } from "@/src/types";
 import { ExtendedRecordMap } from "notion-types";
 import postQueryOptions from "@/src/service/postService";
 import { getDehydratedQueries, Hydrate } from "@/src/app/react-query";
+import { getCachedPosts } from "@/src/app/posts-cache";
 
 type Props = {
   params: {
@@ -55,7 +56,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const posts = await getCachedPosts();
   const filteredPosts = filterPosts(posts);
 
   return filteredPosts.map((post) => ({
