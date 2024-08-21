@@ -23,15 +23,16 @@ type Props = {
 };
 
 type FetchType = {
-  filterPosts: TPosts;
+  // filterPosts: TPosts;
   post: TPost;
   prev: string | null;
   next: string | null;
-  recordMap: ExtendedRecordMap;
+  // recordMap: ExtendedRecordMap;
   thumbnail: string;
+  dehydratedState: DehydratedState;
 };
 
-async function getFetch(slug: string): Promise<DehydratedState> {
+async function getFetch(slug: string): Promise<FetchType> {
   const { queryKey: postQueryKey } = postQueryOptions.all();
 
   const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
@@ -42,19 +43,30 @@ async function getFetch(slug: string): Promise<DehydratedState> {
   if (!postDetail) throw new Error("Post not found");
   const recordMap = await getRecordMap(postDetail.id);
 
-  return await getDehydratedQueries([
-    {
-      queryKey: postQueryKey,
-      queryFn: () => posts,
-    },
-    {
-      queryKey: postDetailQueryKey,
-      queryFn: () => ({
-        ...postDetail,
-        recordMap,
-      }),
-    },
-  ]);
+  const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
+  const prev =
+    postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
+  const next = postId === 0 ? null : detailPosts[postId - 1].slug;
+
+  return {
+    dehydratedState: await getDehydratedQueries([
+      {
+        queryKey: postQueryKey,
+        queryFn: () => posts,
+      },
+      {
+        queryKey: postDetailQueryKey,
+        queryFn: () => ({
+          ...postDetail,
+          recordMap,
+        }),
+      },
+    ]),
+    prev,
+    next,
+    post: postDetail,
+    thumbnail: postDetail.thumbnail || "",
+  };
 
   // const posts = await getPosts();
   // const detailPosts = filterPosts(posts);
@@ -77,28 +89,28 @@ async function getFetch(slug: string): Promise<DehydratedState> {
   // };
 }
 
-// export async function generateMetadata({
-//   params: { slug },
-// }: Props): Promise<Metadata> {
-//   const { post, thumbnail } = await getFetch(slug);
-//   return {
-//     title: post?.title,
-//     description: post?.summary || post?.title,
-//     openGraph: {
-//       title: post?.title,
-//       description: post?.summary || post?.title,
-//       images: [
-//         {
-//           url: thumbnail,
-//           alt: post?.title,
-//           width: 1200,
-//           height: 630,
-//         },
-//       ],
-//     },
-//     keywords: post?.tags?.map((tag) => tag),
-//   };
-// }
+export async function generateMetadata({
+  params: { slug },
+}: Props): Promise<Metadata> {
+  const { post, thumbnail } = await getFetch(slug);
+  return {
+    title: post?.title,
+    description: post?.summary || post?.title,
+    openGraph: {
+      title: post?.title,
+      description: post?.summary || post?.title,
+      images: [
+        {
+          url: thumbnail,
+          alt: post?.title,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+    keywords: post?.tags?.map((tag) => tag),
+  };
+}
 
 export async function generateStaticParams() {
   const posts = await getPosts();
