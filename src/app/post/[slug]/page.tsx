@@ -87,17 +87,16 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 async function getFetch(slug: string): Promise<FetchType> {
-  const posts = filterPosts(await getPosts());
+  const posts = await getCachedPosts();;
 
-  const detailPosts = filterPosts(posts);
-  const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
+  const postDetail = posts.find((t: TPost) => t.slug === slug);
   if (!postDetail) throw new Error("Post not found");
   const recordMap = await getRecordMap(postDetail.id);
 
-  const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
+  const postId = posts.findIndex((p: TPost) => p.slug === slug);
   const prev =
-    postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
-  const next = postId === 0 ? null : detailPosts[postId - 1].slug;
+    postId === posts.length - 1 ? null : posts[postId + 1].slug;
+  const next = postId === 0 ? null : posts[postId - 1].slug;
 
   return {
     prev,
