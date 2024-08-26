@@ -5,7 +5,6 @@ import useSwiperProgress from "@/src/hook/useSwiperProgress";
 
 import "swiper/css";
 import RecommendComponent from "./RecommendComponent";
-import { CommendSwiper } from "@app/(component)/home/recommendSwiper/RecommendLayout";
 
 type Props = {
   commendPosts: TPosts;
