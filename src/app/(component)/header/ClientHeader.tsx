@@ -23,6 +23,12 @@ export default function ClientHeader() {
         <HamburgerButton onClick={toggleMenu}>
           {isMenuOpen ? "✕" : "☰"}
         </HamburgerButton>
+        <ContentWrapper>
+          <MenuItem href="#home">Home</MenuItem>
+          <MenuItem href="#services">Services</MenuItem>
+          <MenuItem href="#about">About</MenuItem>
+          <MenuItem href="#contact">Contact</MenuItem>
+        </ContentWrapper>
       </HeaderInner>
       <MobileContentWrapper
         initial={{ height: 0 }}
@@ -34,12 +40,6 @@ export default function ClientHeader() {
         <MenuItem href="#about">About</MenuItem>
         <MenuItem href="#contact">Contact</MenuItem>
       </MobileContentWrapper>
-      <ContentWrapper>
-        <MenuItem href="#home">Home</MenuItem>
-        <MenuItem href="#services">Services</MenuItem>
-        <MenuItem href="#about">About</MenuItem>
-        <MenuItem href="#contact">Contact</MenuItem>
-      </ContentWrapper>
     </>
   );
 }

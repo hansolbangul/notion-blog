@@ -20,7 +20,7 @@ export const HeaderInner = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 `;
 
@@ -39,10 +39,12 @@ export const ContentWrapper = styled(motion.div)`
   display: none;
   ${media.desktop`
     flex: 1;
+    margin-left: auto;
+    justify-content: flex-end;
     display: flex;
     flex-direction: row;
     align-items: center;
-  `}
+    `}
 `;
 
 export const MobileContentWrapper = styled(motion.div)`
