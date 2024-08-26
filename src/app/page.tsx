@@ -1,9 +1,9 @@
 import Container from "../components/Elements/Container";
-import Home from "../components/Home/Home";
 import { CONFIG } from "@/site.config";
 import postQueryOptions from "@/src/service/postService";
 import { getDehydratedQueries, Hydrate } from "@/src/app/reactQuery";
 import { getCachedPosts } from "@/src/app/postsCache";
+import Home from "@app/(component)/home/Home";
 
 async function getFetch() {
   const posts = await getCachedPosts();

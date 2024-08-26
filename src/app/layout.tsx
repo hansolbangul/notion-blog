@@ -1,6 +1,5 @@
 import "./globals.css";
 import ReactQueryProviders from "@hook/useReactQuery";
-import StyledComponentsRegistry from "@libs/StyledComponentsRegistry";
 import Header from "@app/(component)/header/Header";
 
 export default function RootLayout({
@@ -28,10 +27,12 @@ export default function RootLayout({
         />
         <div id="modal-root" className="fixed z-30" />
         <ReactQueryProviders>
-          <StyledComponentsRegistry>
+          <>
             <Header />
-            <div className="max-w-3xl mx-auto relative">{children}</div>
-          </StyledComponentsRegistry>
+            <div className="mx-auto w-full max-w-[1200px] relative">
+              {children}
+            </div>
+          </>
         </ReactQueryProviders>
       </body>
     </html>
