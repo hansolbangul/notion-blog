@@ -12,20 +12,14 @@ type Props = {
 
 export default function Footer({ start_date, profile }: Props) {
   return (
-    <div className="mt-2 w-full flex justify-between items-center">
-      <div className="flex items-center gap-x-1">
-        <Image
-          className="rounded-full"
-          src={profile && profile[0].profile_photo ? profile[0].profile_photo : "/icons/default_img.png"}
-          alt="profile_image"
-          width={30}
-          height={30}
-          style={{ height: "30px" }}
-        />
-        <span className="text-sm font-semibold">{profile && profile[0].name}</span>
-      </div>
-      <span className="text-xs md:text-sm">
-        {new Intl.DateTimeFormat("ko", { dateStyle: "full" }).format(new Date(start_date))}
+    <div className="mt-2 w-full flex items-center">
+      <span className="text-body12 custom:text-body13 date-after text-gray-300">
+        {new Intl.DateTimeFormat("ko", { dateStyle: "full" }).format(
+          new Date(start_date),
+        )}
+      </span>
+      <span className="text-body12 custom:text-body13 text-gray-300">
+        {profile && profile[0].name}
       </span>
     </div>
   );

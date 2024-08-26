@@ -22,17 +22,23 @@ type Props = {
   post: TPost;
 };
 
-const Pdf = dynamic(() => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf), {
-  ssr: false,
-});
+const Pdf = dynamic(
+  () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
+  {
+    ssr: false,
+  },
+);
 
-const Modal = dynamic(() => import("react-notion-x/build/third-party/modal").then((m) => m.Modal), { ssr: false });
+const Modal = dynamic(
+  () => import("react-notion-x/build/third-party/modal").then((m) => m.Modal),
+  { ssr: false },
+);
 
 const mapPageUrl = (id: string) => {
   return "https://www.notion.so/" + id.replace(/-/g, "");
 };
 
-export default function NotionRender({ blockMap, post}: Props) {
+export default function NotionRender({ blockMap, post }: Props) {
   return (
     <>
       {blockMap && (

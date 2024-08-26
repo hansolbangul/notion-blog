@@ -5,5 +5,9 @@ type Props = {
 };
 
 export default function Title({ title }: Props) {
-  return <h1 className="mt-3 mb-2 text-xl md:text-2xl font-bold cursor-pointer ">{title}</h1>;
+  return (
+    <h1 className="mb-2 text-body15 custom:text-body16 font-semiBold cursor-pointer">
+      {title}
+    </h1>
+  );
 }

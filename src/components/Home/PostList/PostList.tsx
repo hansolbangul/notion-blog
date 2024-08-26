@@ -23,11 +23,13 @@ export default function PostList({ search, posts }: Props) {
       filters = filters.filter(
         (post) =>
           post.title.toLowerCase().includes(search.toLowerCase()) ||
-          post.summary?.toLowerCase().includes(search.toLowerCase())
+          post.summary?.toLowerCase().includes(search.toLowerCase()),
       );
 
       if (tagQuery !== "All") {
-        filters = filters.filter((post) => post && post.tags && post.tags.includes(tagQuery));
+        filters = filters.filter(
+          (post) => post && post.tags && post.tags.includes(tagQuery),
+        );
       }
 
       return filters;
@@ -35,10 +37,10 @@ export default function PostList({ search, posts }: Props) {
   }, [tagQuery, search]);
 
   return (
-    <ComponentTitle title={tagQuery}>
+    <>
       {filter.map((post) => (
         <ListComponent key={post.id} post={post} />
       ))}
-    </ComponentTitle>
+    </>
   );
 }

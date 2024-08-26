@@ -7,8 +7,14 @@ type Props = {
 
 export default function NotionThumbnail({ thumbnail }: Props) {
   return (
-    <div className="px-2 w-full aspect-video md:h-96 relative cursor-pointer ">
-      <Image style={{ objectFit: "cover" }} fill src={thumbnail} alt="thumbnail" />
+    <div className="w-full aspect-video custom:h-96 relative cursor-pointer">
+      <Image
+        className={"w-full px-4 mt-5 rounded-lg"}
+        style={{ objectFit: "cover" }}
+        fill
+        src={thumbnail}
+        alt="thumbnail"
+      />
     </div>
   );
 }

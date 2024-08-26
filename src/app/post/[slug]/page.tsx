@@ -2,14 +2,9 @@ import * as React from "react";
 import "react-notion-x/src/styles.css";
 import { Metadata } from "next";
 import NotionPage from "@/src/components/Notion/NotionPage";
-import { getPosts, getRecordMap } from "@/src/apis";
+import { getRecordMap } from "@/src/apis";
 import { filterPosts } from "@/src/libs/utils/notion";
-import {
-  QueryClient,
-  dehydrate,
-  HydrationBoundary,
-  DehydratedState,
-} from "@tanstack/react-query";
+import { DehydratedState } from "@tanstack/react-query";
 import { TPost, TPosts } from "@/src/types";
 import { ExtendedRecordMap } from "notion-types";
 import postQueryOptions from "@/src/service/postService";
@@ -23,7 +18,6 @@ type Props = {
 };
 
 type FetchType = {
-  // filterPosts: TPosts;
   posts: TPosts;
   post: TPost;
   prev: string | null;
@@ -105,26 +99,6 @@ async function getFetch(slug: string): Promise<FetchType> {
     recordMap,
     thumbnail: postDetail.thumbnail || "",
   };
-
-  // const posts = await getPosts();
-  // const detailPosts = filterPosts(posts);
-  // const postDetail = detailPosts.find((t: TPost) => t.slug === slug);
-  // if (!postDetail) throw new Error("Post not found");
-  // const recordMap = await getRecordMap(postDetail.id);
-  //
-  // const postId = detailPosts.findIndex((p: TPost) => p.slug === slug);
-  // const prev =
-  //   postId === detailPosts.length - 1 ? null : detailPosts[postId + 1].slug;
-  // const next = postId === 0 ? null : detailPosts[postId - 1].slug;
-  //
-  // return {
-  //   filterPosts: detailPosts,
-  //   post: postDetail,
-  //   prev,
-  //   next,
-  //   recordMap,
-  //   thumbnail: postDetail.thumbnail || "",
-  // };
 }
 
 export default async function PostContent({ params }: Props) {
