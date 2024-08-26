@@ -2,11 +2,5 @@
 User-agent: *
 Allow: /
 
-User-agent: Googlebot
-Allow: /
-
 # Host
 Host: https://blog.hansolbangul.com
-
-# Sitemaps
-Sitemap: https://blog.hansolbangul.com/sitemap.xml

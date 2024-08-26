@@ -13,8 +13,8 @@ import {
 import { TPost, TPosts } from "@/src/types";
 import { ExtendedRecordMap } from "notion-types";
 import postQueryOptions from "@/src/service/postService";
-import { getDehydratedQueries, Hydrate } from "@/src/app/react-query";
-import { getCachedPosts } from "@/src/app/posts-cache";
+import { getDehydratedQueries, Hydrate } from "@/src/app/reactQuery";
+import { getCachedPosts } from "@/src/app/postsCache";
 
 type Props = {
   params: {
@@ -24,7 +24,7 @@ type Props = {
 
 type FetchType = {
   // filterPosts: TPosts;
-  posts: TPosts
+  posts: TPosts;
   post: TPost;
   prev: string | null;
   next: string | null;
@@ -69,7 +69,7 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 
   const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
 
-  const {recordMap, post, posts} = await getFetch(slug);
+  const { recordMap, post, posts } = await getFetch(slug);
 
   return await getDehydratedQueries([
     {
@@ -87,15 +87,14 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 async function getFetch(slug: string): Promise<FetchType> {
-  const posts = await getCachedPosts();;
+  const posts = await getCachedPosts();
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);
   if (!postDetail) throw new Error("Post not found");
   const recordMap = await getRecordMap(postDetail.id);
 
   const postId = posts.findIndex((p: TPost) => p.slug === slug);
-  const prev =
-    postId === posts.length - 1 ? null : posts[postId + 1].slug;
+  const prev = postId === posts.length - 1 ? null : posts[postId + 1].slug;
   const next = postId === 0 ? null : posts[postId - 1].slug;
 
   return {
