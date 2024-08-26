@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import {
-  HeaderInner,
-  HamburgerButton,
-  MobileContentWrapper,
-  ContentWrapper,
-  MenuItem,
-} from "@app/(component)/header/HeaderLayout";
+import { HiMenu, HiX } from "react-icons/hi";
+import { AnimatePresence, motion } from "framer-motion";
+import { CONFIG } from "@/site.config";
+import HeaderMenu from "@app/(component)/header/HeaderMenu";
 
 export default function ClientHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,28 +15,33 @@ export default function ClientHeader() {
 
   return (
     <>
-      <HeaderInner>
-        <div>Title</div>
-        <HamburgerButton onClick={toggleMenu}>
-          {isMenuOpen ? "✕" : "☰"}
-        </HamburgerButton>
-        <ContentWrapper>
-          <MenuItem href="#home">Home</MenuItem>
-          <MenuItem href="#services">Services</MenuItem>
-          <MenuItem href="#about">About</MenuItem>
-          <MenuItem href="#contact">Contact</MenuItem>
-        </ContentWrapper>
-      </HeaderInner>
-      <MobileContentWrapper
-        initial={{ height: 0 }}
-        animate={isMenuOpen ? { height: "auto" } : { height: 0 }}
-        transition={{ duration: 0.3 }}
-      >
-        <MenuItem href="#home">Home</MenuItem>
-        <MenuItem href="#services">Services</MenuItem>
-        <MenuItem href="#about">About</MenuItem>
-        <MenuItem href="#contact">Contact</MenuItem>
-      </MobileContentWrapper>
+      <div className="flex items-center justify-between text-gray-300 relative z-10 w-full h-[56px]">
+        <a href="/" className="text-[14px] font-semiBold text-gray-600">
+          {CONFIG.blog.title}
+        </a>
+        <button
+          onClick={toggleMenu}
+          className="text-2xl focus:outline-none custom:hidden"
+        >
+          {isMenuOpen ? <HiX /> : <HiMenu />}
+        </button>
+        <ul className="hidden custom:flex items-center ">
+          <HeaderMenu />
+        </ul>
+      </div>
+      <AnimatePresence mode={"wait"}>
+        {isMenuOpen && (
+          <motion.ul
+            initial={{ height: 0 }}
+            animate={{ height: "auto" }}
+            exit={{ height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex flex-col w-full bg-white overflow-hidden custom:hidden text-gray-300"
+          >
+            <HeaderMenu />
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </>
   );
 }
