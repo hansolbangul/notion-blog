@@ -17,22 +17,22 @@ async function getFetch() {
   ]);
 }
 
-export const metadata = {
-  title: CONFIG.blog.title,
-  description: CONFIG.metadata.description,
-  openGraph: {
-    title: CONFIG.blog.title,
-    description: CONFIG.metadata.description,
-    images: [
-      {
-        url: "/main_img.webp" || "",
-        alt: "지한솔방울 썸넬",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
+// export const metadata = {
+//   title: CONFIG.blog.title,
+//   description: CONFIG.metadata.description,
+//   openGraph: {
+//     title: CONFIG.blog.title,
+//     description: CONFIG.metadata.description,
+//     images: [
+//       {
+//         url: "/main_img.webp" || "",
+//         alt: "지한솔방울 썸넬",
+//         width: 1200,
+//         height: 630,
+//       },
+//     ],
+//   },
+// };
 
 export default async function Page() {
   const dehydratedState = await getFetch();
