@@ -10,10 +10,10 @@ interface Props {
 
 export default function HomeSection({ search, posts }: Props) {
   return (
-    <div className="flex flex-col md:flex-row justify-between mt-6">
-      <div className="flex flex-col w-full max-w-[700px] pr-4 px-4">
-        <CategorySection />
+    <div className="flex flex-col md:flex-row justify-between mt-4">
+      <div className="flex flex-col w-full max-w-[700px] pr-4 px-4 relative">
         <Suspense>
+          <CategorySection />
           <PostList search={search} posts={posts} />
         </Suspense>
       </div>
