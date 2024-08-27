@@ -1,3 +1,5 @@
+"use client";
+
 import { TPosts } from "@/src/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useRef } from "react";
 
 const useSwiperProgress = () => {
@@ -22,7 +24,7 @@ const useSwiperProgress = () => {
         <span ref={progressContent}></span>
       </div>
     ),
-    [progressCircle, progressContent]
+    [progressCircle, progressContent],
   );
 
   return { progress, onAutoplayTimeLeft };
