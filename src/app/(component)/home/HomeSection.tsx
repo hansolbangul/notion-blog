@@ -29,7 +29,7 @@ export default function HomeSection({ posts, tags }: Props) {
           <PostList search={search} posts={posts} />
         </Suspense>
       </div>
-      <div className="hidden custom:flex flex-col w-[300px] pl-4 border-l border-gray-200 pt-3">
+      <div className="hidden custom:flex flex-col w-[300px] px-4 border-l border-gray-200 pt-3">
         <Search onChange={onChange} value={search} />
         <TagList tags={tags} />
       </div>
