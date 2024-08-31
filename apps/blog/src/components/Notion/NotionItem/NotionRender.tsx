@@ -26,14 +26,6 @@ const Pdf = dynamic(
   },
 );
 
-const Collection = dynamic(
-  () =>
-    import("react-notion-x/build/third-party/collection").then(
-      (m) => m.Collection,
-    ),
-  { ssr: false },
-);
-
 const Modal = dynamic(
   () => import("react-notion-x/build/third-party/modal").then((m) => m.Modal),
   { ssr: false },
@@ -57,7 +49,6 @@ export default function NotionRender({ blockMap, post }: Props) {
           // footer={<PrevNextBtn next={next} prev={prev} />}
           disableHeader
           components={{
-            Collection,
             Code,
             Modal,
             Pdf,
