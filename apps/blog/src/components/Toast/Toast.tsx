@@ -16,7 +16,7 @@ function Toast({ message }: ToastProps) {
     >
       <div className="text-sm font-bold">{message}</div>
     </div>,
-    document.getElementById("toast-root")!
+    document.getElementById("toast-root")!,
   );
 }
 

@@ -53,6 +53,11 @@ export async function generateStaticParams() {
   const posts = await getCachedPosts();
   const filteredPosts = filterPosts(posts);
 
+  console.log(
+    "filteredPosts",
+    filteredPosts.map((filter) => filter.slug),
+  );
+
   return filteredPosts.map((post) => ({
     slug: post.slug,
   }));

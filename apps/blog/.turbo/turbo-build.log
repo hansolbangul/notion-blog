@@ -1,0 +1,661 @@
+
+- [33mwarn[39m You are using a non-standard "NODE_ENV" value in your environment. This creates inconsistencies in the project and is strongly advised against. Read more: https://nextjs.org/docs/messages/non-standard-node-env
+- [36minfo[39m Loaded env from /Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.env
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[?25h- [33mwarn[39m Compiled with warnings
+
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h../../node_modules/keyv/src/index.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+../../node_modules/keyv/src/index.js
+../../node_modules/cacheable-request/src/index.js
+../../node_modules/got/dist/source/core/index.js
+../../node_modules/got/dist/source/create.js
+../../node_modules/got/dist/source/index.js
+../../node_modules/notion-client/build/index.js
+./src/apis/notion-client/getRecordMap.ts
+./src/apis/notion-client/index.ts
+./src/apis/index.ts
+./src/app/postsCache.ts
+./src/app/page.tsx
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[?25l- [36minfo[39m Linting and checking validity of types [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Linting and checking validity of types [36m..[39m[2K[1G[?25h- [36minfo[39m Linting and checking validity of types  
+[?25l- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39mfilteredPosts [
+  'typescript-satisfies-1',
+  'javascript-script-module',
+  'js-browser',
+  'react-styled-component-typo',
+  'react-button-promise',
+  'react-model-usesyncexternalstore',
+  '24year-review-1',
+  'package-manage',
+  'react-test-code',
+  'web-dev-build-tools',
+  'react-msw-v2',
+  'react-state-trends',
+  '24-developer-objective',
+  'bun-monorepo',
+  'react-generic-type-component',
+  'react-use-formdata',
+  'react-props-type-typescript',
+  'react-suspense-react-query',
+  'nextjs-testcode-step3',
+  'javascript-type-enum',
+  'nextjs-testcode-step2',
+  'react-hoc-component',
+  'ice-break-3',
+  'nextjs-testcode-step1',
+  'nextjs-testcode',
+  'javascript-class',
+  'react-ref-forwardref-step1',
+  'ice-break-2',
+  'ice-break-1',
+  'react-history-state',
+  'typescript-declare',
+  'javascript-this-call-apply-bind1',
+  'react-reconciliation',
+  'react-zustand-step1',
+  'react-carousel-step1',
+  'javascript-master-step1',
+  'javascript-eventbubbling',
+  'react-recoil-selectorfamily',
+  'css-scss',
+  'next13-blog-step6',
+  'next13-blog-step5',
+  'next13-blog-step4',
+  'next13-blog-step3',
+  'ddd-post-step2',
+  'ddd-post-step1',
+  'next13-blog-step2',
+  'next13-blog-step1',
+  'daily-log',
+  'effective-component',
+  'react-suspense',
+  'github-terminal-user-delete',
+  'threejs-step2',
+  'js-intl',
+  'codingtest-step14',
+  'threejs-step1',
+  'codingtest-step13',
+  'codingtest-step12',
+  'js-set',
+  'js-intersectionobserver-step1',
+  'chrome-devmode',
+  'codingtest-step11',
+  'codingtest-step10',
+  'codingtest-step9',
+  'codingtest-step8',
+  'codingtest-step7',
+  'codingtest-step6',
+  'react-emotion-step1',
+  'codingtest-step5',
+  'codingtest-step4',
+  'codingtest-step3',
+  'codingtest-step2',
+  'codingtest-step1',
+  'react-eventbus'
+]
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Collecting page data [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Collecting page data [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Collecting page data [36m...[39m[2K[1G[?25h- [36minfo[39m Collecting page data  
+[?25l[36m[    ][39m - [36minfo[39m Generating static pages (0/78)
+- warn metadata.metadataBase is not set for resolving social open graph or twitter images, fallbacks to "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+
+- warn metadata.metadataBase is not set for resolving social open graph or twitter images, fallbacks to "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+
+
+- warn metadata.metadataBase is not set for resolving social open graph or twitter images, fallbacks to "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39mWarning: Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <span>. See https://reactjs.org/link/warning-keys for more information.
+    at Suspense
+    at NotionHeader (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:558:25)
+    at h1
+    at main
+    at div
+    at div
+    at div
+    at Block (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10696:16)
+    at NotionBlockRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11370:18)
+    at NotionContextProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10062:17)
+    at NotionRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11290:5)
+    at NotionRender (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:689:25)
+    at div
+    at NotionPage (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:747:44)
+    at Lazy
+    at div
+    at HydrationBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/183.js:9038:3)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at div
+    at QueryClientProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:23661:3)
+    at ReactQueryProviders (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/382.js:355:32)
+    at Lazy
+    at body
+    at html
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at Router (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:327:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at AppRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:610:13)
+    at Lazy
+    at Lazy
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:78:31)
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:78:31)
+    at InsertedHTML (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/app-render.js:843:33)
+
+
+[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (5/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (6/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (7/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (7/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (8/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (9/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (10/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (11/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (12/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (13/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[====][39m - [36minfo[39m Generating static pages (14/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (15/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (16/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (17/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (17/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (18/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (19/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (20/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (21/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (22/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (23/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (23/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (24/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (25/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (26/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[====][39m - [36minfo[39m Generating static pages (26/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (27/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (28/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (29/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (30/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (31/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (31/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <span>. See https://reactjs.org/link/warning-keys for more information.
+    at Suspense
+    at NotionHeader (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:558:25)
+    at h1
+    at main
+    at div
+    at div
+    at div
+    at Block (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10696:16)
+    at NotionBlockRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11370:18)
+    at NotionContextProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10062:17)
+    at NotionRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11290:5)
+    at NotionRender (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:689:25)
+    at div
+    at NotionPage (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:747:44)
+    at Lazy
+    at div
+    at HydrationBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/183.js:9038:3)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at div
+    at QueryClientProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:23661:3)
+    at ReactQueryProviders (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/382.js:355:32)
+    at Lazy
+    at body
+    at html
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at Router (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:327:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at AppRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:610:13)
+    at Lazy
+    at Lazy
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:77:67)
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:77:67)
+    at InsertedHTML (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/app-render.js:843:33)
+
+[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (32/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <span>. See https://reactjs.org/link/warning-keys for more information.
+    at Suspense
+    at NotionHeader (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:558:25)
+    at h1
+    at main
+    at div
+    at div
+    at div
+    at Block (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10696:16)
+    at NotionBlockRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11370:18)
+    at NotionContextProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:10062:17)
+    at NotionRenderer (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/178.js:11290:5)
+    at NotionRender (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:689:25)
+    at div
+    at NotionPage (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/app/post/[slug]/page.js:747:44)
+    at Lazy
+    at div
+    at HydrationBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/183.js:9038:3)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at InnerLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1118:11)
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at LoadingBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1222:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at InnerScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1031:9)
+    at ScrollAndFocusHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1105:11)
+    at RenderFromTemplateContext (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1894:44)
+    at Lazy
+    at OuterLayoutRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1231:11)
+    at Lazy
+    at div
+    at QueryClientProvider (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:23661:3)
+    at ReactQueryProviders (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/382.js:355:32)
+    at Lazy
+    at body
+    at html
+    at RedirectErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1768:9)
+    at RedirectBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1776:11)
+    at NotFoundErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1621:9)
+    at NotFoundBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:1629:11)
+    at Router (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:327:11)
+    at ErrorBoundaryHandler (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:776:9)
+    at ErrorBoundary (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:801:11)
+    at AppRouter (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/apps/blog/.next/server/chunks/202.js:610:13)
+    at Lazy
+    at Lazy
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:78:31)
+    at ServerComponentWrapper (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/create-server-components-renderer.js:78:31)
+    at InsertedHTML (/Users/hansolji/Documents/GitHub/monorepo/notion-blog/node_modules/next/dist/server/app-render/app-render.js:843:33)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (34/78)
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (37/78)
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (40/78)
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (43/78)
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[   =][39m - [36minfo[39m Generating static pages (46/78)
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+[2K[1G[36m[  ==][39m - [36minfo[39m Generating static pages (49/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[ ===][39m - [36minfo[39m Generating static pages (52/78)
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+
+
+[2K[1G[36m[====][39m - [36minfo[39m Generating static pages (56/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (58/78)
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (61/78)[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (64/78)
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[    ][39m - [36minfo[39m Generating static pages (67/78)
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G[36m[=   ][39m - [36minfo[39m Generating static pages (70/78)
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m
+
+[2K[1G[36m[==  ][39m - [36minfo[39m Generating static pages (73/78)
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m
+
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[36m[=== ][39m - [36minfo[39m Generating static pages (75/78)
+
+
+[2K[1G- [36minfo[39m Creating an optimized production build [36m..[39m[2K[1G- [36minfo[39m Creating an optimized production build [36m...[39m
+[2K[1G[?25h[2K[1G[?25h- [36minfo[39m Generating static pages (78/78)
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[?25l- [36minfo[39m Finalizing page optimization [36m.[39m[2K[1G[?25h- [36minfo[39m Finalizing page optimization  
+[2K[1G[?25h
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h[4mRoute (app)[24m                                [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                      31.7 kB         [32m126 kB[39m
+├ ○ /_not-found                            0 B                [32m0 B[39m
+├ ○ /favicon.ico                           0 B                [32m0 B[39m
+└ ● /post/[slug]                           59.4 kB         [33m153 kB[39m
+    ├ /post/typescript-satisfies-1
+    ├ /post/javascript-script-module
+    ├ /post/js-browser
+    └ [+70 more paths]
++ First Load JS shared by all              [32m77.6 kB[39m
+  ├ chunks/55-54f3a5b19a7d7faa.js          24.8 kB
+  ├ chunks/7fd0f9f1-3173bf6702b04fda.js    50.6 kB
+  ├ chunks/main-app-77821fb9586fda28.js    215 B
+  └ chunks/webpack-b7533342613bca2d.js     1.98 kB
+
+[4mRoute (pages)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+─ ○ /404                                   180 B            [32m75 kB[39m
++ First Load JS shared by all              [32m74.9 kB[39m
+  ├ chunks/framework-0857c1c24dbfb1d6.js   45.1 kB
+  ├ chunks/main-6cec5c49a4564d16.js        27.6 kB
+  ├ chunks/pages/_app-0a410a963e1e985e.js  194 B
+  └ chunks/webpack-b7533342613bca2d.js     1.98 kB
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h○  (Static)  automatically rendered as static HTML (uses no initial props)
+●  (SSG)     automatically generated as static HTML + JSON (uses [36mgetStaticProps[39m)
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[2K[1G[?25h
+[?25l- [36minfo[39m Creating an optimized production build [36m.[39m[?25h
