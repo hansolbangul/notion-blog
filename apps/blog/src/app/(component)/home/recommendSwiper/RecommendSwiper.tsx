@@ -1,12 +1,12 @@
 "use client";
 
-import { TPosts } from "@/src/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import useSwiperProgress from "@/src/hook/useSwiperProgress";
 
 import "swiper/css";
 import RecommendComponent from "./RecommendComponent";
+import { TPosts } from "@blog/notions/types";
+import useSwiperProgress from "@blog/notions/hook/useSwiperProgress";
 
 type Props = {
   commendPosts: TPosts;

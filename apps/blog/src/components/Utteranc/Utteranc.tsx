@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
-import { CONFIG } from "../../../site.config";
-
+import CONFIG from "@blog/notions/site.config";
 type Props = {
   issueTerm: string;
 };
@@ -31,7 +30,10 @@ export default function Utterances({ issueTerm }: Props) {
   return (
     <>
       <div id="comments" className="md:-ml-16">
-        <div className="utterances-frame" style={{ position: "relative" }}></div>
+        <div
+          className="utterances-frame"
+          style={{ position: "relative" }}
+        ></div>
       </div>
     </>
   );

@@ -3,10 +3,9 @@
 import React, { Suspense, useCallback, useState } from "react";
 import CategorySection from "@app/(component)/home/CategorySection";
 import PostList from "@components/Home/PostList/PostList";
-import { TPosts } from "@/src/types";
 import Search from "@components/Home/Search/Search";
-import Link from "next/link";
 import TagList from "@app/(component)/commons/TagList";
+import { TPosts } from "@blog/notions/types";
 
 interface Props {
   posts: TPosts;

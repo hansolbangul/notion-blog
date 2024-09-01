@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { useGetTags } from "@/src/service/usePostService";
 import { useSearchParams } from "next/navigation";
+import { useGetTags } from "@blog/notions/service/usePostService";
 
 const CategorySection = () => {
   const { data: tags } = useGetTags();

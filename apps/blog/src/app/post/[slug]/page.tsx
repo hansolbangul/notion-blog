@@ -2,14 +2,17 @@ import * as React from "react";
 import "react-notion-x/src/styles.css";
 import { Metadata } from "next";
 import NotionPage from "@/src/components/Notion/NotionPage";
-import { getRecordMap } from "@/src/apis";
-import { filterPosts } from "@/src/libs/utils/notion";
 import { DehydratedState } from "@tanstack/react-query";
-import { TPost, TPosts } from "@/src/types";
 import { ExtendedRecordMap } from "notion-types";
-import postQueryOptions from "@/src/service/postService";
-import { getDehydratedQueries, Hydrate } from "@/src/app/reactQuery";
-import { getCachedPosts } from "@/src/app/postsCache";
+import { TPost, TPosts } from "@blog/notions/types";
+import { filterPosts } from "@blog/notions/utils/notion";
+import postQueryOptions from "@blog/notions/service/postService";
+import { getRecordMap } from "@blog/notions/apis";
+import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
+import {
+  getDehydratedQueries,
+  Hydrate,
+} from "@blog/notions/libs/react-query/nextQuery";
 
 type Props = {
   params: {

@@ -1,9 +1,9 @@
 "use client";
 
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment } from "react";
 import { Bars4Icon } from "@heroicons/react/20/solid";
-import useQuery from "@/src/hook/useQuery";
+import useRouterQuery from "@hook/useRouterQuery";
 
 type Props = {
   tags: {
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const Dropdown = ({ tags }: Props) => {
-  const params = useQuery();
+  const params = useRouterQuery();
   const selectTag = params.get("tag") || "All";
 
   const setTag = (tag: string) => {
@@ -33,7 +33,10 @@ const Dropdown = ({ tags }: Props) => {
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-            <Bars4Icon className="h-5 w-5 text-black hover:text-violet-100" aria-hidden="true" />
+            <Bars4Icon
+              className="h-5 w-5 text-black hover:text-violet-100"
+              aria-hidden="true"
+            />
           </Menu.Button>
         </div>
         <Transition
@@ -53,7 +56,11 @@ const Dropdown = ({ tags }: Props) => {
                     <button
                       onClick={() => setTag(key)}
                       className={`${
-                        key === selectTag ? "bg-gray-300" : active ? "bg-violet-500 text-white" : "text-gray-900"
+                        key === selectTag
+                          ? "bg-gray-300"
+                          : active
+                            ? "bg-violet-500 text-white"
+                            : "text-gray-900"
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm justify-between`}
                     >
                       <span>{key}</span>

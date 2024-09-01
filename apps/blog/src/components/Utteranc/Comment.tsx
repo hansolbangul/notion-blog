@@ -1,13 +1,13 @@
 import React from "react";
-import { CONFIG } from "../../../site.config";
 import dynamic from "next/dynamic";
-import { TPost } from "@/src/types";
+import { TPost } from "@blog/notions/types";
+import CONFIG from "@blog/notions/site.config";
 
 const UtterancesComponent = dynamic(
   () => {
     return import("./Utteranc");
   },
-  { ssr: false }
+  { ssr: false },
 );
 
 type Props = {
@@ -15,5 +15,11 @@ type Props = {
 };
 
 export default function Comment({ post }: Props) {
-  return <>{CONFIG.utterances.enable && <UtterancesComponent issueTerm={post.title} />}</>;
+  return (
+    <>
+      {CONFIG.utterances.enable && (
+        <UtterancesComponent issueTerm={post.title} />
+      )}
+    </>
+  );
 }

@@ -1,15 +1,15 @@
 "use client";
-import React, {Suspense} from "react";
+import React, { Suspense } from "react";
 import TagIcon from "../Post/PostItem/TagIcon";
-import { TTags } from "@/src/types";
-import useQuery from "@/src/hook/useQuery";
+import { TTags } from "@blog/notions/types";
+import useRouterQuery from "@hook/useRouterQuery";
 
 type Props = {
   tags: TTags;
 };
 
 export default function Tag({ tags }: Props) {
-  const params = useQuery();
+  const params = useRouterQuery();
   const selectTag = params.get("tag") || "All";
 
   const setTag = (tag: string) => {
@@ -40,7 +40,7 @@ export default function Tag({ tags }: Props) {
         <div className="overflow-x-scroll scrollbar-hide flex space-x-1">
           {Object.keys(tags).map((tag) => (
             <Suspense>
-                <TagIcon key={tag} tag={tag} />
+              <TagIcon key={tag} tag={tag} />
             </Suspense>
           ))}
         </div>

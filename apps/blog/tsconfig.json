@@ -46,7 +46,7 @@
         "./src/pages/*"
       ],
       "@hook/*": [
-        "./src/hook/*"
+        "./src/hooks/*"
       ],
       "@customTypes/*": [
         "./src/types/*"

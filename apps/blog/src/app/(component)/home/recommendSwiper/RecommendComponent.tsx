@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Text from "@elements/Text";
 import Link from "next/link";
 
 interface Props {

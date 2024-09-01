@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { useGetPosts } from "@/src/service/usePostService";
-import { TPosts } from "@/src/types";
 import RecommendSwiper from "@app/(component)/home/recommendSwiper";
 import HomeSection from "@app/(component)/home/HomeSection";
 import Container from "@/src/components/Elements/Container";
+import { useGetPosts } from "@blog/notions/service/usePostService";
+import { TPosts } from "@blog/notions/types";
 
 interface Props {
   tags: string[];

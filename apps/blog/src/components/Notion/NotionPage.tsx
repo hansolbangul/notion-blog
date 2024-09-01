@@ -1,12 +1,9 @@
 "use client";
 import NotionThumbnail from "./NotionItem/Thumbnail";
 import NotionRender from "./NotionItem/NotionRender";
-import { BlockMap, ExtendedRecordMap } from "notion-types";
-import { TPost } from "@/src/types";
 import Comment from "../Utteranc/Comment";
-import usePostQuery from "@hook/usePostQuery";
-import { useGetPostDetail } from "@/src/service/usePostService";
 import { useParams } from "next/navigation";
+import { useGetPostDetail } from "@blog/notions/service/usePostService";
 
 export default function NotionPage() {
   const params = useParams();

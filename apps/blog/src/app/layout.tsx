@@ -1,6 +1,6 @@
 import "./globals.css";
-import ReactQueryProviders from "@hook/useReactQuery";
 import Header from "@app/(component)/header/Header";
+import NextQueryProvider from "@app/NextQueryProvider";
 
 export const metadata = {
   title: "데굴데굴 블로그",
@@ -71,14 +71,14 @@ export default function RootLayout({
           className="fixed right-2/4 transform translate-x-2/4 flex flex-col z-30 w-64 space-y-2"
         />
         <div id="modal-root" className="fixed z-30" />
-        <ReactQueryProviders>
+        <NextQueryProvider>
           <>
             <Header />
             <div className="mx-auto w-full max-w-[1200px] relative">
               {children}
             </div>
           </>
-        </ReactQueryProviders>
+        </NextQueryProvider>
       </body>
     </html>
   );

@@ -20,9 +20,9 @@ importers:
       '@babel/runtime':
         specifier: ^7.25.6
         version: 7.25.6
-      '@blog/utils':
+      '@blog/notions':
         specifier: workspace:*
-        version: link:../../packages/utils
+        version: link:../../packages/notions
       '@headlessui/react':
         specifier: ^1.7.17
         version: 1.7.19(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -114,6 +114,43 @@ importers:
       prettier:
         specifier: ^3.3.3
         version: 3.3.3
+
+  packages/notions:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.51.11
+        version: 5.53.1(react@18.2.0)
+      '@types/react':
+        specifier: ^18.2.25
+        version: 18.3.5
+      '@types/react-dom':
+        specifier: 18.2.4
+        version: 18.2.4
+      cookies-next:
+        specifier: ^4.2.1
+        version: 4.2.1
+      next:
+        specifier: 13.4.4
+        version: 13.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      notion-client:
+        specifier: ^6.16.0
+        version: 6.16.0
+      notion-utils:
+        specifier: ^6.16.0
+        version: 6.16.0
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+      typescript:
+        specifier: 5.1.3
+        version: 5.1.3
+    devDependencies:
+      notion-types:
+        specifier: ^6.16.0
+        version: 6.16.0
 
   packages/utils: {}
 

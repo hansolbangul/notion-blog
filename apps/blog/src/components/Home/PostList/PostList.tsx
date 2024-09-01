@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import useQuery from "@/src/hook/useQuery";
-import { TPosts } from "@/src/types";
 import ListComponent from "../../Post/ListComponent";
-import ComponentTitle from "../../Common/ComponentTitle";
+import { TPosts } from "@blog/notions/types";
+import useRouterQuery from "@hook/useRouterQuery";
 
 type Props = {
   search: string;
@@ -12,7 +11,7 @@ type Props = {
 };
 
 export default function PostList({ search, posts }: Props) {
-  const params = useQuery();
+  const params = useRouterQuery();
   const tagQuery = params.get("tag") || "All";
   const [filter, setFilter] = useState(posts);
 

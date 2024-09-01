@@ -1,8 +1,7 @@
 import React from "react";
-import Container from "../Elements/Container";
 import { PostItem } from "./PostItem";
 import Link from "next/link";
-import { TPost, TPostType } from "@/src/types";
+import { TPost, TPostType } from "@blog/notions/types";
 
 type Props = {
   post: TPost;

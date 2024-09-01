@@ -7,9 +7,9 @@ import "prismjs/themes/prism-tomorrow.css";
 import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
 import { Code } from "react-notion-x/build/third-party/code";
-import { BlockMap, ExtendedRecordMap } from "notion-types";
-import { TPost } from "@/src/types";
+import { ExtendedRecordMap } from "notion-types";
 import NotionHeader from "./NotionHeader";
+import { TPost } from "@blog/notions/types";
 
 // 'dark' | 'light'
 type ThemeStatus = string | undefined;

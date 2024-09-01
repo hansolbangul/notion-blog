@@ -1,10 +1,13 @@
 import Container from "../components/Elements/Container";
-import { CONFIG } from "@/site.config";
-import postQueryOptions from "@/src/service/postService";
-import { getDehydratedQueries, Hydrate } from "@/src/app/reactQuery";
-import { getCachedPosts } from "@/src/app/postsCache";
 import Home from "@app/(component)/home/Home";
-import { getAllSelectItemsFromPosts } from "@libs/utils/notion";
+import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
+import postQueryOptions from "@blog/notions/service/postService";
+import {
+  getDehydratedQueries,
+  Hydrate,
+} from "@blog/notions/libs/react-query/nextQuery";
+import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
+import React from "react";
 
 async function getFetch() {
   const posts = await getCachedPosts();
