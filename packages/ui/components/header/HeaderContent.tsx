@@ -1,6 +1,6 @@
 "use client";
 
-import ShareButton from "@app/(component)/commons/ShareButton";
+import ShareButton from "../commons/ShareButton";
 
 export default function HeaderContent() {
   return (

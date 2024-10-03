@@ -9,7 +9,9 @@
   "scripts": {
     "build": "turbo run build",
     "build:blog": "turbo run blog:build",
-    "dev": "turbo run dev --parallel"
+    "dev": "turbo run dev --parallel",
+    "dev:blog": "pnpm --filter blog dev",
+    "dev:letter-count": "pnpm --filter letter-count dev"
   },
   "devDependencies": {
     "prettier": "^3.3.3",

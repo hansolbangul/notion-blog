@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
-import { CONFIG } from "@/site.config";
-import HeaderMenu from "@app/(component)/header/HeaderMenu";
+import { CONFIG } from "blog/site.config";
+import HeaderMenu from "./HeaderMenu";
 
 export default function ClientHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

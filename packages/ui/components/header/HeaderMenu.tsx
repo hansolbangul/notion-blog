@@ -1,4 +1,4 @@
-import ShareButton from "@app/(component)/commons/ShareButton";
+import ShareButton from "../commons/ShareButton";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function HeaderMenu() {
