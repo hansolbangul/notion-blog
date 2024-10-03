@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
-import { CONFIG } from "blog/site.config";
+import CONFIG from "@blog/notions/site.config";
 import HeaderMenu from "./HeaderMenu";
 
 export default function ClientHeader() {
