@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
-import CONFIG from "@blog/notions/site.config";
 import HeaderMenu from "./HeaderMenu";
 
 export default function ClientHeader() {
@@ -17,7 +16,7 @@ export default function ClientHeader() {
     <>
       <div className="flex items-center justify-between text-gray-300 relative z-10 w-full h-[56px]">
         <a href="/" className="text-[14px] font-semiBold text-gray-600">
-          {CONFIG.blog.title}
+          데굴데굴 블로그
         </a>
         <button
           onClick={toggleMenu}
