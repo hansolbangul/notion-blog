@@ -197,15 +197,15 @@ importers:
 
   packages/ui:
     dependencies:
-      '@blog/notions':
-        specifier: workspace:*
-        version: link:../notions
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
       autoprefixer:
         specifier: 10.4.14
         version: 10.4.14(postcss@8.4.47)
+      classnames:
+        specifier: ^2.5.1
+        version: 2.5.1
       framer-motion:
         specifier: ^11.3.30
         version: 11.3.31(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
@@ -845,6 +845,9 @@ packages:
   chrome-trace-event@1.0.4:
     resolution: {integrity: sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==}
     engines: {node: '>=6.0'}
+
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
 
   clean-stack@4.2.0:
     resolution: {integrity: sha512-LYv6XPxoyODi36Dp976riBtSY27VmFo+MKqEU9QCCWyTrdEPDog+RWA7xQWHi6Vbp61j5c4cdzzX1NidnwtUWg==}
@@ -3238,6 +3241,8 @@ snapshots:
       fsevents: 2.3.3
 
   chrome-trace-event@1.0.4: {}
+
+  classnames@2.5.1: {}
 
   clean-stack@4.2.0:
     dependencies:

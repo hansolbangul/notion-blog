@@ -1,6 +1,5 @@
 import "./globals.css";
 import NextQueryProvider from "@app/NextQueryProvider";
-import Header from "@blog/ui/components/header/Header";
 import CrossView from "@blog/ui/components/layouts/CrossView";
 
 export const metadata = {

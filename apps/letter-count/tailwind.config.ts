@@ -1,6 +1,7 @@
-/** @type {import('tailwindcss').Config} */
-const { customUiTheme } = require("@blog/ui/styles/customUiTheme");
-module.exports = {
+import type { Config } from "tailwindcss";
+import { customUiTheme } from "@blog/ui/styles/customUiTheme";
+
+const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,5 +13,6 @@ module.exports = {
       ...customUiTheme,
     },
   },
-  plugins: [require("tailwind-scrollbar-hide")],
+  plugins: [],
 };
+export default config;
