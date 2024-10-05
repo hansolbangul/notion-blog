@@ -1,6 +1,4 @@
-import { CustomThemeConfig } from "tailwindcss/types/config";
-
-export const customUiTheme: Partial<CustomThemeConfig> = {
+export const customUiTheme = {
   colors: {
     white: "#fff",
 

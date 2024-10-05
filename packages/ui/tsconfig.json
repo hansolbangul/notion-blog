@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -21,6 +18,7 @@
     "jsx": "preserve",
     "incremental": true
   },
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js"],
   "exclude": [
     "node_modules"
   ]

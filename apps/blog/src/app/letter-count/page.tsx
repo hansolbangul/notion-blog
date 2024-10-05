@@ -1,13 +1,12 @@
-import Container from "../components/Elements/Container";
-import Home from "@app/(feature)/home/Home";
 import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
 import postQueryOptions from "@blog/notions/service/postService";
 import {
   getDehydratedQueries,
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
-import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
+import Container from "@elements/Container";
 import React from "react";
+import LetterCountContent from "@app/(feature)/letter-count/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();
@@ -20,18 +19,15 @@ async function getFetch() {
         queryFn: () => posts,
       },
     ]),
-    tags: Object.keys(getAllSelectItemsFromPosts("tags", posts)),
   };
 }
 
 export default async function Page() {
-  const { dehydratedState, tags } = await getFetch();
+  const { dehydratedState } = await getFetch();
 
   return (
     <Hydrate state={dehydratedState}>
-      <Container.Col>
-        <Home tags={tags} />
-      </Container.Col>
+      <LetterCountContent />
     </Hydrate>
   );
 }

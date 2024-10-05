@@ -27,10 +27,10 @@ const RecommendSwiper = ({ commendPosts }: Props) => {
       pagination={{
         type: "fraction",
       }}
-      className="my-5 w-full h-[120px] rounded-lg px-4"
+      className="my-5 w-full h-[120px] rounded-lg"
     >
       {commendPosts.map((post) => (
-        <SwiperSlide key={post.id} className="w-full px-4">
+        <SwiperSlide key={post.id} className="w-full">
           <RecommendComponent
             slug={post.slug}
             thumbnail={post.thumbnail || ""}
