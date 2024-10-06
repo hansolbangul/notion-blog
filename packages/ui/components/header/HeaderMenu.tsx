@@ -34,36 +34,6 @@ export default function HeaderMenu() {
           Linkedin
         </ShareButton>
       </li>
-      <li className="custom:ml-2 hover:bg-gray-200 p-2 rounded text-center">
-        <button
-          onClick={toggleDevToolsMenu}
-          className="w-full text-left focus:outline-none"
-        >
-          개발 툴
-        </button>
-        <AnimatePresence>
-          {isDevToolsOpen && (
-            <motion.ul
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-gray-50 mt-2 rounded shadow-lg overflow-hidden"
-            >
-              <li className="hover:bg-gray-100 p-2 text-sm">
-                <a href="/tool/char-counter">글자수 세기</a>
-              </li>
-              <li className="hover:bg-gray-100 p-2 text-sm">
-                <a href="/tool/word-counter">단어수 세기</a>
-              </li>
-              <li className="hover:bg-gray-100 p-2 text-sm">
-                <a href="/tool/code-formatter">코드 포매터</a>
-              </li>
-              {/* 다른 개발 툴을 여기에 추가 */}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </li>
       <li className="custom:ml-2 hover:bg-gray-200 p-2 rounded">
         <a
           href="https://blog.uddangtangtang.com/"
