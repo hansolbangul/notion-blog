@@ -1,4 +1,5 @@
-import { ChangeEvent, PropsWithChildren, useState } from "react";
+import { ChangeEvent, PropsWithChildren, useMemo, useState } from "react";
+import DotList from "@blog/ui/components/commons/DotList";
 
 export default function CountSection({ children }: PropsWithChildren) {
   const [totalCharacterCount, setTotalCharacterCount] = useState(0);
@@ -22,24 +23,19 @@ export default function CountSection({ children }: PropsWithChildren) {
     }
   };
 
+  const valueList = useMemo(
+    () => [
+      `공백 포함: ${totalCharacterCount}`,
+      `공백 미 포함: ${characterCountWithoutSpaces}`,
+      `문단 수: ${paragraphCount}`,
+    ],
+    [totalCharacterCount, characterCountWithoutSpaces, paragraphCount],
+  );
+
   return (
     <form onChange={handleCount}>
       {children}
-      <ul
-        className={
-          "list-disc pl-5 bg-white rounded-lg w-full space-y-2 max-w-md"
-        }
-      >
-        <li className={"hover:bg-gray-100 cursor-pointer text-gray-700 w-full"}>
-          공백 포함: {totalCharacterCount}
-        </li>
-        <li className={"hover:bg-gray-100 cursor-pointer text-gray-700 w-full"}>
-          공백 미 포함: {characterCountWithoutSpaces}
-        </li>
-        <li className={"hover:bg-gray-100 cursor-pointer text-gray-700 w-full"}>
-          문단 수: {paragraphCount}
-        </li>
-      </ul>
+      <DotList data={valueList} />
     </form>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import TitleSection from "@blog/ui/components/commons/TItleSection";
+import TitleSection from "@blog/ui/components/commons/TitleSection";
 import Textarea from "@blog/ui/components/commons/Textarea";
 import RecommendSwiper from "@app/(feature)/home/recommendSwiper";
 import React from "react";
