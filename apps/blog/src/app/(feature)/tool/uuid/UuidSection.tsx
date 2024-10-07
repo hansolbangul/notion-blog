@@ -2,11 +2,39 @@
 
 import Textarea from "@blog/ui/components/commons/Textarea";
 import TitleSection from "@blog/ui/components/commons/TitleSection";
-import React from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import Input from "@blog/ui/components/commons/Input";
 import Button from "@blog/ui/components/commons/Button";
+import { v4 } from "uuid";
 
 export default function UuidSection() {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [uuidList, setUuidList] = useState<string>("");
+
+  const onChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
+    const target = e.target as unknown as HTMLInputElement;
+    if (target.name === "uuidCount") {
+      setIsDisabled(target.value.length === 0);
+    }
+  };
+
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = new FormData(e.currentTarget);
+    const jsonData = Object.fromEntries(form.entries()) as {
+      uuidCount: string;
+    };
+
+    const count = parseInt(jsonData.uuidCount, 10);
+    if (!isNaN(count)) {
+      const uuids = Array.from({ length: count }, () => v4()).join("\n");
+      setUuidList(uuids);
+    } else {
+      setUuidList("");
+    }
+  };
+
   return (
     <>
       <TitleSection
@@ -17,28 +45,20 @@ export default function UuidSection() {
       >
         <form
           className={"flex w-full gap-4 mb-4"}
-          onChange={(e) => {
-            e.preventDefault();
-            console.log(e.target); // 선택된 값이 출력됨
-          }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            const value = e.currentTarget;
-            const form = new FormData(value);
-            const jsonData = Object.fromEntries(form.entries());
-
-            console.log(jsonData);
-          }}
+          onChange={onChangeHandler}
+          onSubmit={onSubmitHandler}
         >
           <Input
+            name={"uuidCount"}
+            type={"number"}
             className={"flex-auto"}
             placeholder={"생성한 uuid의 수량을 적어주세요."}
           />
-          <Button.Primary type={"submit"}>생성하기</Button.Primary>
-          <Button.Error type={"submit"}>생성하기</Button.Error>
-          <Button.Warring type={"submit"}>생성하기</Button.Warring>
+          <Button.Primary disabled={isDisabled} type={"submit"}>
+            생성하기
+          </Button.Primary>
         </form>
-        <Textarea readOnly />
+        <Textarea readOnly value={uuidList} />
       </TitleSection>
     </>
   );
