@@ -5,7 +5,7 @@ import Textarea from "@blog/ui/components/commons/Textarea";
 import RecommendSwiper from "@app/(feature)/home/recommendSwiper";
 import React from "react";
 import { useGetPosts } from "@blog/notions/service/usePostService";
-import CountSection from "@app/(feature)/letter-count/CountSection";
+import CountSection from "@app/(feature)/tool/letter-count/CountSection";
 
 export default function LetterCountContent() {
   const { data: posts } = useGetPosts();

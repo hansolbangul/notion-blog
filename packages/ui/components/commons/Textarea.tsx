@@ -1,5 +1,4 @@
 import { ComponentProps } from "react";
-import classNames from "classnames";
 
 interface Props extends ComponentProps<"textarea"> {
   width?: number;

@@ -14,7 +14,6 @@ export default function CountSection({ children }: PropsWithChildren) {
 
     if (target && "value" in target) {
       const value = target.value;
-      console.log(value);
       setTotalCharacterCount(value.length);
       setCharacterCountWithoutSpaces(
         value.replaceAll(" ", "").replaceAll("\n", "").length,
@@ -35,7 +34,11 @@ export default function CountSection({ children }: PropsWithChildren) {
   return (
     <form onChange={handleCount}>
       {children}
-      <DotList data={valueList} />
+      <DotList>
+        {valueList.map((value) => (
+          <DotList.Item key={value}>{value}</DotList.Item>
+        ))}
+      </DotList>
     </form>
   );
 }

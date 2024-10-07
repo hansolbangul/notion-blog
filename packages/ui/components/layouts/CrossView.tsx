@@ -1,5 +1,4 @@
 import Header from "../header/Header";
-import { PropsWithChildren } from "react";
 
 export default function CrossView({ children }: { children: React.ReactNode }) {
   return (

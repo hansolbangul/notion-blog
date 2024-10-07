@@ -1,6 +1,6 @@
 import "./globals.css";
 import NextQueryProvider from "@app/NextQueryProvider";
-import CrossView from "@blog/ui/components/layouts/CrossView";
+import BodyLayout from "@app/BodyLayout";
 
 export const metadata = {
   title: "데굴데굴 블로그",
@@ -72,7 +72,7 @@ export default function RootLayout({
         />
         <div id="modal-root" className="fixed z-30" />
         <NextQueryProvider>
-          <CrossView>{children}</CrossView>
+          <BodyLayout>{children}</BodyLayout>
         </NextQueryProvider>
       </body>
     </html>

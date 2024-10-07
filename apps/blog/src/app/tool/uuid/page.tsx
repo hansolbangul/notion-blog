@@ -4,9 +4,8 @@ import {
   getDehydratedQueries,
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
-import Container from "@elements/Container";
 import React from "react";
-import LetterCountContent from "@app/(feature)/letter-count/Content";
+import UuidContent from "@app/(feature)/tool/uuid/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();
@@ -27,7 +26,7 @@ export default async function Page() {
 
   return (
     <Hydrate state={dehydratedState}>
-      <LetterCountContent />
+      <UuidContent />
     </Hydrate>
   );
 }
