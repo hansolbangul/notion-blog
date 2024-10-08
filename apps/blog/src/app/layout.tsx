@@ -16,7 +16,7 @@ export const metadata = {
     images: [
       {
         url: "/main_img.webp",
-        alt: "지한솔방울 썸넬",
+        alt: "지한솔방울썸넬",
         width: 1200,
         height: 630,
       },
