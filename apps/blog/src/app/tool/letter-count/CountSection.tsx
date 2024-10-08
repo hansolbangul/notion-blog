@@ -1,11 +1,21 @@
 import { ChangeEvent, PropsWithChildren, useMemo, useState } from "react";
 import DotList from "@blog/ui/components/commons/DotList";
+import {
+  textParagraphLength,
+  textLength,
+  textLengthWithoutSpaces,
+} from "@blog/utils/textFormat";
+import { defaultValue } from "@app/(constant)/defaultBlogInfo";
 
 export default function CountSection({ children }: PropsWithChildren) {
-  const [totalCharacterCount, setTotalCharacterCount] = useState(0);
+  const [totalCharacterCount, setTotalCharacterCount] = useState(
+    textLength(defaultValue),
+  );
   const [characterCountWithoutSpaces, setCharacterCountWithoutSpaces] =
-    useState(0);
-  const [paragraphCount, setParagraphCount] = useState(0);
+    useState(textLengthWithoutSpaces(defaultValue));
+  const [paragraphCount, setParagraphCount] = useState(
+    textParagraphLength(defaultValue),
+  );
 
   const handleCount = (e: ChangeEvent<HTMLFormElement>) => {
     const target = e.target as unknown as
@@ -14,11 +24,9 @@ export default function CountSection({ children }: PropsWithChildren) {
 
     if (target && "value" in target) {
       const value = target.value;
-      setTotalCharacterCount(value.length);
-      setCharacterCountWithoutSpaces(
-        value.replaceAll(" ", "").replaceAll("\n", "").length,
-      );
-      setParagraphCount(value.split("\n").length);
+      setTotalCharacterCount(textLength(value));
+      setCharacterCountWithoutSpaces(textLengthWithoutSpaces(value));
+      setParagraphCount(textParagraphLength(value));
     }
   };
 

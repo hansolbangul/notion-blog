@@ -5,7 +5,7 @@ import {
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
-import LetterCountContent from "@app/(feature)/tool/letter-count/Content";
+import LetterCountContent from "@app/tool/letter-count/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();

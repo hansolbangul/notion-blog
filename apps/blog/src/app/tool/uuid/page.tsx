@@ -5,7 +5,7 @@ import {
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
-import UuidContent from "@app/(feature)/tool/uuid/Content";
+import UuidContent from "@app/tool/uuid/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();

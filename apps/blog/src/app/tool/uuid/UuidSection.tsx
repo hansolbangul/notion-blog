@@ -9,7 +9,7 @@ import { v4 } from "uuid";
 
 export default function UuidSection() {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [uuidList, setUuidList] = useState<string>("");
+  const [uuidList, setUuidList] = useState<string>(v4());
 
   const onChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
     const target = e.target as unknown as HTMLInputElement;

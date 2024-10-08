@@ -5,7 +5,7 @@ import {
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
-import QrContent from "@app/(feature)/tool/qr/Content";
+import QrContent from "@app/tool/qr/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();
