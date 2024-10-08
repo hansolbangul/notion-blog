@@ -8,7 +8,7 @@ import Button from "@blog/ui/components/commons/Button";
 import { v4 } from "uuid";
 
 export default function UuidSection() {
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [uuidList, setUuidList] = useState<string>("");
 
   const onChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
@@ -49,6 +49,7 @@ export default function UuidSection() {
           onSubmit={onSubmitHandler}
         >
           <Input
+            defaultValue={1}
             name={"uuidCount"}
             type={"number"}
             className={"flex-auto"}
@@ -58,7 +59,7 @@ export default function UuidSection() {
             생성하기
           </Button.Primary>
         </form>
-        <Textarea readOnly value={uuidList} />
+        <Textarea className={"w-full"} enableCopy readOnly value={uuidList} />
       </TitleSection>
     </>
   );

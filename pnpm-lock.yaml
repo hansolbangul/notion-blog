@@ -167,6 +167,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@blog/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@types/react':
         specifier: ^18.3.11
         version: 18.3.11
