@@ -17,7 +17,7 @@ export default function LetterCountContent() {
       />
       <CountSection>
         <TitleSection title={"글자수 세기"}>
-          <Textarea />
+          <Textarea className={"w-full"} />
         </TitleSection>
       </CountSection>
     </>
