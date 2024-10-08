@@ -17,18 +17,18 @@ const TOOLS_LIST = [
     name: "QR 코드 생성기",
     href: "/tool/qr",
   },
-  {
-    name: "숫자 추출기",
-    href: "/tool/random-number",
-  },
-  {
-    name: "바코드 생성기",
-    href: "/tool/barcode",
-  },
-  {
-    name: "base64 인/디코딩",
-    href: "/tool/base64",
-  },
+  // {
+  //   name: "숫자 추출기",
+  //   href: "/tool/random-number",
+  // },
+  // {
+  //   name: "바코드 생성기",
+  //   href: "/tool/barcode",
+  // },
+  // {
+  //   name: "base64 인/디코딩",
+  //   href: "/tool/base64",
+  // },
 ];
 
 export default function BodyLayout({
