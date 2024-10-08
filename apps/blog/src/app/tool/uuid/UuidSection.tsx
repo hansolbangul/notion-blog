@@ -28,6 +28,9 @@ export default function UuidSection() {
 
     const count = parseInt(jsonData.uuidCount, 10);
     if (!isNaN(count)) {
+      if (count > 100) {
+        alert("uuid는 100개까지만 생성 가능합니다.");
+      }
       const uuids = Array.from({ length: count }, () => v4()).join("\n");
       setUuidList(uuids);
     } else {
