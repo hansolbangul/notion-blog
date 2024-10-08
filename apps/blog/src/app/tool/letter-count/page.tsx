@@ -1,26 +1,5 @@
-import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
-import postQueryOptions from "@blog/notions/service/postService";
-import {
-  getDehydratedQueries,
-  Hydrate,
-} from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
 import LetterCountContent from "@app/tool/letter-count/Content";
-import { Metadata } from "next";
-
-async function getFetch() {
-  const posts = await getCachedPosts();
-  const { queryKey } = postQueryOptions.all();
-
-  return {
-    dehydratedState: await getDehydratedQueries([
-      {
-        queryKey,
-        queryFn: () => posts,
-      },
-    ]),
-  };
-}
 
 export const metadata = {
   title: "글자수 세기",
@@ -41,12 +20,6 @@ export const metadata = {
   keywords: ["데굴데굴 블로그", "글자수 세기", "글자수"],
 };
 
-export default async function Page() {
-  const { dehydratedState } = await getFetch();
-
-  return (
-    <Hydrate state={dehydratedState}>
-      <LetterCountContent />
-    </Hydrate>
-  );
+export default function Page() {
+  return <LetterCountContent />;
 }
