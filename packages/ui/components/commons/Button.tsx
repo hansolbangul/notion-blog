@@ -6,7 +6,7 @@ export default function Button({ children, className, ...rest }: Props) {
   return (
     <button
       className={
-        "border-2 rounded-lg px-4 text-body14 h-[46px] text-gray-500 disabled:text-gray-300 disabled:cursor-not-allowed " +
+        "border-2 rounded-lg px-4 text-body14 h-[46px] text-gray-500 disabled:text-gray-300 disabled:cursor-not-allowed flex-0 " +
         className
       }
       {...rest}
@@ -17,13 +17,25 @@ export default function Button({ children, className, ...rest }: Props) {
 }
 
 Button.Primary = function ({ className, ...rest }: Props) {
-  return <Button className={"bg-blue-400 text-white"} {...rest}></Button>;
+  return (
+    <Button
+      className={"bg-blue-400 text-white " + className}
+      {...rest}
+    ></Button>
+  );
 };
 
 Button.Error = function ({ className, ...rest }: Props) {
-  return <Button className={"bg-red-400 text-white"} {...rest}></Button>;
+  return (
+    <Button className={"bg-red-400 text-white " + className} {...rest}></Button>
+  );
 };
 
 Button.Warring = function ({ className, ...rest }: Props) {
-  return <Button className={"bg-orange-400 text-white"} {...rest}></Button>;
+  return (
+    <Button
+      className={"bg-orange-400 text-white " + className}
+      {...rest}
+    ></Button>
+  );
 };

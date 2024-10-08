@@ -5,7 +5,7 @@ import {
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
-import LetterCountContent from "@app/(feature)/tool/letter-count/Content";
+import QrContent from "@app/(feature)/tool/qr/Content";
 
 async function getFetch() {
   const posts = await getCachedPosts();
@@ -26,7 +26,7 @@ export default async function Page() {
 
   return (
     <Hydrate state={dehydratedState}>
-      <LetterCountContent />
+      <QrContent />
     </Hydrate>
   );
 }

@@ -25,7 +25,7 @@ export default function Input({
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block w-full">
       <input
         ref={inputRef}
         className={

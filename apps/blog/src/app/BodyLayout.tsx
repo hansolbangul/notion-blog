@@ -18,6 +18,10 @@ const TOOLS_LIST = [
     href: "/tool/qr",
   },
   {
+    name: "숫자 추출기",
+    href: "/tool/random-number",
+  },
+  {
     name: "바코드 생성기",
     href: "/tool/barcode",
   },

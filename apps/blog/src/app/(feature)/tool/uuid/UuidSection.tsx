@@ -52,7 +52,7 @@ export default function UuidSection() {
             defaultValue={1}
             name={"uuidCount"}
             type={"number"}
-            className={"flex-auto"}
+            className={"w-full flex-auto"}
             placeholder={"생성한 uuid의 수량을 적어주세요."}
           />
           <Button.Primary disabled={isDisabled} type={"submit"}>

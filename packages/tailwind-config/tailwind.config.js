@@ -55,6 +55,9 @@ module.exports = {
       screens: {
         custom: "900px",
       },
+      flex: {
+        0: "1 0 auto",
+      },
     },
   },
   plugins: [require("tailwind-scrollbar-hide")],

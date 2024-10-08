@@ -7,9 +7,13 @@ interface Props extends PropsWithChildren {
 
 export default function TitleSection({ title, description, children }: Props) {
   return (
-    <section className="py-4">
+    <section className="py-4 w-full">
       <h3 className={"text-body18 font-semiBold mb-4"}>{title}</h3>
-      {description && <p className={"mb-4 text-body15"}>{description}</p>}
+      {description && (
+        <p className={"mb-4 text-body15 whitespace-pre-line leading-7"}>
+          {description}
+        </p>
+      )}
       {children}
     </section>
   );
