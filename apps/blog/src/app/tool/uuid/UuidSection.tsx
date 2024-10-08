@@ -30,6 +30,7 @@ export default function UuidSection() {
     if (!isNaN(count)) {
       if (count > 100) {
         alert("uuid는 100개까지만 생성 가능합니다.");
+        return;
       }
       const uuids = Array.from({ length: count }, () => v4()).join("\n");
       setUuidList(uuids);
