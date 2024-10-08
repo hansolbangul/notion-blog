@@ -30,7 +30,7 @@ export const metadata = {
     description: "데굴데굴 블로그에서 제공하는 간편한 UUID 생성 도구",
     images: [
       {
-        url: "/main_img.webp",
+        url: "https://blog.hansolbangul.com/main_img.webp",
         alt: "지한솔방울썸넬",
         width: 1200,
         height: 630,

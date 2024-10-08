@@ -15,7 +15,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/main_img.webp",
+        url: "https://blog.hansolbangul.com/main_img.webp",
         alt: "지한솔방울썸넬",
         width: 1200,
         height: 630,
@@ -57,7 +57,7 @@ export default function RootLayout({
               },
               image: {
                 "@type": "ImageObject",
-                url: "/main_img.webp",
+                url: "https://blog.hansolbangul.com/main_img.webp",
                 width: 1200,
                 height: 630,
               },
