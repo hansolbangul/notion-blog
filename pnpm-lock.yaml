@@ -111,6 +111,9 @@ importers:
       '@types/prismjs':
         specifier: ^1
         version: 1.26.4
+      '@types/uuid':
+        specifier: ^10.0.0
+        version: 10.0.0
       next-sitemap:
         specifier: ^4.2.2
         version: 4.2.3(next@13.4.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0))
@@ -411,6 +414,9 @@ packages:
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
+
+  '@types/uuid@10.0.0':
+    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
 
   '@webassemblyjs/ast@1.12.1':
     resolution: {integrity: sha512-EKfMUOPRRUTy5UII4qJDGPpqfwjOmZ5jeGFwid9mnoqIFK+e0vqoi1qH56JpmZSzEL53jKnNzScdmftJyG5xWg==}
@@ -1817,6 +1823,8 @@ snapshots:
   '@types/responselike@1.0.3':
     dependencies:
       '@types/node': 20.2.5
+
+  '@types/uuid@10.0.0': {}
 
   '@webassemblyjs/ast@1.12.1':
     dependencies:
