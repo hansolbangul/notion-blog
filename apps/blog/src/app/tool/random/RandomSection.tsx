@@ -1,18 +1,21 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TitleSection from "@blog/ui/components/commons/TitleSection";
 import Input from "@blog/ui/components/commons/Input";
 import Button from "@blog/ui/components/commons/Button";
-import { randomNumber } from "@blog/utils/random";
+import { lottoNumber, randomNumber } from "@blog/utils/random";
+import Circle from "@blog/ui/components/commons/Circle";
+import { v4 } from "uuid";
+import { generatePastelColor } from "@blog/utils/color";
 
 const tabs = [{ label: "숫자 생성기" }, { label: "로또 번호 생성기" }];
 
 export default function RandomSection() {
   const [selectedTab, setSelectedTab] = useState(tabs[0].label);
   const [prevTab, setPrevTab] = useState<string | null>(null);
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
   const onChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
@@ -30,17 +33,41 @@ export default function RandomSection() {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const jsonData = Object.fromEntries(form.entries()) as {
-      count: string;
+      count?: string;
+      lotto?: string;
       min?: string;
       max?: string;
     };
 
-    const count = parseInt(jsonData.count);
-    if (!isNaN(count)) {
-      const generatedNumbers = Array.from({ length: count }, () =>
-        randomNumber(),
+    if (jsonData.lotto) {
+      const lottoCount = parseInt(jsonData.lotto, 10);
+
+      if (lottoCount > 10) {
+        alert("로또 생성기는 최대 10게임까지 가능합니다.");
+        return;
+      }
+
+      const generatedLottoNumbers = Array.from({ length: lottoCount * 6 }, () =>
+        lottoNumber(),
       );
-      setRandomNumbers(generatedNumbers);
+      setRandomNumbers(generatedLottoNumbers);
+    } else if (jsonData.count) {
+      const count = parseInt(jsonData.count, 10);
+
+      if (count > 100) {
+        alert("숫자 생성은 100개까지만 가능합니다.");
+        return;
+      }
+
+      if (!isNaN(count)) {
+        const generatedNumbers = Array.from({ length: count }, () =>
+          randomNumber(
+            parseInt(jsonData.min || "1", 10),
+            parseInt(jsonData.max || "10", 10),
+          ),
+        );
+        setRandomNumbers(generatedNumbers);
+      }
     }
   };
 
@@ -107,7 +134,7 @@ export default function RandomSection() {
         >
           {selectedTab === "숫자 생성기" && (
             <form
-              className="flex w-full gap-4 mb-4"
+              className="flex flex-col custom:flex-row w-full gap-4 mb-4"
               onChange={onChangeHandler}
               onSubmit={onSubmitHandler}
             >
@@ -115,9 +142,20 @@ export default function RandomSection() {
                 name={"count"}
                 className={"w-full"}
                 placeholder={"숫자 개수"}
+                defaultValue={10}
               />
-              <Input name={"min"} className={"w-full"} placeholder={"최소값"} />
-              <Input name={"max"} className={"w-full"} placeholder={"최대값"} />
+              <Input
+                name={"min"}
+                className={"w-full"}
+                placeholder={"최소값"}
+                defaultValue={0}
+              />
+              <Input
+                name={"max"}
+                className={"w-full"}
+                placeholder={"최대값"}
+                defaultValue={10}
+              />
               <Button.Primary disabled={isDisabled} type={"submit"}>
                 생성하기
               </Button.Primary>
@@ -131,7 +169,7 @@ export default function RandomSection() {
               onSubmit={onSubmitHandler}
             >
               <Input
-                name={"count"}
+                name={"lotto"}
                 className={"w-full"}
                 placeholder={"몇 게임"}
               />
@@ -144,17 +182,15 @@ export default function RandomSection() {
       </AnimatePresence>
 
       <div className="w-full flex flex-col items-center relative gap-4">
-        <div className="w-full flex flex-wrap justify-center items-center gap-2">
+        <div className="w-full grid grid-cols-6 gap-2 justify-items-center justify-center items-center">
           {randomNumbers.map((number, index) => (
-            <motion.div
-              key={index}
-              className="w-12 h-12 flex justify-center items-center bg-yellow-300 rounded-full text-xl font-bold"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.2 }}
+            <Circle.UpDown
+              index={index}
+              key={v4()}
+              style={{ backgroundColor: generatePastelColor() }}
             >
               {number}
-            </motion.div>
+            </Circle.UpDown>
           ))}
         </div>
       </div>
