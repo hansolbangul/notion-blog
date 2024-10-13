@@ -16,7 +16,7 @@ export default function ErrorButtonWrap() {
         </Button.Warring>
 
         <Link href="/">
-          <Button.Primary>새로고침</Button.Primary>
+          <Button.Primary>홈으로</Button.Primary>
         </Link>
       </div>
     </>
