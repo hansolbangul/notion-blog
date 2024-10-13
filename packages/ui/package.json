@@ -2,11 +2,12 @@
   "name": "@blog/ui",
   "version": "1.0.0",
   "dependencies": {
+    "@blog/utils": "workspace:*",
     "@types/react": "^18.3.11",
     "classnames": "^2.5.1",
     "framer-motion": "^11.3.30",
     "react": "^18.3.1",
     "react-icons": "^4.11.0",
-    "@blog/utils": "workspace:*"
+    "react-lottie-player": "^2.1.0"
   }
 }
