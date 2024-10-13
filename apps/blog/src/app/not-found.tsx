@@ -1,4 +1,3 @@
-import ErrorLottie from "@blog/ui/components/layouts/ErrorLottie";
 import ErrorButtonWrap from "@app/ErrorButtonWrap";
 
 export default function NotFound() {
