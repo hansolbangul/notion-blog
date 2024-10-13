@@ -17,10 +17,10 @@ const TOOLS_LIST = [
     name: "QR 코드 생성기",
     href: "/tool/qr",
   },
-  // {
-  //   name: "숫자 추출기",
-  //   href: "/tool/random-number",
-  // },
+  {
+    name: "숫자 랜덤 생성기",
+    href: "/tool/random",
+  },
   // {
   //   name: "바코드 생성기",
   //   href: "/tool/barcode",
