@@ -6,6 +6,9 @@ import ErrorLottie from "@blog/ui/components/layouts/ErrorLottie";
 
 export default function ErrorButtonWrap() {
   const router = useRouter();
+
+  if (!router.isReady) return null;
+
   return (
     <>
       <ErrorLottie />
