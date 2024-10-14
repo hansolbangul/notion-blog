@@ -22,7 +22,7 @@ export default function Error({
     <div className="flex flex-col p-4 relative">
       <div className="p-6 w-full fixed max-w-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <ErrorLottie />
-        <p className="mt-6">{error.message}</p>
+        <p className="mt-6 text-center">{error.message}</p>
         <div className="flex space-x-4 mt-6">
           <Button.Warring
             onClick={() => typeof window !== undefined && router.back()}
