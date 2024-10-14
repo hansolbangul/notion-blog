@@ -9,12 +9,9 @@ import { lottoNumber, randomNumber } from "@blog/utils/random";
 import Circle from "@blog/ui/components/commons/Circle";
 import { v4 } from "uuid";
 import { generatePastelColor } from "@blog/utils/color";
-
-const tabs = [{ label: "숫자 생성기" }, { label: "로또 번호 생성기" }];
+import Tab from "@blog/ui/components/commons/Tab";
 
 export default function RandomSection() {
-  const [selectedTab, setSelectedTab] = useState(tabs[0].label);
-  const [prevTab, setPrevTab] = useState<string | null>(null);
   const [isDisabled, setIsDisabled] = useState(false);
   const [randomNumbers, setRandomNumbers] = useState<number[]>([]);
 
@@ -71,73 +68,19 @@ export default function RandomSection() {
     }
   };
 
-  const handleTabClick = (tabLabel: string) => {
-    setRandomNumbers([]);
-    setPrevTab(selectedTab);
-    setSelectedTab(tabLabel);
-  };
-
   return (
     <TitleSection
       title={"랜덤 생성기"}
       description={"숫자 생성기 또는 로또 번호 생성기를 선택하세요."}
     >
-      <div className="w-full flex">
-        <ul className="border rounded-lg flex">
-          {tabs.map((tab) => (
-            <li
-              key={tab.label}
-              className={`py-2 px-4 cursor-pointer ${
-                selectedTab === tab.label
-                  ? "text-blue-500 bg-blue-100"
-                  : "text-gray-500"
-              }`}
-              onClick={() => handleTabClick(tab.label)}
-            >
-              {tab.label}
-              {selectedTab === tab.label && (
-                <motion.div
-                  className="underline"
-                  layoutId="underline"
-                  transition={{ duration: 0.2 }}
-                />
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selectedTab}
-          initial={{
-            x:
-              prevTab &&
-              tabs.findIndex((tab) => tab.label === prevTab) <
-                tabs.findIndex((tab) => tab.label === selectedTab)
-                ? 100
-                : -100,
-            opacity: 0,
-          }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{
-            x:
-              prevTab &&
-              tabs.findIndex((tab) => tab.label === prevTab) <
-                tabs.findIndex((tab) => tab.label === selectedTab)
-                ? -100
-                : 100,
-            opacity: 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="w-full mt-4"
-        >
-          {selectedTab === "숫자 생성기" && (
-            <form
-              className="flex flex-col custom:flex-row w-full gap-4 mb-4"
-              onChange={onChangeHandler}
-              onSubmit={onSubmitHandler}
-            >
+      <form
+        className="w-full mb-4"
+        onChange={onChangeHandler}
+        onSubmit={onSubmitHandler}
+      >
+        <Tab>
+          <Tab.Item name={"숫자 생성기"}>
+            <div className="flex flex-col custom:flex-row w-full gap-4 mb-4">
               <Input
                 name={"count"}
                 className={"w-full"}
@@ -156,30 +99,27 @@ export default function RandomSection() {
                 placeholder={"최대값"}
                 defaultValue={10}
               />
-              <Button.Primary disabled={isDisabled} type={"submit"}>
-                생성하기
-              </Button.Primary>
-            </form>
-          )}
-
-          {selectedTab === "로또 번호 생성기" && (
-            <form
-              className="flex w-full gap-4 mb-4"
-              onChange={onChangeHandler}
-              onSubmit={onSubmitHandler}
-            >
-              <Input
-                name={"lotto"}
-                className={"w-full"}
-                placeholder={"몇 게임"}
-              />
-              <Button.Primary disabled={isDisabled} type={"submit"}>
-                생성하기
-              </Button.Primary>
-            </form>
-          )}
-        </motion.div>
-      </AnimatePresence>
+            </div>
+          </Tab.Item>
+          <Tab.Item name={"로또 번호 생성기"}>
+            <Input
+              name={"lotto"}
+              className={"w-full  mb-4"}
+              placeholder={"몇 게임"}
+              defaultValue={1}
+            />
+          </Tab.Item>
+        </Tab>
+        <div className={"w-full text-right"}>
+          <Button.Primary
+            className={"w-full custom:w-fit ml-auto"}
+            disabled={isDisabled}
+            type={"submit"}
+          >
+            생성하기
+          </Button.Primary>
+        </div>
+      </form>
 
       <div className="w-full flex flex-col items-center relative gap-4">
         <div className="w-full grid grid-cols-6 gap-2 justify-items-center justify-center items-center">
