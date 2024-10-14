@@ -6,7 +6,7 @@ export const metadata = {
   description:
     "데굴데굴 블로그의 숫자 랜덤 생성 도구로 빠르고 쉽게 랜덤 숫자를 생성해보세요.",
   openGraph: {
-    title: "QR 코드 생성기",
+    title: "숫자 랜덤 생성기",
     description: "데굴데굴 블로그에서 제공하는 간편한 랜덤 숫자 생성 도구",
     images: [
       {
