@@ -78,7 +78,7 @@ export default function RandomSection() {
         onChange={onChangeHandler}
         onSubmit={onSubmitHandler}
       >
-        <Tab>
+        <Tab onClick={() => setRandomNumbers([])}>
           <Tab.Item name={"숫자 생성기"}>
             <div className="flex flex-col custom:flex-row w-full gap-4 mb-4">
               <Input

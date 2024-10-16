@@ -1,21 +1,29 @@
-import React, { Children, Component, ComponentProps, useState } from "react";
+import React, {
+  Children,
+  Component,
+  ComponentProps,
+  ReactElement,
+  useState,
+} from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
+type ItemElement = ReactElement<ComponentProps<typeof Tab.Item>>;
+
 interface Props {
-  children: JSX.Element | JSX.Element[];
-  value?: string;
+  children: ItemElement | ItemElement[];
+  initializeValue?: string;
   onClick?: (value: string) => void;
 }
 
-export default function Tab({ value, children, onClick }: Props) {
+export default function Tab({ initializeValue, children, onClick }: Props) {
   const tabs = Children.map(children, (child) => {
     return child.props.name;
   }) as string[];
 
-  const checkedIndex = value
+  const checkedIndex = initializeValue
     ? Children.map(children, (child) => {
         return child.props;
-      }).findIndex((p) => p.name === value)
+      }).findIndex((p) => p.name === initializeValue)
     : 0;
 
   const [selectedTab, setSelectedTab] = useState(tabs[checkedIndex]);
@@ -23,8 +31,6 @@ export default function Tab({ value, children, onClick }: Props) {
   const renderChildren = Children.map(children, (child) => {
     return child;
   }).find((v) => v.props.name === selectedTab);
-
-  console.log("renderChildren", renderChildren);
 
   const handleTabClick = (tab: string) => {
     setSelectedTab(tab);
