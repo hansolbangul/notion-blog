@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "../../packages/ui/components/**/*.{js,ts,jsx,tsx,mdx}",
     "../../apps/blog/src/**/*.{js,ts,jsx,tsx,mdx}",
-    "../../apps/letter-count/src/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../apps/letter-for-you/src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
