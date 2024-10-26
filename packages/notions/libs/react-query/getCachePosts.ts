@@ -5,9 +5,15 @@ import { getPosts } from "../../apis";
 let cachedPosts: TPosts | null = null;
 
 export async function getCachedPosts(): Promise<TPosts> {
-  // if (!cachedPosts) {
-  cachedPosts = filterPosts(await getPosts());
-  // }
+  const isBuild = process.env.NEXT_PHASE === "phase-production-build";
+
+  return isBuild ? getSSGPosts() : getFreshPosts();
+}
+
+export async function getSSGPosts(): Promise<TPosts> {
+  if (!cachedPosts) {
+    cachedPosts = filterPosts(await getPosts());
+  }
   return cachedPosts;
 }
 

@@ -9,7 +9,7 @@ import {
 import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
 
-export const revalidate = 300;
+export const revalidate = 3;
 
 async function getFetch() {
   const posts = await getCachedPosts();
