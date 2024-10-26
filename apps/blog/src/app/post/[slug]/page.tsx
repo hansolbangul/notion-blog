@@ -5,7 +5,6 @@ import NotionPage from "@/src/components/Notion/NotionPage";
 import { DehydratedState } from "@tanstack/react-query";
 import { ExtendedRecordMap } from "notion-types";
 import { TPost, TPosts } from "@blog/notions/types";
-import { filterPosts } from "@blog/notions/utils/notion";
 import postQueryOptions from "@blog/notions/service/postService";
 import { getRecordMap } from "@blog/notions/apis";
 import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
@@ -50,20 +49,6 @@ export async function generateMetadata({
     },
     keywords: post?.tags?.map((tag) => tag),
   };
-}
-
-export async function generateStaticParams() {
-  const posts = await getCachedPosts();
-  const filteredPosts = filterPosts(posts);
-
-  console.log(
-    "filteredPosts",
-    filteredPosts.map((filter) => filter.slug),
-  );
-
-  return filteredPosts.map((post) => ({
-    slug: post.slug,
-  }));
 }
 
 async function getPreFetch(slug: string): Promise<DehydratedState> {
