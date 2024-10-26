@@ -10,3 +10,7 @@ export async function getCachedPosts(): Promise<TPosts> {
   }
   return cachedPosts;
 }
+
+export async function getFreshPosts(): Promise<TPosts> {
+  return filterPosts(await getPosts());
+}

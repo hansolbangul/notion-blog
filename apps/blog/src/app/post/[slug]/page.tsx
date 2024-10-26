@@ -7,7 +7,10 @@ import { ExtendedRecordMap } from "notion-types";
 import { TPost, TPosts } from "@blog/notions/types";
 import postQueryOptions from "@blog/notions/service/postService";
 import { getRecordMap } from "@blog/notions/apis";
-import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
+import {
+  getCachedPosts,
+  getFreshPosts,
+} from "@blog/notions/libs/react-query/getCachePosts";
 import {
   getDehydratedQueries,
   Hydrate,
@@ -53,7 +56,6 @@ export async function generateMetadata({
 
 async function getPreFetch(slug: string): Promise<DehydratedState> {
   const { queryKey: postQueryKey } = postQueryOptions.all();
-
   const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
 
   const { recordMap, post, posts } = await getFetch(slug);
@@ -74,12 +76,15 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 async function getFetch(slug: string): Promise<FetchType> {
-  const posts = await getCachedPosts();
+  const posts =
+    process.env.NODE_ENV === "production"
+      ? await getCachedPosts()
+      : await getFreshPosts();
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);
   if (!postDetail) throw new Error("Post not found");
-  const recordMap = await getRecordMap(postDetail.id);
 
+  const recordMap = await getRecordMap(postDetail.id);
   const postId = posts.findIndex((p: TPost) => p.slug === slug);
   const prev = postId === posts.length - 1 ? null : posts[postId + 1].slug;
   const next = postId === 0 ? null : posts[postId - 1].slug;
