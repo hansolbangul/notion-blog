@@ -1,9 +1,6 @@
 import Container from "../components/Elements/Container";
 import Home from "@app/(feature)/home/Home";
-import {
-  getCachedPosts,
-  getFreshPosts,
-} from "@blog/notions/libs/react-query/getCachePosts";
+import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
 import postQueryOptions from "@blog/notions/service/postService";
 import {
   getDehydratedQueries,
@@ -14,9 +11,8 @@ import React from "react";
 
 export const revalidate = 300;
 
-async function getFetch(isBuild: boolean) {
-  // 빌드 시점에서는 캐시된 데이터를 사용하고, ISR 시점에서는 최신 데이터를 사용
-  const posts = isBuild ? await getCachedPosts() : await getFreshPosts();
+async function getFetch() {
+  const posts = await getCachedPosts();
   const { queryKey } = postQueryOptions.all();
 
   return {
@@ -31,9 +27,7 @@ async function getFetch(isBuild: boolean) {
 }
 
 export default async function Page() {
-  const { dehydratedState, tags } = await getFetch(
-    process.env.NODE_ENV === "production",
-  );
+  const { dehydratedState, tags } = await getFetch();
 
   return (
     <Hydrate state={dehydratedState}>
