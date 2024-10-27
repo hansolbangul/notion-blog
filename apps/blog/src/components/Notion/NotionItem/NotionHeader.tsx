@@ -47,7 +47,7 @@ export default function NotionHeader({ post }: Props) {
 
   return (
     <div className="flex flex-col py-6 md:py-7 border-y">
-      <h1 className="inline-block bg-clip-text bg-gradient-to-tr to-indigo-300 from-indigo-600 text-3xl md:text-5xl font-bold text-transparent tracking-tight max-w-2xl">
+      <h1 className="inline-block text-black text-2xl custom:text-3xl font-bold max-w-2xl">
         {post.title}
       </h1>
       <div className="pt-6 flex space-x-4 text-base items-center">
