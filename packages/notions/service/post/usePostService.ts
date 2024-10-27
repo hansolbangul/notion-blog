@@ -1,7 +1,7 @@
 import { QueryOptions, useQuery, UseQueryResult } from "@tanstack/react-query";
 import postService from "./postService";
-import { PostDetail, TCategories, TPosts, TTags } from "../types";
-import { getAllSelectItemsFromPosts } from "../utils/notion";
+import { PostDetail, TCategories, TPosts, TTags } from "../../types";
+import { getAllSelectItemsFromPosts } from "../../utils/notion";
 
 export function useGetPosts() {
   return useQuery<TPosts>({

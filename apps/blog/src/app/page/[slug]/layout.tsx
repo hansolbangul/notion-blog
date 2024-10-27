@@ -8,7 +8,9 @@ export default function Layout({ children }: { children: ReactNode }) {
 }
 
 export async function generateStaticParams() {
-  const posts = await getCached();
+  const posts = await getCached({ type: "Page" });
+
+  console.log("page", posts);
 
   return posts.map((post) => ({
     slug: post.slug,

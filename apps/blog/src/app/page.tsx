@@ -1,18 +1,18 @@
 import Container from "../components/Elements/Container";
 import Home from "@app/(feature)/home/Home";
-import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
-import postQueryOptions from "@blog/notions/service/postService";
+import postQueryOptions from "@blog/notions/service/post/postService";
 import {
   getDehydratedQueries,
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
+import getCached from "@blog/notions/libs/react-query/getCached";
 
 export const revalidate = 600;
 
 async function getFetch() {
-  const posts = await getCachedPosts();
+  const posts = await getCached();
   const { queryKey } = postQueryOptions.all();
 
   return {

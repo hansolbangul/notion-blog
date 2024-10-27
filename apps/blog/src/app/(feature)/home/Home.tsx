@@ -4,7 +4,7 @@ import React from "react";
 import RecommendSwiper from "@app/(feature)/home/recommendSwiper";
 import HomeSection from "@app/(feature)/home/HomeSection";
 import Container from "@/src/components/Elements/Container";
-import { useGetPosts } from "@blog/notions/service/usePostService";
+import { useGetPosts } from "@blog/notions/service/post/usePostService";
 import { TPosts } from "@blog/notions/types";
 
 interface Props {

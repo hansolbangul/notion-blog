@@ -4,9 +4,7 @@ import { getPosts } from "../../apis";
 
 let cachedPosts: TPosts | null = null;
 
-export async function getCachedPosts(): Promise<TPosts> {
-  const isBuild = process.env.NEXT_PHASE === "phase-production-build";
-
+export async function getCachedPosts(isBuild: boolean): Promise<TPosts> {
   return isBuild ? getSSGPosts() : getFreshPosts();
 }
 

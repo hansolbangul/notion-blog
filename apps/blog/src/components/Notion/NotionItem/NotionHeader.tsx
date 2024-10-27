@@ -5,12 +5,18 @@ import Toast from "@components/Toast/Toast";
 import React, { Suspense, useState } from "react";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { TPost } from "@blog/notions/types";
+import { usePathname } from "next/navigation";
 
 type Props = {
   post: TPost;
 };
 
 export default function NotionHeader({ post }: Props) {
+  const pathName = usePathname();
+
+  const isPostSlug = pathName.startsWith("/post");
+
+  if (!isPostSlug) return null;
   const [visible, setVisible] = useState(false);
   const [message, setMessage] = useState("");
 

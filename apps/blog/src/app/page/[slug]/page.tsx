@@ -5,13 +5,14 @@ import NotionPage from "@/src/components/Notion/NotionPage";
 import { DehydratedState } from "@tanstack/react-query";
 import { ExtendedRecordMap } from "notion-types";
 import { TPost, TPosts } from "@blog/notions/types";
-import postQueryOptions from "@blog/notions/service/post/postService";
 import { getRecordMap } from "@blog/notions/apis";
 import {
   getDehydratedQueries,
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import getCached from "@blog/notions/libs/react-query/getCached";
+import pageQueryOptions from "@blog/notions/service/page/pageService";
+import NotionInfoPage from "@app/(component)/notion/page/NotionInfoPage";
 
 type Props = {
   params: {
@@ -22,8 +23,6 @@ type Props = {
 type FetchType = {
   posts: TPosts;
   post: TPost;
-  prev: string | null;
-  next: string | null;
   recordMap: ExtendedRecordMap;
   thumbnail: string;
 };
@@ -52,19 +51,21 @@ export async function generateMetadata({
 }
 
 async function getPreFetch(slug: string): Promise<DehydratedState> {
-  const { queryKey: postQueryKey } = postQueryOptions.all();
+  const { queryKey: pageQueryKey } = pageQueryOptions.all();
 
-  const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
+  const { queryKey: pageDetailQueryKey } = pageQueryOptions.detail(slug);
 
   const { recordMap, post, posts } = await getFetch(slug);
 
+  console.log("prefetch", recordMap, post, posts);
+
   return await getDehydratedQueries([
     {
-      queryKey: postQueryKey,
+      queryKey: pageQueryKey,
       queryFn: () => posts,
     },
     {
-      queryKey: postDetailQueryKey,
+      queryKey: pageDetailQueryKey,
       queryFn: () => ({
         ...post,
         recordMap,
@@ -74,19 +75,13 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 async function getFetch(slug: string): Promise<FetchType> {
-  const posts = await getCached();
+  const posts = await getCached({ type: "Page" });
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);
   if (!postDetail) throw new Error("Post not found");
   const recordMap = await getRecordMap(postDetail.id);
 
-  const postId = posts.findIndex((p: TPost) => p.slug === slug);
-  const prev = postId === posts.length - 1 ? null : posts[postId + 1].slug;
-  const next = postId === 0 ? null : posts[postId - 1].slug;
-
   return {
-    prev,
-    next,
     posts,
     post: postDetail,
     recordMap,
@@ -94,12 +89,12 @@ async function getFetch(slug: string): Promise<FetchType> {
   };
 }
 
-export default async function PostContent({ params }: Props) {
+export default async function PageContent({ params }: Props) {
   const dehydratedState = await getPreFetch(params.slug);
   return (
     <Hydrate state={dehydratedState}>
       <div className="mt-4">
-        <NotionPage />
+        <NotionInfoPage />
       </div>
     </Hydrate>
   );

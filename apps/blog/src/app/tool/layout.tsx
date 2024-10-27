@@ -1,14 +1,14 @@
-import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
-import postQueryOptions from "@blog/notions/service/postService";
+import postQueryOptions from "@blog/notions/service/post/postService";
 import {
   getDehydratedQueries,
   Hydrate,
 } from "@blog/notions/libs/react-query/nextQuery";
 import React from "react";
 import LayoutContent from "@app/tool/LayoutContent";
+import getCached from "@blog/notions/libs/react-query/getCached";
 
 async function getFetch() {
-  const posts = await getCachedPosts();
+  const posts = await getCached();
   const { queryKey } = postQueryOptions.all();
 
   return {
