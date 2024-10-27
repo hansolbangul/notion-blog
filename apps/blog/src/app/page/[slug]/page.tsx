@@ -57,8 +57,6 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 
   const { recordMap, post, posts } = await getFetch(slug);
 
-  console.log("prefetch", recordMap, post, posts);
-
   return await getDehydratedQueries([
     {
       queryKey: pageQueryKey,
