@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { getCachedPosts } from "@blog/notions/libs/react-query/getCachePosts";
 import { filterPosts } from "@blog/notions/utils/notion";
 
-export const revalidate = 3;
+export const revalidate = 600;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return <>{children}</>;
