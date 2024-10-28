@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "@blog/utils": "workspace:*",
+    "@blog/notions": "workspace:*",
     "@types/react": "^18.3.11",
     "classnames": "^2.5.1",
     "framer-motion": "^11.3.30",

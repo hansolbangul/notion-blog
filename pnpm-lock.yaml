@@ -176,6 +176,9 @@ importers:
 
   packages/ui:
     dependencies:
+      '@blog/notions':
+        specifier: workspace:*
+        version: link:../notions
       '@blog/utils':
         specifier: workspace:*
         version: link:../utils
