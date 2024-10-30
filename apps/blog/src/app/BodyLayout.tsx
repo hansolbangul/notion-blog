@@ -3,6 +3,7 @@
 import CrossView from "@blog/ui/components/layouts/CrossView";
 import ListViewToggle from "@blog/ui/components/toggle/ListViewToggle";
 import Link from "next/link";
+import CONFIG from "@/site.config";
 
 const TOOLS_LIST = [
   {
@@ -39,13 +40,15 @@ export default function BodyLayout({
   return (
     <CrossView>
       {children}
-      <ListViewToggle>
-        {TOOLS_LIST.map((tool) => (
-          <Link key={tool.name} href={tool.href}>
-            <ListViewToggle.shareItem>{tool.name}</ListViewToggle.shareItem>
-          </Link>
-        ))}
-      </ListViewToggle>
+      {CONFIG.isToolToggleVisible && (
+        <ListViewToggle>
+          {TOOLS_LIST.map((tool) => (
+            <Link key={tool.name} href={tool.href}>
+              <ListViewToggle.shareItem>{tool.name}</ListViewToggle.shareItem>
+            </Link>
+          ))}
+        </ListViewToggle>
+      )}
     </CrossView>
   );
 }
