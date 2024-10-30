@@ -4,7 +4,7 @@ import { AppProps } from "next/app";
 import { ExtendedRecordMap } from "notion-types";
 
 export type TPostStatus = "Private" | "Public" | "PublicOnDetail";
-export type TPostType = "Post" | "Paper" | "Page" | "Project";
+export type TPostType = "Post" | "Paper" | "Page" | "Project" | "Library";
 
 export type TPost = {
   id: string;

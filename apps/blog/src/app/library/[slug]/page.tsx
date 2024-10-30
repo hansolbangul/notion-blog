@@ -72,10 +72,10 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 async function getFetch(slug: string): Promise<FetchType> {
-  const posts = await getCached({ type: "Page" });
+  const posts = await getCached({ type: "Library" });
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);
-  if (!postDetail) throw new Error("Post not found");
+  if (!postDetail) throw new Error("Library not found");
   const recordMap = await getRecordMap(postDetail.id);
 
   return {
