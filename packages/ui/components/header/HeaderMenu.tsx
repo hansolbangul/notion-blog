@@ -32,24 +32,28 @@ export default function HeaderMenu() {
           Linkedin
         </ShareButton>
       </li>
-      <li className="custom:ml-2 hover:bg-gray-200 p-2 rounded">
-        <a
-          href={CONFIG.headerButton.mainProject.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="cursor-pointer bg-orange600 text-white py-2 px-3 rounded block text-center text-[13px]"
-        >
-          {CONFIG.headerButton.mainProject.name}
-        </a>
-      </li>
-      <li className="custom:ml-2 text-gray-500 hover:bg-gray-100 p-2 rounded">
-        <a
-          href={CONFIG.headerButton.myInfo.url}
-          className="cursor-pointer py-2 px-3 rounded bg-gray-200 block text-center text-[13px]"
-        >
-          {CONFIG.headerButton.myInfo.name}
-        </a>
-      </li>
+      {CONFIG.headerButton?.mainProject?.url && (
+        <li className="custom:ml-2 hover:bg-gray-200 p-2 rounded">
+          <a
+            href={CONFIG.headerButton.mainProject.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer bg-orange600 text-white py-2 px-3 rounded block text-center text-[13px]"
+          >
+            {CONFIG.headerButton.mainProject.name}
+          </a>
+        </li>
+      )}
+      {CONFIG.headerButton?.myInfo?.url && (
+        <li className="custom:ml-2 text-gray-500 hover:bg-gray-100 p-2 rounded">
+          <a
+            href={CONFIG.headerButton.myInfo.url}
+            className="cursor-pointer py-2 px-3 rounded bg-gray-200 block text-center text-[13px]"
+          >
+            {CONFIG.headerButton.myInfo.name}
+          </a>
+        </li>
+      )}
     </>
   );
 }
