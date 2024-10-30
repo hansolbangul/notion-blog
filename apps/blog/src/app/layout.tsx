@@ -13,6 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>{CONFIG.metadata.title}</title>
         {CONFIG.searchManager.google && (
           <meta
             name="google-site-verification"
