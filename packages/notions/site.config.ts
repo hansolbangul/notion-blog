@@ -4,6 +4,7 @@ const CONFIG = {
     age: "",
     profile: "",
   },
+  url: "https://blog.hansolbangul.com",
   metadata: {
     title: "데굴데굴 포스팅 | hansolbangul",
     description:
