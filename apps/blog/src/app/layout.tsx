@@ -30,16 +30,17 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: CONFIG.metadata.title,
-              url: CONFIG.url,
-              description: CONFIG.metadata.description,
+              name: "데굴데굴 블로그", // 사이트 이름을 한글로 설정
+              url: "https://blog.hansolbangul.com",
+              description:
+                "데굴데굴 블로그는 다양한 개발 로고와 프론트엔드 관련 정보를 공유하는 공간입니다.",
               publisher: {
                 "@type": "Organization",
-                name: CONFIG.metadata.title,
+                name: "데굴데굴 블로그",
               },
               image: {
                 "@type": "ImageObject",
-                url: CONFIG.url + "/main_img.webp",
+                url: "https://blog.hansolbangul.com/main_img.webp",
                 width: 1200,
                 height: 630,
               },
