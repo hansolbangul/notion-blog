@@ -13,9 +13,10 @@ import CONFIG from "@/site.config";
 
 export const revalidate = 600;
 
-export async function generateMetadata(): Promise<Metadata> {
-  return CONFIG.metadata;
-}
+export const metadata = {
+  ...CONFIG.metadata,
+  metadataBase: new URL(CONFIG.url),
+};
 
 async function getFetch() {
   const posts = await getCached();

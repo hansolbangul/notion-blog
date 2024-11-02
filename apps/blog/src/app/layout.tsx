@@ -3,7 +3,10 @@ import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
 import CONFIG from "@/site.config";
 
-export const metadata = CONFIG.metadata;
+export const metadata = {
+  ...CONFIG.metadata,
+  metadataBase: new URL(CONFIG.url),
+};
 
 export default function RootLayout({
   children,
