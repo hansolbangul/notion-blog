@@ -3,8 +3,6 @@ import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
 import CONFIG from "@blog/notions/site.config";
 
-export const metadata = CONFIG.metadata;
-
 export default function RootLayout({
   children,
 }: {
@@ -13,12 +11,44 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>{CONFIG.metadata.title}</title>
+        <meta name="description" content={CONFIG.metadata.description} />
+        <meta name="keywords" content={CONFIG.metadata.keywords} />
+
+        {/* Open Graph Metadata */}
+        <meta property="og:title" content={CONFIG.metadata.openGraph.title} />
+        <meta
+          property="og:description"
+          content={CONFIG.metadata.openGraph.description}
+        />
+        <meta property="og:url" content={CONFIG.metadata.openGraph.url} />
+        <meta property="og:type" content={CONFIG.metadata.openGraph.type} />
+        <meta
+          property="og:image"
+          content={CONFIG.metadata.openGraph.images[0].url}
+        />
+        <meta
+          property="og:image:alt"
+          content={CONFIG.metadata.openGraph.images[0].alt}
+        />
+        <meta
+          property="og:image:width"
+          content={CONFIG.metadata.openGraph.images[0].width.toString()}
+        />
+        <meta
+          property="og:image:height"
+          content={CONFIG.metadata.openGraph.images[0].height.toString()}
+        />
+
+        {/* Google Site Verification */}
         {CONFIG.searchManager.google && (
           <meta
             name="google-site-verification"
             content={CONFIG.searchManager.google}
           />
         )}
+
+        {/* Google Analytics */}
         {CONFIG.analytics.google && (
           <script
             async
