@@ -11,8 +11,6 @@ import getCached from "@blog/notions/libs/react-query/getCached";
 import { Metadata } from "next";
 import CONFIG from "@blog/notions/site.config";
 
-export const revalidate = 600;
-
 export const metadata = CONFIG.metadata;
 
 async function getFetch() {
