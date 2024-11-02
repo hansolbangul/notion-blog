@@ -3,6 +3,8 @@ import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
 import CONFIG from "@blog/notions/site.config";
 
+export const metadata = CONFIG.metadata;
+
 export default function RootLayout({
   children,
 }: {
