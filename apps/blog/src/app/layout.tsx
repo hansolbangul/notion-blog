@@ -21,14 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
         height: image.height,
       })),
     },
-    ...(CONFIG.searchManager.google && {
-      meta: [
-        {
-          name: "google-site-verification",
-          content: CONFIG.searchManager.google,
-        },
-      ],
-    }),
   };
 }
 
@@ -40,6 +32,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {CONFIG.searchManager.google && (
+          <meta
+            name="google-site-verification"
+            content={CONFIG.searchManager.google}
+          />
+        )}
         {CONFIG.analytics.google && (
           <script
             async
