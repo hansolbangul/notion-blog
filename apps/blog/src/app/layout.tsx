@@ -2,11 +2,8 @@ import "./globals.css";
 import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
 import CONFIG from "@/site.config";
-import { Metadata } from "next";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return CONFIG.metadata;
-}
+export const metadata = CONFIG.metadata;
 
 export default function RootLayout({
   children,
