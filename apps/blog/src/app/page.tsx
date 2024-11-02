@@ -13,6 +13,10 @@ import CONFIG from "@blog/notions/site.config";
 
 export const revalidate = 600;
 
+export async function generateMetadata(): Promise<Metadata> {
+  return CONFIG.metadata;
+}
+
 async function getFetch() {
   const posts = await getCached();
   const { queryKey } = postQueryOptions.all();

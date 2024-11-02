@@ -5,23 +5,7 @@ import CONFIG from "@blog/notions/site.config";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: CONFIG.metadata.title,
-    description: CONFIG.metadata.description,
-    keywords: CONFIG.metadata.keywords,
-    openGraph: {
-      title: CONFIG.metadata.openGraph.title,
-      description: CONFIG.metadata.openGraph.description,
-      url: CONFIG.metadata.openGraph.url,
-      type: CONFIG.metadata.openGraph.type as "website",
-      images: CONFIG.metadata.openGraph.images.map((image) => ({
-        url: image.url,
-        alt: image.alt,
-        width: image.width,
-        height: image.height,
-      })),
-    },
-  };
+  return CONFIG.metadata;
 }
 
 export default function RootLayout({
