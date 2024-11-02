@@ -8,8 +8,14 @@ import {
 import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
+import { Metadata } from "next";
+import CONFIG from "@blog/notions/site.config";
 
 export const revalidate = 600;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return CONFIG.metadata;
+}
 
 async function getFetch() {
   const posts = await getCached();
