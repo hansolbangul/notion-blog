@@ -9,7 +9,7 @@ import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import { Metadata } from "next";
-import CONFIG from "@blog/notions/site.config";
+import CONFIG from "@/site.config";
 
 export const revalidate = 600;
 

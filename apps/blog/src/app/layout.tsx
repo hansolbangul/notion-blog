@@ -1,7 +1,7 @@
 import "./globals.css";
 import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
-import CONFIG from "@blog/notions/site.config";
+import CONFIG from "@/site.config";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
