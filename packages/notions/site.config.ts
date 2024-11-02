@@ -15,6 +15,7 @@ const CONFIG = {
       description:
         "데굴데굴 블로그는 다양한 개발 로고와 프론트엔드 관련 정보를 공유하는 공간입니다.",
       url: "https://blog.hansolbangul.com",
+      type: "website",
       images: [
         {
           url: "https://blog.hansolbangul.com/main_img.webp",
