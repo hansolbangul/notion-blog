@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NextQueryProvider from "@/app/NextQueryProvider";
-import CrossView from "@blog/ui/components/layouts/CrossView";
 import Header from "@/app/(components)/layout/Header";
 
 export const metadata: Metadata = {
@@ -16,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={"bg-gray-900 text-gray-300"}>
         <div id="modal-root" className="fixed z-30" />
         <NextQueryProvider>
           <div className="mx-auto w-full max-w-[1200px] relative px-4">
