@@ -1,7 +1,8 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
 import NextQueryProvider from "@/app/NextQueryProvider";
-import Header from "@/app/(components)/layout/Header";
+import HeaderTemplate from "@/app/template";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,11 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"bg-gray-900 text-gray-300"}>
+      <body>
         <div id="modal-root" className="fixed z-30" />
         <NextQueryProvider>
           <div className="mx-auto w-full max-w-[1200px] relative px-4">
-            <Header />
             {children}
           </div>
         </NextQueryProvider>
