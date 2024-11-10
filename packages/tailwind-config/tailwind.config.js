@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation: {
+        "bounce-infinite": "bounce-infinite 0.6s infinite",
+      },
+      keyframes: {
+        "bounce-infinite": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
       colors: {
         white: "#fff",
 

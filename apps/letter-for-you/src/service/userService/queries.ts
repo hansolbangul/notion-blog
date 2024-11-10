@@ -1,8 +1,12 @@
 import { account } from "@/app/appwrite";
 import { OAuthProvider } from "appwrite";
+import { serverAccount } from "@/app/node-appwrite";
+import userService from "@/service/userService/service";
 
 const queries = {
   all: ["user"] as const,
+  session: () => [...queries.all, "session"] as const,
+  info: () => [...queries.all, "info"] as const,
 };
 
 const LOGIN_COMPLETE_BASE_URL =
@@ -19,8 +23,17 @@ export const UserQueryOptions = {
       ),
   }),
 
-  user: () => ({
-    queryKey: queries.all,
+  userSession: () => ({
+    queryKey: queries.session(),
     queryFn: () => account.getSession("current"),
+  }),
+
+  userInfo: () => ({
+    queryKey: queries.info(),
+    queryFn: () => account.get(),
+  }),
+
+  setUserInfo: () => ({
+    mutationFn: (props: { jwt: string }) => userService.setUserInfo(props),
   }),
 };

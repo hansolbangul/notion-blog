@@ -3,8 +3,16 @@ import { UserQueryOptions } from "@/service/userService/queries";
 import { UseOptions } from "@/service/type";
 import { Models } from "appwrite";
 
-export const useGetUserInfo = (options: UseOptions<Models.Session>) =>
+export const useGetUserSession = (options?: UseOptions<Models.Session>) =>
   useQuery({
-    ...UserQueryOptions.user(),
+    ...UserQueryOptions.userSession(),
+    ...options,
+  });
+
+export const useGetUserInfo = (
+  options?: UseOptions<Models.User<Models.Preferences>>,
+) =>
+  useQuery({
+    ...UserQueryOptions.userInfo(),
     ...options,
   });
