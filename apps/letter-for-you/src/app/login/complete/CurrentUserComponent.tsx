@@ -6,10 +6,12 @@ import { useGetUserInfo } from "@/service/userService/useUserService";
 import { useRouter } from "next/navigation";
 import { account } from "@/app/appwrite";
 import { UserQueryOptions } from "@/service/userService/queries";
+import { useLoginStore } from "@/store/loginStore";
 
 export default function CurrentUserComponent() {
   const router = useRouter();
   const { data: userInfo, isLoading, error } = useGetUserInfo();
+  const setLogin = useLoginStore((state) => state.setLogin);
 
   useEffect(() => {
     const syncSessionWithServer = async () => {
@@ -27,6 +29,7 @@ export default function CurrentUserComponent() {
 
           console.log("Session synchronized with server");
 
+          setLogin(true);
           router.push("/");
         }
       } catch (syncError) {

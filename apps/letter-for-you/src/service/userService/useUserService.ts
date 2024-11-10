@@ -10,7 +10,9 @@ export const useGetUserSession = (options?: UseOptions<Models.Session>) =>
   });
 
 export const useGetUserInfo = (
-  options?: UseOptions<Models.User<Models.Preferences>>,
+  options?: UseOptions<
+    (Models.User<Models.Preferences> & Models.Session) | null
+  >,
 ) =>
   useQuery({
     ...UserQueryOptions.userInfo(),

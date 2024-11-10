@@ -1,6 +1,5 @@
 import { account } from "@/app/appwrite";
 import { OAuthProvider } from "appwrite";
-import { serverAccount } from "@/app/node-appwrite";
 import userService from "@/service/userService/service";
 
 const queries = {
@@ -30,7 +29,21 @@ export const UserQueryOptions = {
 
   userInfo: () => ({
     queryKey: queries.info(),
-    queryFn: () => account.get(),
+    queryFn: async () => {
+      const [userInfo, userSession] = await Promise.all([
+        account.get(),
+        account.getSession("current"),
+      ]);
+
+      return {
+        ...userInfo,
+        ...userSession,
+      };
+    },
+  }),
+
+  userLogout: () => ({
+    mutationFn: () => account.deleteSessions(),
   }),
 
   setUserInfo: () => ({
