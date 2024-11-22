@@ -10,7 +10,7 @@ import React from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import CONFIG from "@/site.config";
 
-export const revalidate = 600;
+export const revalidate = 86400;
 
 export const metadata = {
   ...CONFIG.metadata,
