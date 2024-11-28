@@ -53,7 +53,7 @@ const CONFIG = {
   sns: {
     github: "https://github.com/hansolbangul",
     linkedin:
-      "https://www.linkedin.com/in/%ED%95%9C%EC%86%94-%EC%A7%80-832b18254/",
+      "https://www.linkedin.com/in/hansolbangul/",
   },
   headerButton: {
     mainProject: {
