@@ -52,8 +52,7 @@ const CONFIG = {
   isToolToggleVisible: true,
   sns: {
     github: "https://github.com/hansolbangul",
-    linkedin:
-      "https://www.linkedin.com/in/hansolbangul/",
+    linkedin: "https://www.linkedin.com/in/hansolbangul/",
   },
   headerButton: {
     mainProject: {
@@ -62,7 +61,7 @@ const CONFIG = {
     },
     myInfo: {
       name: "제가 궁금하신가요?",
-      url: "/page/profile",
+      url: "https://profile.hansolbangul.com/",
     },
   },
   searchManager: {
