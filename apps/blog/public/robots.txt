@@ -1,9 +1,8 @@
-# *
 User-agent: *
 Allow: /
 
-# Host
-Host: https://blog.hansolbangul.com
+# 올바른 Host 설정 (생략해도 됨)
+Host: hansolbangul.com
 
-# Sitemaps
-Sitemap: https://blog.hansolbangul.com/sitemap.xml
+# sitemap도 필요시 루트 기준으로
+Sitemap: https://hansolbangul.com/sitemap.xml
