@@ -22,6 +22,7 @@ export default function RootLayout({
             content={CONFIG.searchManager.google}
           />
         )}
+        <meta name="google-adsense-account" content="ca-pub-2465657218123782" />
         {CONFIG.analytics.google && (
           <script
             async
