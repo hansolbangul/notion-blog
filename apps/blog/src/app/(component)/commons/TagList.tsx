@@ -13,19 +13,32 @@ export default function TagList({ tags }: Props) {
   const currentTag = searchParams.get("tag") || "/";
 
   return (
-    <div className={"mt-4 w-full flex gap-2 flex-wrap"}>
-      {tags.map((tag) => (
-        <Link key={tag} href={`/?tag=${tag}`}>
-          <div
-            key={tag}
-            className={classNames("px-2 py-1 rounded-lg bg-gray-100", {
-              "bg-gray-300": currentTag === tag,
-            })}
-          >
-            <span className={"text-body13 text-gray-400"}>{tag}</span>
-          </div>
-        </Link>
-      ))}
+    <div className="mt-2 w-full">
+      <span className="mb-3 block text-[11px] uppercase tracking-editorial text-ink-soft">
+        popular tags
+      </span>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <Link key={tag} href={`/?tag=${tag}`}>
+            <div
+              className={classNames(
+                "rounded-full border border-line bg-paper px-3 py-2",
+                {
+                  "border-accent bg-accent-soft": currentTag === tag,
+                },
+              )}
+            >
+              <span
+                className={classNames("text-body13 text-ink-soft", {
+                  "text-ink": currentTag === tag,
+                })}
+              >
+                {tag}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

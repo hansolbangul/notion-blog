@@ -13,7 +13,22 @@ const maskPageId = (value?: string) => {
 
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production";
 
-const normalizeRecordEntries = <T extends Record<string, any>>(recordMap?: T) => {
+type RawCollectionResult = {
+  blockIds?: string[];
+  collection_group_results?: {
+    blockIds?: string[];
+  };
+  reducerResults?: {
+    blockIds?: string[];
+    collection_group_results?: {
+      blockIds?: string[];
+    };
+  };
+};
+
+const normalizeRecordEntries = <T extends Record<string, any>>(
+  recordMap?: T,
+) => {
   return Object.fromEntries(
     Object.entries(recordMap || {}).map(([key, entry]: [string, any]) => {
       if (entry?.value?.value) {
@@ -85,6 +100,9 @@ export const getPosts = async (): Promise<TPosts> => {
         resolvedViewId,
         response.collection_view?.[resolvedViewId]?.value,
       );
+      const collectionResult = collectionData?.result as
+        | RawCollectionResult
+        | undefined;
 
       response.block = {
         ...response.block,
@@ -104,14 +122,18 @@ export const getPosts = async (): Promise<TPosts> => {
       };
 
       viewBlockIds =
-        collectionData?.result?.reducerResults?.collection_group_results
-          ?.blockIds || [];
+        collectionResult?.reducerResults?.collection_group_results?.blockIds ||
+        collectionResult?.collection_group_results?.blockIds ||
+        collectionResult?.reducerResults?.blockIds ||
+        collectionResult?.blockIds ||
+        [];
 
       response.collection_query = {
         ...response.collection_query,
         [collectionId]: {
           ...response.collection_query?.[collectionId],
-          [resolvedViewId]: collectionData?.result?.reducerResults,
+          [resolvedViewId]:
+            collectionResult?.reducerResults || collectionData?.result,
         },
       };
     }
@@ -170,9 +192,12 @@ export const getPosts = async (): Promise<TPosts> => {
 
           data.push(properties);
         } else {
-          console.warn("[notion:getPosts] skipped page without block or properties", {
-            pageId: maskPageId(`${id}`),
-          });
+          console.warn(
+            "[notion:getPosts] skipped page without block or properties",
+            {
+              pageId: maskPageId(`${id}`),
+            },
+          );
         }
       }
 
@@ -189,7 +214,9 @@ export const getPosts = async (): Promise<TPosts> => {
         console.info("[notion:getPosts] posts parsed", {
           pageId: maskPageId(originalId),
           parsedCount: posts.length,
-          sampleSlugs: posts.slice(0, 5).map((post) => post.slug || "(missing)"),
+          sampleSlugs: posts
+            .slice(0, 5)
+            .map((post) => post.slug || "(missing)"),
         });
       }
 

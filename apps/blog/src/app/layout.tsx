@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <head>
         {CONFIG.searchManager.google && (
           <meta
@@ -31,7 +31,7 @@ export default function RootLayout({
           ></script>
         )}
       </head>
-      <body>
+      <body className="font-body text-ink antialiased">
         <div
           id="toast-root"
           className="fixed right-2/4 transform translate-x-2/4 flex flex-col z-30 w-64 space-y-2"

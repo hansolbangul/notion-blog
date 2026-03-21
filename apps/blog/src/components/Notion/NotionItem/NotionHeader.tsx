@@ -46,22 +46,26 @@ export default function NotionHeader({ post }: Props) {
   };
 
   return (
-    <div className="flex flex-col py-6 md:py-7 border-y">
-      <h1 className="inline-block text-black text-2xl custom:text-3xl font-bold max-w-2xl">
+    <div className="flex flex-col gap-8 border-y border-line py-8 md:py-10">
+      <h1 className="inline-block max-w-3xl font-display text-[38px] leading-[1.08] text-ink custom:text-[52px]">
         {post.title}
       </h1>
-      <div className="pt-6 flex space-x-4 text-base items-center">
-        <div className="flex flex-col space-y-1">
-          <span className="font-normal">생성일</span>
-          <span className="font-bold">
+      <div className="flex flex-wrap items-end gap-6 pt-2 text-base">
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
+            생성일
+          </span>
+          <span className="font-medium text-ink">
             {new Intl.DateTimeFormat("ko").format(
               new Date(post.date.start_date),
             )}
           </span>
         </div>
-        <div className="flex flex-col space-y-1">
-          <span className="font-normal">태그</span>
-          <span className="flex space-x-2">
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
+            태그
+          </span>
+          <span className="flex flex-wrap gap-2">
             {post.tags?.slice(0, 2).map((tag) => (
               <Suspense key={tag}>
                 <TagIcon isRouter={false} key={tag} tag={tag} />
@@ -69,15 +73,22 @@ export default function NotionHeader({ post }: Props) {
             ))}
           </span>
         </div>
-        <div className="flex flex-col space-y-1">
-          <span className="font-normal">작성자</span>
-          <span className="font-bold">
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
+            작성자
+          </span>
+          <span className="font-medium text-ink">
             {post.author ? post.author[0].name : "미등록"}
           </span>
         </div>
-        <div className="flex flex-auto justify-end cursor-pointer">
-          <IoShareSocialSharp onClick={copyUrl} />
-        </div>
+        <button
+          onClick={copyUrl}
+          className="ml-auto flex h-11 w-11 items-center justify-center border border-line bg-paper-strong text-lg text-ink shadow-panel"
+          type="button"
+          aria-label="현재 글 주소 복사"
+        >
+          <IoShareSocialSharp />
+        </button>
       </div>
       {visible && <Toast message={message} />}
     </div>

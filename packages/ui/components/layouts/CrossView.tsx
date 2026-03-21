@@ -1,12 +1,14 @@
+import Footer from "../footer/Footer";
 import Header from "../header/Header";
 
 export default function CrossView({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <div className="min-h-screen">
       <Header />
-      <div className="mx-auto w-full max-w-[1200px] relative px-4">
+      <main className="mx-auto w-full max-w-[1260px] relative px-4 pb-20 pt-6 sm:px-6 lg:px-8">
         {children}
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 }

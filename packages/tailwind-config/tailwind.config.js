@@ -8,6 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        paper: "var(--color-paper)",
+        "paper-strong": "var(--color-paper-strong)",
+        ink: "var(--color-ink)",
+        "ink-soft": "var(--color-ink-soft)",
+        line: "var(--color-line)",
+        accent: "var(--color-accent)",
+        "accent-soft": "var(--color-accent-soft)",
+        mist: "var(--color-mist)",
         white: "#fff",
 
         orange100: "#FFE5B4",
@@ -30,6 +38,11 @@ module.exports = {
         gray800: "#1F2937",
         gray900: "#111827",
       },
+      fontFamily: {
+        sans: ["var(--font-body)", "sans-serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        display: ["var(--font-display)", "serif"],
+      },
       fontWeight: {
         bold: "700",
         semiBold: "600",
@@ -51,12 +64,21 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-custom":
           "linear-gradient(to bottom, rgba(0, 0, 0, 0) 14%, rgba(0, 0, 0, 0.8))",
+        "editorial-glow":
+          "radial-gradient(circle at top left, rgba(212, 154, 92, 0.22), transparent 28%)",
       },
       screens: {
         custom: "900px",
       },
       flex: {
         0: "1 0 auto",
+      },
+      boxShadow: {
+        editorial: "0 24px 60px rgba(31, 27, 22, 0.10)",
+        panel: "0 14px 32px rgba(31, 27, 22, 0.08)",
+      },
+      letterSpacing: {
+        editorial: "0.22em",
       },
     },
   },

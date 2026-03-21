@@ -11,15 +11,13 @@ type Props = {
 
 export default function Footer({ start_date, profile }: Props) {
   return (
-    <div className="mt-2 w-full flex items-center">
-      <span className="text-body12 custom:text-body13 date-after text-gray-300">
+    <div className="mt-2 flex w-full items-center text-[12px] uppercase tracking-[0.18em] text-ink-soft">
+      <span className="date-after">
         {new Intl.DateTimeFormat("ko", { dateStyle: "full" }).format(
           new Date(start_date),
         )}
       </span>
-      <span className="text-body12 custom:text-body13 text-gray-300">
-        {profile && profile[0].name}
-      </span>
+      <span>{profile && profile[0].name}</span>
     </div>
   );
 }

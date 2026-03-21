@@ -10,10 +10,13 @@ type Props = {
 
 export default function ListComponent({ post, type = "Post" }: Props) {
   return (
-    <Link href={`/${type.toLocaleLowerCase()}/${post.slug}`}>
-      <div className="flex gap-4 py-8 border-gray-400">
+    <Link
+      href={`/${type.toLocaleLowerCase()}/${post.slug}`}
+      className="group block"
+    >
+      <article className="grid gap-4 border-b border-line py-8 transition duration-200 hover:translate-y-[-2px] md:grid-cols-[148px_minmax(0,1fr)] md:gap-6">
         {post.thumbnail && <PostItem.Thumbnail thumbnail={post.thumbnail} />}
-        <div className={"flex flex-col flex-1"}>
+        <div className="flex flex-1 flex-col justify-between">
           <PostItem.Title title={post.title} />
           {post.summary && <PostItem.Summary summary={post.summary} />}
           <PostItem.Footer
@@ -21,7 +24,7 @@ export default function ListComponent({ post, type = "Post" }: Props) {
             profile={post.author}
           />
         </div>
-      </div>
+      </article>
     </Link>
   );
 }

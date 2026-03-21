@@ -7,9 +7,9 @@ type Props = {
 
 export default function Thumbnail({ thumbnail }: Props) {
   return (
-    <div className="w-[120px] h-[100px] relative cursor-pointer overflow-hidden">
+    <div className="relative h-[118px] overflow-hidden border border-line bg-paper shadow-panel md:h-[132px] md:w-[148px]">
       <Image
-        className="object-cover rounded-lg" // Ensure the image covers the container
+        className="object-cover"
         fill
         sizes="(max-width: 768px) 100%"
         src={thumbnail}

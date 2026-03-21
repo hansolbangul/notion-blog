@@ -7,11 +7,18 @@ type Props = {
 
 export default function Search({ value, onChange }: Props) {
   return (
-    <div className="mb-4 w-full pt-3">
+    <div className="mb-5 w-full">
+      <label
+        htmlFor="archive-search"
+        className="mb-2 block text-[11px] uppercase tracking-editorial text-ink-soft"
+      >
+        search archive
+      </label>
       <input
+        id="archive-search"
         type="text"
-        className="text-body14 text-gray-400 border border-gray-400 rounded-2xl w-full py-2 px-3 flex-auto"
-        placeholder="Search Keyword"
+        className="flex-auto w-full border border-line bg-white/70 px-4 py-3 text-body14 text-ink outline-none ring-0 placeholder:text-ink-soft focus:border-accent"
+        placeholder="검색어로 기록 찾기"
         value={value}
         onChange={onChange}
       />
