@@ -69,8 +69,8 @@ export default function PostProgressGuide({ prev, next }: Props) {
       aria-hidden={!visible || dismissed}
     >
       <div className="pointer-events-auto border border-line bg-[rgba(255,255,255,0.97)] px-4 py-4 shadow-[10px_10px_0_rgba(31,26,20,0.1)] backdrop-blur">
-        <div className="mb-3 flex items-center justify-between gap-4">
-          <div>
+        <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+          <div className="min-w-0">
             <p className="text-[11px] uppercase tracking-editorial text-ink-soft">
               continue reading
             </p>
@@ -78,22 +78,24 @@ export default function PostProgressGuide({ prev, next }: Props) {
               글을 거의 다 읽으셨어요. 다음 흐름으로 이어서 볼까요?
             </p>
           </div>
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="shrink-0 border border-line px-3 py-2 text-[12px] uppercase tracking-editorial text-ink hover:border-accent"
-          >
-            맨 위로
-          </button>
+          <div className="flex shrink-0 items-center gap-2 self-end sm:self-start">
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="inline-flex min-w-[92px] items-center justify-center border border-line px-3 py-2 text-[12px] uppercase tracking-editorial text-ink hover:border-accent"
+            >
+              맨 위로
+            </button>
+            <button
+              type="button"
+              onClick={() => setDismissed(true)}
+              className="flex h-[42px] w-[42px] items-center justify-center border border-line bg-paper text-ink hover:border-accent"
+              aria-label="다음 글 안내 닫기"
+            >
+              <HiX className="text-[20px]" />
+            </button>
+          </div>
         </div>
-        <button
-          type="button"
-          onClick={() => setDismissed(true)}
-          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-line bg-paper text-ink hover:border-accent"
-          aria-label="다음 글 안내 닫기"
-        >
-          <HiX />
-        </button>
 
         <div className="mb-4 h-1 w-full overflow-hidden bg-[rgba(31,26,20,0.08)]">
           <div
