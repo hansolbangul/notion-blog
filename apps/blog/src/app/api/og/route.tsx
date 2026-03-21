@@ -20,10 +20,12 @@ export async function GET(request: Request) {
   const slug = searchParams.get("slug");
   let title = searchParams.get("title") || "데굴데굴 블로그";
   let eyebrow = searchParams.get("eyebrow") || "Frontend Archive";
-  let thumbnail: string | null = null;
+  const imageParam = searchParams.get("image");
+  let thumbnail: string | null = imageParam ? getAbsoluteImageUrl(imageParam) : null;
   const fontData = await font;
 
   if (
+    !thumbnail &&
     slug &&
     (kind === "post" || kind === "page" || kind === "library")
   ) {

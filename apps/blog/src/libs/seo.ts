@@ -31,6 +31,7 @@ type SocialImageOptions = {
   slug?: string;
   title?: string;
   eyebrow?: string;
+  image?: string;
 };
 
 type BreadcrumbItem = {
@@ -83,6 +84,7 @@ export function getSocialImageUrl({
   slug,
   title,
   eyebrow,
+  image,
 }: SocialImageOptions = {}) {
   const searchParams = new URLSearchParams();
 
@@ -98,6 +100,10 @@ export function getSocialImageUrl({
 
   if (eyebrow) {
     searchParams.set("eyebrow", eyebrow);
+  }
+
+  if (image) {
+    searchParams.set("image", image);
   }
 
   const queryString = searchParams.toString();
@@ -343,6 +349,9 @@ export function createPostMetadata(post: TPost) {
             ? "library"
             : "post",
       slug: post.slug,
+      title: post.title,
+      eyebrow: section,
+      image: post.thumbnail ? getAbsoluteImageUrl(post.thumbnail) : undefined,
     }),
     type: "article",
     publishedTime: getPublishedDate(post),
