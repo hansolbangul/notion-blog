@@ -18,6 +18,9 @@ type SeoMetadataOptions = {
   pathname?: string;
   keywords?: string[];
   image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageType?: string;
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
@@ -142,6 +145,9 @@ export function createSeoMetadata({
   pathname = "/",
   keywords = [],
   image,
+  imageWidth,
+  imageHeight,
+  imageType,
   type = "website",
   publishedTime,
   modifiedTime,
@@ -153,6 +159,13 @@ export function createSeoMetadata({
   const canonical = getAbsoluteUrl(pathname);
   const ogImage = getAbsoluteImageUrl(image);
   const resolvedTitle = resolveTitle(title);
+  const ogImageDescriptor = {
+    url: ogImage,
+    alt: resolvedTitle,
+    ...(imageWidth ? { width: imageWidth } : {}),
+    ...(imageHeight ? { height: imageHeight } : {}),
+    ...(imageType ? { type: imageType } : {}),
+  };
   const resolvedAuthors = authors.length
     ? authors.map((name) => ({
         name,
@@ -203,14 +216,7 @@ export function createSeoMetadata({
       siteName,
       title: resolvedTitle,
       description: seoDescription,
-      images: [
-        {
-          url: ogImage,
-          alt: resolvedTitle,
-          width: 1200,
-          height: 630,
-        },
-      ],
+      images: [ogImageDescriptor],
       ...(type === "article"
         ? {
             publishedTime,
@@ -247,6 +253,9 @@ export function createSiteMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
+    imageWidth: 1024,
+    imageHeight: 1024,
+    imageType: "image/png",
     type: "website",
   });
 
@@ -292,6 +301,9 @@ export function createHomeMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
+    imageWidth: 1024,
+    imageHeight: 1024,
+    imageType: "image/png",
     type: "website",
   });
 }
@@ -319,6 +331,9 @@ export function createToolMetadata({
       title,
       eyebrow: "Frontend Tool",
     }),
+    imageWidth: 1200,
+    imageHeight: 630,
+    imageType: "image/png",
     type: "website",
     noIndex,
   });
