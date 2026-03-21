@@ -11,14 +11,14 @@
 }
 
 :root {
-  --color-paper: #f5efe3;
-  --color-paper-strong: #fcf8f1;
+  --color-paper: #f3f1ec;
+  --color-paper-strong: #ffffff;
   --color-ink: #1f1a14;
-  --color-ink-soft: #6b5d4f;
-  --color-line: rgba(73, 55, 35, 0.18);
+  --color-ink-soft: #62584d;
+  --color-line: rgba(73, 55, 35, 0.12);
   --color-accent: #a55a2a;
-  --color-accent-soft: #efe0cf;
-  --color-mist: rgba(255, 255, 255, 0.72);
+  --color-accent-soft: #f4ece3;
+  --color-mist: rgba(255, 255, 255, 0.86);
   --font-body: "SUIT Variable", "Pretendard Variable", "Pretendard",
     "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
   --font-display: "Jua", "SUIT Variable", "Pretendard Variable", "Pretendard",
@@ -35,13 +35,14 @@ body {
   color: var(--color-ink);
   background: radial-gradient(
       circle at top left,
-      rgba(212, 154, 92, 0.18),
-      transparent 28%
+      rgba(255, 255, 255, 0.94),
+      transparent 24%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.72),
-      rgba(255, 255, 255, 0) 32%
+      rgba(255, 255, 255, 0.94),
+      rgba(255, 255, 255, 0.68) 34%,
+      rgba(243, 241, 236, 0.92)
     ),
     var(--color-paper);
   font-family: var(--font-body);
@@ -53,12 +54,12 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.32;
+  opacity: 0.16;
   background-image: linear-gradient(
-      rgba(255, 255, 255, 0.06) 1px,
+      rgba(31, 26, 20, 0.02) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(31, 26, 20, 0.02) 1px, transparent 1px);
   background-size:
     100% 36px,
     36px 100%;
@@ -89,7 +90,7 @@ select {
 }
 
 .editorial-glass {
-  background: rgba(252, 248, 241, 0.82);
+  background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(18px);
 }
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { HiX } from "react-icons/hi";
 
 type NavigationPost = {
   slug: string;
@@ -23,6 +24,7 @@ function scrollToTop() {
 export default function PostProgressGuide({ prev, next }: Props) {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
 
   useEffect(() => {
     const updateProgress = () => {
@@ -42,7 +44,7 @@ export default function PostProgressGuide({ prev, next }: Props) {
       );
 
       setProgress(nextProgress);
-      setVisible(nextProgress >= 0.74);
+      setVisible(nextProgress >= 0.74 && !dismissed);
     };
 
     updateProgress();
@@ -53,20 +55,20 @@ export default function PostProgressGuide({ prev, next }: Props) {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
     };
-  }, []);
+  }, [dismissed]);
 
   if (!prev && !next) return null;
 
   return (
     <div
       className={`pointer-events-none fixed bottom-5 left-1/2 z-20 w-[min(820px,calc(100vw-1.5rem))] -translate-x-1/2 transition duration-300 ${
-        visible
+        visible && !dismissed
           ? "translate-y-0 opacity-100"
           : "translate-y-8 opacity-0"
       }`}
-      aria-hidden={!visible}
+      aria-hidden={!visible || dismissed}
     >
-      <div className="pointer-events-auto border border-line bg-[rgba(252,248,241,0.96)] px-4 py-4 shadow-[10px_10px_0_rgba(31,26,20,0.1)] backdrop-blur">
+      <div className="pointer-events-auto border border-line bg-[rgba(255,255,255,0.97)] px-4 py-4 shadow-[10px_10px_0_rgba(31,26,20,0.1)] backdrop-blur">
         <div className="mb-3 flex items-center justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-editorial text-ink-soft">
@@ -84,6 +86,14 @@ export default function PostProgressGuide({ prev, next }: Props) {
             맨 위로
           </button>
         </div>
+        <button
+          type="button"
+          onClick={() => setDismissed(true)}
+          className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center border border-line bg-paper text-ink hover:border-accent"
+          aria-label="다음 글 안내 닫기"
+        >
+          <HiX />
+        </button>
 
         <div className="mb-4 h-1 w-full overflow-hidden bg-[rgba(31,26,20,0.08)]">
           <div
