@@ -8,8 +8,8 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: "/",
-      disallow: ["/api/", "/tool/barcode", "/tool/base64"],
+      allow: ["/", "/api/og"],
+      disallow: ["/api/revalidate", "/tool/barcode", "/tool/base64"],
     },
     sitemap: `${SEO_DEFAULTS.siteUrl}/sitemap.xml`,
     host: new URL(SEO_DEFAULTS.siteUrl).host,
