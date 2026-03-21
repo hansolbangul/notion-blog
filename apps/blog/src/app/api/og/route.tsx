@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/server";
 
 const size = {
@@ -5,11 +7,9 @@ const size = {
   height: 630,
 };
 
-const font = fetch(
-  new URL("../../../../public/fonts/Jua-Regular.ttf", import.meta.url),
-).then((response) => response.arrayBuffer());
+const font = readFile(path.join(process.cwd(), "public/fonts/Jua-Regular.ttf"));
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
