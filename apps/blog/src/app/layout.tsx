@@ -1,12 +1,11 @@
 import "./globals.css";
+import type { Metadata } from "next";
 import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
 import CONFIG from "@/site.config";
+import { createSiteMetadata } from "@libs/seo";
 
-export const metadata = {
-  ...CONFIG.metadata,
-  metadataBase: new URL(CONFIG.url),
-};
+export const metadata: Metadata = createSiteMetadata();
 
 export default function RootLayout({
   children,
@@ -16,12 +15,6 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {CONFIG.searchManager.google && (
-          <meta
-            name="google-site-verification"
-            content={CONFIG.searchManager.google}
-          />
-        )}
         <meta name="google-adsense-account" content="ca-pub-2465657218123782" />
         {CONFIG.analytics.google && (
           <script

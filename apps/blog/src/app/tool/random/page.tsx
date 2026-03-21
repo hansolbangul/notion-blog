@@ -1,24 +1,15 @@
 import React from "react";
 import RandomContent from "@app/tool/random/Content";
+import type { Metadata } from "next";
+import { createToolMetadata } from "@libs/seo";
 
-export const metadata = {
+export const metadata: Metadata = createToolMetadata({
   title: "숫자 랜덤 생성기",
   description:
-    "데굴데굴 블로그의 숫자 랜덤 생성 도구로 빠르고 쉽게 랜덤 숫자를 생성해보세요.",
-  openGraph: {
-    title: "숫자 랜덤 생성기",
-    description: "데굴데굴 블로그에서 제공하는 간편한 랜덤 숫자 생성 도구",
-    images: [
-      {
-        url: "https://blog.hansolbangul.com/main_img.webp",
-        alt: "지한솔방울썸넬",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  keywords: ["데굴데굴 블로그", "숫자 랜덤 생성", "숫자 랜덤"],
-};
+    "빠르게 랜덤 숫자를 뽑아야 할 때 바로 사용할 수 있는 데굴데굴 블로그의 숫자 랜덤 생성 도구입니다.",
+  pathname: "/tool/random",
+  keywords: ["숫자 랜덤 생성기", "랜덤 숫자", "프론트엔드 도구"],
+});
 
 export default function Page() {
   return <RandomContent />;

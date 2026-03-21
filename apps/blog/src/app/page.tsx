@@ -1,5 +1,6 @@
 import Container from "../components/Elements/Container";
 import Home from "@app/(feature)/home/Home";
+import JsonLd from "@components/Seo/JsonLd";
 import postQueryOptions from "@blog/notions/service/post/postService";
 import {
   getDehydratedQueries,
@@ -8,14 +9,12 @@ import {
 import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
-import CONFIG from "@/site.config";
+import type { Metadata } from "next";
+import { createHomeJsonLd, createHomeMetadata } from "@libs/seo";
 
 export const revalidate = 86400;
 
-export const metadata = {
-  ...CONFIG.metadata,
-  metadataBase: new URL(CONFIG.url),
-};
+export const metadata: Metadata = createHomeMetadata();
 
 async function getFetch() {
   const posts = await getCached();
@@ -38,6 +37,7 @@ export default async function Page() {
   return (
     <Hydrate state={dehydratedState}>
       <Container.Col>
+        <JsonLd data={createHomeJsonLd()} />
         <Home tags={tags} />
       </Container.Col>
     </Hydrate>

@@ -4,6 +4,7 @@ import { idToUuid } from "notion-utils";
 import CONFIG from "../../site.config";
 import { TPosts } from "../../types";
 import getPageProperties from "../../utils/notion/getPageProperties";
+import { retryNotionRequest } from "./retryNotionRequest";
 
 const maskPageId = (value?: string) => {
   if (!value) return "missing";
@@ -70,7 +71,10 @@ export const getPosts = async (): Promise<TPosts> => {
       });
     }
 
-    const pageChunk: any = await api.getPageRaw(id);
+    const pageChunk: any = await retryNotionRequest(
+      () => api.getPageRaw(id),
+      "getPosts:getPageRaw",
+    );
     const response: any = {
       ...(pageChunk?.recordMap || {}),
     };
@@ -95,10 +99,14 @@ export const getPosts = async (): Promise<TPosts> => {
 
     let viewBlockIds: string[] = [];
     if (collectionId && resolvedViewId) {
-      const collectionData = await api.getCollectionData(
-        collectionId,
-        resolvedViewId,
-        response.collection_view?.[resolvedViewId]?.value,
+      const collectionData = await retryNotionRequest(
+        () =>
+          api.getCollectionData(
+            collectionId,
+            resolvedViewId,
+            response.collection_view?.[resolvedViewId]?.value,
+          ),
+        "getPosts:getCollectionData",
       );
       const collectionResult = collectionData?.result as
         | RawCollectionResult
@@ -186,6 +194,10 @@ export const getPosts = async (): Promise<TPosts> => {
         if (response.block[id] && properties) {
           properties.createdTime = new Date(
             response.block[id].value?.created_time,
+          ).toString();
+          properties.lastEditedTime = new Date(
+            response.block[id].value?.last_edited_time ||
+              response.block[id].value?.created_time,
           ).toString();
           properties.fullWidth =
             (response.block[id].value?.format as any)?.page_full_width ?? false;

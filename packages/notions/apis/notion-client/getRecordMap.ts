@@ -1,4 +1,5 @@
 import { NotionAPI } from "notion-client"
+import { retryNotionRequest } from "./retryNotionRequest"
 
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production"
 
@@ -10,7 +11,10 @@ export const getRecordMap = async (pageId: string) => {
         pageId,
       })
     }
-    const recordMap = await api.getPage(pageId)
+    const recordMap = await retryNotionRequest(
+      () => api.getPage(pageId),
+      "getRecordMap:getPage",
+    )
     if (isNotionDebugEnabled) {
       console.info("[notion:getRecordMap] detail page fetched", {
         pageId,

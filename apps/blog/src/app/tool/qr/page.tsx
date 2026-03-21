@@ -1,24 +1,15 @@
 import React from "react";
 import QrContent from "@app/tool/qr/Content";
+import type { Metadata } from "next";
+import { createToolMetadata } from "@libs/seo";
 
-export const metadata = {
+export const metadata: Metadata = createToolMetadata({
   title: "QR 코드 생성기",
   description:
-    "데굴데굴 블로그의 QR 코드 생성 도구로 빠르고 쉽게 QR 코드를 생성해보세요.",
-  openGraph: {
-    title: "QR 코드 생성기",
-    description: "데굴데굴 블로그에서 제공하는 간편한 QR 코드 생성 도구",
-    images: [
-      {
-        url: "https://blog.hansolbangul.com/main_img.webp",
-        alt: "지한솔방울썸넬",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  keywords: ["데굴데굴 블로그", "QR 코드 생성", "QR 코드"],
-};
+    "링크와 텍스트를 바로 QR 코드로 바꿀 수 있는 데굴데굴 블로그의 QR 생성 도구입니다.",
+  pathname: "/tool/qr",
+  keywords: ["QR 코드 생성기", "QR 생성", "개발 도구"],
+});
 
 export default function Page() {
   return <QrContent />;

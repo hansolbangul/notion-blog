@@ -1,6 +1,8 @@
 import * as React from "react";
 import "react-notion-x/src/styles.css";
 import { Metadata } from "next";
+import { cache } from "react";
+import { notFound } from "next/navigation";
 import { DehydratedState } from "@tanstack/react-query";
 import { ExtendedRecordMap } from "notion-types";
 import { TPost, TPosts } from "@blog/notions/types";
@@ -12,6 +14,12 @@ import {
 import getCached from "@blog/notions/libs/react-query/getCached";
 import pageQueryOptions from "@blog/notions/service/page/pageService";
 import NotionInfoPage from "@app/(component)/notion/page/NotionInfoPage";
+import JsonLd from "@components/Seo/JsonLd";
+import {
+  createBreadcrumbJsonLd,
+  createPostJsonLd,
+  createPostMetadata,
+} from "@libs/seo";
 
 type Props = {
   params: {
@@ -29,24 +37,8 @@ type FetchType = {
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata> {
-  const { post, thumbnail } = await getFetch(slug);
-  return {
-    title: post?.title,
-    description: post?.summary || post?.title,
-    openGraph: {
-      title: post?.title,
-      description: post?.summary || post?.title,
-      images: [
-        {
-          url: thumbnail,
-          alt: post?.title,
-          width: 1200,
-          height: 630,
-        },
-      ],
-    },
-    keywords: post?.tags?.map((tag) => tag),
-  };
+  const { post } = await getFetch(slug);
+  return createPostMetadata(post);
 }
 
 async function getPreFetch(slug: string): Promise<DehydratedState> {
@@ -71,11 +63,11 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
   ]);
 }
 
-async function getFetch(slug: string): Promise<FetchType> {
+const getFetch = cache(async (slug: string): Promise<FetchType> => {
   const posts = await getCached({ type: "Page" });
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);
-  if (!postDetail) throw new Error("Post not found");
+  if (!postDetail) notFound();
   const recordMap = await getRecordMap(postDetail.id);
 
   return {
@@ -84,13 +76,22 @@ async function getFetch(slug: string): Promise<FetchType> {
     recordMap,
     thumbnail: postDetail.thumbnail || "",
   };
-}
+});
 
 export default async function PageContent({ params }: Props) {
+  const { post } = await getFetch(params.slug);
   const dehydratedState = await getPreFetch(params.slug);
+
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "홈", path: "/" },
+    { name: post.title, path: `/page/${post.slug}` },
+  ]);
+
   return (
     <Hydrate state={dehydratedState}>
       <div className="mt-4">
+        <JsonLd data={breadcrumbJsonLd} />
+        <JsonLd data={createPostJsonLd(post)} />
         <NotionInfoPage />
       </div>
     </Hydrate>
