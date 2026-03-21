@@ -6,6 +6,7 @@ import React, { Suspense, useState } from "react";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { TPost } from "@blog/notions/types";
 import { usePathname } from "next/navigation";
+import { getPostReadingMinutes } from "@libs/reading-time";
 
 type Props = {
   post: TPost;
@@ -13,6 +14,7 @@ type Props = {
 
 export default function NotionHeader({ post }: Props) {
   const pathName = usePathname();
+  const readingMinutes = getPostReadingMinutes(post);
 
   const isPostSlug = pathName.startsWith("/post");
 
@@ -80,6 +82,12 @@ export default function NotionHeader({ post }: Props) {
           <span className="font-medium text-ink">
             {post.author ? post.author[0].name : "미등록"}
           </span>
+        </div>
+        <div className="flex flex-col gap-1">
+          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
+            읽는 시간
+          </span>
+          <span className="font-medium text-ink">약 {readingMinutes}분</span>
         </div>
         <button
           onClick={copyUrl}

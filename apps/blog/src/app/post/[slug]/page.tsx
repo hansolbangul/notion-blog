@@ -30,8 +30,14 @@ type Props = {
 type FetchType = {
   posts: TPosts;
   post: TPost;
-  prev: string | null;
-  next: string | null;
+  prev: {
+    slug: string;
+    title: string;
+  } | null;
+  next: {
+    slug: string;
+    title: string;
+  } | null;
   recordMap: ExtendedRecordMap;
   thumbnail: string;
 };
@@ -73,12 +79,22 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
   const recordMap = await getRecordMap(postDetail.id);
 
   const postId = posts.findIndex((p: TPost) => p.slug === slug);
-  const prev = postId === posts.length - 1 ? null : posts[postId + 1].slug;
-  const next = postId === 0 ? null : posts[postId - 1].slug;
+  const prevPost = postId === posts.length - 1 ? null : posts[postId + 1];
+  const nextPost = postId === 0 ? null : posts[postId - 1];
 
   return {
-    prev,
-    next,
+    prev: prevPost
+      ? {
+          slug: prevPost.slug,
+          title: prevPost.title,
+        }
+      : null,
+    next: nextPost
+      ? {
+          slug: nextPost.slug,
+          title: nextPost.title,
+        }
+      : null,
     posts,
     post: postDetail,
     recordMap,
@@ -87,7 +103,7 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
 });
 
 export default async function PostContent({ params }: Props) {
-  const { post } = await getFetch(params.slug);
+  const { post, prev, next } = await getFetch(params.slug);
   const dehydratedState = await getPreFetch(params.slug);
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
@@ -100,7 +116,7 @@ export default async function PostContent({ params }: Props) {
       <div className="mt-4">
         <JsonLd data={breadcrumbJsonLd} />
         <JsonLd data={createPostJsonLd(post)} />
-        <NotionPage />
+        <NotionPage prev={prev} next={next} />
       </div>
     </Hydrate>
   );

@@ -9,10 +9,11 @@ import {
 import { getAllSelectItemsFromPosts } from "@blog/notions/utils/notion";
 import React from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
+import { NOTION_REVALIDATE_SECONDS } from "@blog/notions/constants";
 import type { Metadata } from "next";
 import { createHomeJsonLd, createHomeMetadata } from "@libs/seo";
 
-export const revalidate = 86400;
+export const revalidate = NOTION_REVALIDATE_SECONDS;
 
 export const metadata: Metadata = createHomeMetadata();
 

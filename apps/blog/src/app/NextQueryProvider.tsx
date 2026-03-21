@@ -3,6 +3,7 @@
 import { PropsWithChildren, useState } from "react";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NOTION_REVALIDATE_SECONDS } from "@blog/notions/constants";
 
 export default function NextQueryProvider({ children }: PropsWithChildren) {
   const [queryClient] = useState(
@@ -10,7 +11,12 @@ export default function NextQueryProvider({ children }: PropsWithChildren) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: 60 * 1000,
+            staleTime: NOTION_REVALIDATE_SECONDS * 1000,
+            gcTime: NOTION_REVALIDATE_SECONDS * 1000,
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+            refetchOnMount: false,
+            retry: 1,
           },
         },
       }),

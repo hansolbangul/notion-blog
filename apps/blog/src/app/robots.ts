@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { NOTION_REVALIDATE_SECONDS } from "@blog/notions/constants";
 import { SEO_DEFAULTS } from "@libs/seo";
 
-export const revalidate = 86400;
+export const revalidate = NOTION_REVALIDATE_SECONDS;
 
 export default function robots(): MetadataRoute.Robots {
   return {

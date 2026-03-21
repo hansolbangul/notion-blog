@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TPost } from "@blog/notions/types";
+import { getPostReadingMinutes } from "@libs/reading-time";
 
 interface Props {
   index: number;
@@ -13,6 +14,7 @@ const RecommendComponent = ({ index, post, variant }: Props) => {
   const tag = post.tags?.[0] || "Recommend";
   const summary =
     post.summary || "가볍게 훑어보기보다 천천히 읽어볼 만한 기록입니다.";
+  const readingMinutes = getPostReadingMinutes(post);
   const dateText = new Intl.DateTimeFormat("ko", {
     dateStyle: "medium",
   }).format(new Date(post.date.start_date));
@@ -55,9 +57,10 @@ const RecommendComponent = ({ index, post, variant }: Props) => {
             <p className="max-w-[460px] text-body14 leading-7 text-white/76">
               {summary}
             </p>
-            <span className="block text-[11px] uppercase tracking-editorial text-white/60">
-              {dateText}
-            </span>
+            <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-editorial text-white/60">
+              <span>{dateText}</span>
+              <span>약 {readingMinutes}분 읽기</span>
+            </div>
           </div>
         </div>
       </Link>
@@ -96,9 +99,10 @@ const RecommendComponent = ({ index, post, variant }: Props) => {
           </h3>
           <p className="text-body13 leading-6 text-ink-soft">{summary}</p>
         </div>
-        <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-          {dateText}
-        </span>
+        <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-editorial text-ink-soft">
+          <span>{dateText}</span>
+          <span>약 {readingMinutes}분 읽기</span>
+        </div>
       </div>
     </Link>
   );

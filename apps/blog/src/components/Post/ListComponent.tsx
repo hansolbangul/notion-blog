@@ -2,6 +2,7 @@ import React from "react";
 import { PostItem } from "./PostItem";
 import Link from "next/link";
 import { TPost, TPostType } from "@blog/notions/types";
+import { getPostReadingMinutes } from "@libs/reading-time";
 
 type Props = {
   post: TPost;
@@ -9,6 +10,8 @@ type Props = {
 };
 
 export default function ListComponent({ post, type = "Post" }: Props) {
+  const readingMinutes = getPostReadingMinutes(post);
+
   return (
     <Link
       href={`/${type.toLocaleLowerCase()}/${post.slug}`}
@@ -21,6 +24,7 @@ export default function ListComponent({ post, type = "Post" }: Props) {
           {post.summary && <PostItem.Summary summary={post.summary} />}
           <PostItem.Footer
             start_date={post.date.start_date}
+            readingMinutes={readingMinutes}
             profile={post.author}
           />
         </div>

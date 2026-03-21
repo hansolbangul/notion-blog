@@ -4,6 +4,15 @@ import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
 import { customMapImageUrl } from "./customMapImageUrl"
 import { retryNotionRequest } from "../../apis/notion-client/retryNotionRequest"
 
+const userCache = new Map<
+  string,
+  {
+    id?: string
+    name?: string
+    profile_photo?: string | null
+  }
+>()
+
 async function getPageProperties(
   id: string,
   block: BlockMap,
@@ -58,20 +67,28 @@ async function getPageProperties(
           for (let i = 0; i < rawUsers.length; i++) {
             if (rawUsers[i][0][1]) {
               const userId = rawUsers[i][0]
-              const res: any = await retryNotionRequest(
-                () => api.getUsers(userId),
-                "getPageProperties:getUsers",
-              )
-              const resValue =
-                res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
-              const user = {
-                id: resValue?.id,
-                name:
-                  resValue?.name ||
-                  `${resValue?.family_name}${resValue?.given_name}` ||
-                  undefined,
-                profile_photo: resValue?.profile_photo || null,
+              const userKey = userId[1]
+              const cachedUser = userCache.get(userKey)
+
+              let user = cachedUser
+              if (!user) {
+                const res: any = await retryNotionRequest(
+                  () => api.getUsers(userId),
+                  "getPageProperties:getUsers",
+                )
+                const resValue =
+                  res?.recordMapWithRoles?.notion_user?.[userId[1]]?.value
+                user = {
+                  id: resValue?.id,
+                  name:
+                    resValue?.name ||
+                    `${resValue?.family_name}${resValue?.given_name}` ||
+                    undefined,
+                  profile_photo: resValue?.profile_photo || null,
+                }
+                userCache.set(userKey, user)
               }
+
               users.push(user)
             }
           }

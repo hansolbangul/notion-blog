@@ -1,5 +1,9 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import {
+  clearNotionPostsCache,
+  clearNotionRecordMapCache,
+} from "@blog/notions/apis";
 import { getAllPublishedContent, isIndexablePost } from "@libs/content";
 import { getPostPath } from "@libs/seo";
 
@@ -17,6 +21,9 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    clearNotionPostsCache();
+    clearNotionRecordMapCache();
+
     if (path) {
       revalidatePath(path);
       return NextResponse.json({ revalidated: true, path });

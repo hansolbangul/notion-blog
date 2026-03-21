@@ -23,8 +23,11 @@ export default function Pagination({
   );
 
   const buttonClass =
-    "min-w-[44px] border border-line bg-paper-strong px-3 py-2 text-body13 text-ink-soft transition hover:border-accent hover:text-ink disabled:cursor-not-allowed disabled:opacity-40";
-  const activeClass = "border-ink bg-ink text-paper-strong";
+    "min-w-[44px] border px-3 py-2 text-body13 transition disabled:cursor-not-allowed disabled:opacity-40";
+  const inactiveClass =
+    "border-line bg-paper-strong text-ink shadow-panel hover:border-accent hover:text-ink";
+  const activeClass =
+    "border-ink bg-ink !text-paper-strong shadow-[6px_6px_0_rgba(31,26,20,0.12)]";
 
   return (
     <nav
@@ -33,7 +36,7 @@ export default function Pagination({
     >
       <button
         type="button"
-        className={buttonClass}
+        className={`${buttonClass} ${inactiveClass}`}
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
@@ -44,7 +47,9 @@ export default function Pagination({
         <button
           key={page}
           type="button"
-          className={`${buttonClass} ${page === currentPage ? activeClass : ""}`}
+          className={`${buttonClass} ${
+            page === currentPage ? activeClass : inactiveClass
+          }`}
           onClick={() => onPageChange(page)}
           aria-current={page === currentPage ? "page" : undefined}
         >
@@ -54,7 +59,7 @@ export default function Pagination({
 
       <button
         type="button"
-        className={buttonClass}
+        className={`${buttonClass} ${inactiveClass}`}
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >

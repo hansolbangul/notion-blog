@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
+import { NOTION_REVALIDATE_SECONDS } from "@blog/notions/constants";
 
-export const revalidate = 86400;
+export const revalidate = NOTION_REVALIDATE_SECONDS;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return <>{children}</>;
