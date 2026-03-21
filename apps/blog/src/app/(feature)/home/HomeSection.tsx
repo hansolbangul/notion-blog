@@ -44,7 +44,9 @@ export default function HomeSection({ posts, tags }: Props) {
         </Suspense>
       </div>
       <aside className="hidden custom:flex custom:w-[280px] custom:flex-col custom:self-start custom:border custom:border-line custom:bg-paper-strong custom:p-5 custom:shadow-panel">
-        <TagList tags={tags} />
+        <Suspense>
+          <TagList tags={tags} />
+        </Suspense>
       </aside>
     </div>
   );

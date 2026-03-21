@@ -4,7 +4,7 @@ const CONFIG = {
     age: "",
     profile: "",
   },
-  url: "https://blog.hansolbangul.com",
+  url: "https://hansolbangul.com",
   metadata: {
     title: "데굴데굴 블로그 | 프론트엔드 개발 아카이브",
     description:
@@ -24,7 +24,7 @@ const CONFIG = {
         "프론트엔드 개발 기록과 실험, Notion 기반 아카이브를 정리하는 공간입니다.",
       images: [
         {
-          url: "https://blog.hansolbangul.com/main_img.webp",
+          url: "https://hansolbangul.com/main_img.webp",
           alt: "지한솔방울썸넬",
           width: 1200,
           height: 630,
