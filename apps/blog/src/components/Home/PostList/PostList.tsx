@@ -16,8 +16,10 @@ export default function PostList({ search, posts }: Props) {
   const params = useRouterQuery();
   const tagQuery = params.get("tag") || "All";
   const [filter, setFilter] = useState(posts);
-  const [currentPage, setCurrentPage] = useState(1);
   const listTopRef = useRef<HTMLDivElement>(null);
+  const pageQuery = Number(params.get("page") || "1");
+  const currentPage =
+    Number.isFinite(pageQuery) && pageQuery > 0 ? pageQuery : 1;
 
   useEffect(() => {
     setFilter(() => {
@@ -39,10 +41,6 @@ export default function PostList({ search, posts }: Props) {
     });
   }, [tagQuery, search, posts]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [tagQuery, search]);
-
   const totalPages = Math.max(1, Math.ceil(filter.length / PAGE_SIZE));
   const normalizedCurrentPage = Math.min(currentPage, totalPages);
   const paginatedPosts = filter.slice(
@@ -52,9 +50,15 @@ export default function PostList({ search, posts }: Props) {
 
   const handlePageChange = (page: number) => {
     const nextPage = Math.min(Math.max(page, 1), totalPages);
-    setCurrentPage(nextPage);
     listTopRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    params.set("page", String(nextPage));
   };
+
+  useEffect(() => {
+    if (currentPage !== normalizedCurrentPage) {
+      params.set("page", String(normalizedCurrentPage));
+    }
+  }, [currentPage, normalizedCurrentPage, params]);
 
   return (
     <section ref={listTopRef}>
