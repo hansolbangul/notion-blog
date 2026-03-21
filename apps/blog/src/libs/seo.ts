@@ -10,6 +10,7 @@ const defaultDescription =
   "프론트엔드 개발 기록과 실험, Notion 기반 아카이브를 정리하는 데굴데굴 블로그입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.";
 const creatorName = CONFIG.user.name || "hansolbangul";
 const creatorProfile = CONFIG.user.profile || siteUrl;
+const defaultSocialImage = getAbsoluteUrl("/api/og");
 
 type SeoMetadataOptions = {
   title?: Metadata["title"];
@@ -68,6 +69,29 @@ export function getAbsoluteImageUrl(image?: string) {
   if (/^https?:\/\//.test(image)) return image;
   if (image.startsWith("/")) return getAbsoluteUrl(image);
   return getAbsoluteUrl(`/${image}`);
+}
+
+export function getSocialImageUrl({
+  title,
+  eyebrow,
+}: {
+  title?: string;
+  eyebrow?: string;
+} = {}) {
+  const searchParams = new URLSearchParams();
+
+  if (title) {
+    searchParams.set("title", title);
+  }
+
+  if (eyebrow) {
+    searchParams.set("eyebrow", eyebrow);
+  }
+
+  const queryString = searchParams.toString();
+  if (!queryString) return defaultSocialImage;
+
+  return getAbsoluteUrl(`/api/og?${queryString}`);
 }
 
 export function getPostPath(post: TPost) {
@@ -210,7 +234,10 @@ export function createSiteMetadata(): Metadata {
       "CSS",
       "Notion 블로그",
     ],
-    image: defaultOgImage,
+    image: getSocialImageUrl({
+      title: siteTitle,
+      eyebrow: "Frontend Archive",
+    }),
     type: "website",
   });
 
@@ -255,7 +282,10 @@ export function createHomeMetadata(): Metadata {
       "웹 개발",
       "Notion 블로그",
     ],
-    image: defaultOgImage,
+    image: getSocialImageUrl({
+      title: siteTitle,
+      eyebrow: "Frontend Archive",
+    }),
     type: "website",
   });
 }
@@ -278,7 +308,10 @@ export function createToolMetadata({
     description,
     pathname,
     keywords,
-    image: defaultOgImage,
+    image: getSocialImageUrl({
+      title,
+      eyebrow: "Frontend Tool",
+    }),
     type: "website",
     noIndex,
   });
@@ -295,7 +328,10 @@ export function createPostMetadata(post: TPost) {
     description,
     pathname: getPostPath(post),
     keywords: [...(post.tags || []), ...(post.category || [])],
-    image: getPostImage(post),
+    image: getSocialImageUrl({
+      title: post.title,
+      eyebrow: section,
+    }),
     type: "article",
     publishedTime: getPublishedDate(post),
     modifiedTime: getModifiedDate(post),
