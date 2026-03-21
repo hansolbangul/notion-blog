@@ -37,7 +37,9 @@ type FetchType = {
 export async function generateMetadata({
   params: { slug },
 }: Props): Promise<Metadata> {
-  const { post } = await getFetch(slug);
+  const posts = await getCached({ type: "Library" });
+  const post = posts.find((t: TPost) => t.slug === slug);
+  if (!post) notFound();
   return createPostMetadata(post);
 }
 

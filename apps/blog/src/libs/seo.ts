@@ -3,7 +3,7 @@ import type { TPost } from "@blog/notions/types";
 import CONFIG from "@blog/notions/site.config";
 
 const siteUrl = CONFIG.url.replace(/\/$/, "");
-const defaultOgImage = `${siteUrl}/main_img.webp`;
+const defaultOgImage = `${siteUrl}/main_img.png`;
 const siteName = CONFIG.blog.title;
 const siteTitle = "데굴데굴 블로그 | 프론트엔드 개발 아카이브";
 const defaultDescription =
@@ -24,6 +24,13 @@ type SeoMetadataOptions = {
   authors?: string[];
   section?: string;
   noIndex?: boolean;
+};
+
+type SocialImageOptions = {
+  kind?: "home" | "post" | "page" | "library" | "tool";
+  slug?: string;
+  title?: string;
+  eyebrow?: string;
 };
 
 type BreadcrumbItem = {
@@ -72,13 +79,18 @@ export function getAbsoluteImageUrl(image?: string) {
 }
 
 export function getSocialImageUrl({
+  kind = "tool",
+  slug,
   title,
   eyebrow,
-}: {
-  title?: string;
-  eyebrow?: string;
-} = {}) {
+}: SocialImageOptions = {}) {
   const searchParams = new URLSearchParams();
+
+  searchParams.set("kind", kind);
+
+  if (slug) {
+    searchParams.set("slug", slug);
+  }
 
   if (title) {
     searchParams.set("title", title);
@@ -234,10 +246,7 @@ export function createSiteMetadata(): Metadata {
       "CSS",
       "Notion 블로그",
     ],
-    image: getSocialImageUrl({
-      title: siteTitle,
-      eyebrow: "Frontend Archive",
-    }),
+    image: defaultOgImage,
     type: "website",
   });
 
@@ -282,10 +291,7 @@ export function createHomeMetadata(): Metadata {
       "웹 개발",
       "Notion 블로그",
     ],
-    image: getSocialImageUrl({
-      title: siteTitle,
-      eyebrow: "Frontend Archive",
-    }),
+    image: defaultOgImage,
     type: "website",
   });
 }
@@ -309,6 +315,7 @@ export function createToolMetadata({
     pathname,
     keywords,
     image: getSocialImageUrl({
+      kind: "tool",
       title,
       eyebrow: "Frontend Tool",
     }),
@@ -329,8 +336,13 @@ export function createPostMetadata(post: TPost) {
     pathname: getPostPath(post),
     keywords: [...(post.tags || []), ...(post.category || [])],
     image: getSocialImageUrl({
-      title: post.title,
-      eyebrow: section,
+      kind:
+        post.type?.[0] === "Page"
+          ? "page"
+          : post.type?.[0] === "Library"
+            ? "library"
+            : "post",
+      slug: post.slug,
     }),
     type: "article",
     publishedTime: getPublishedDate(post),
