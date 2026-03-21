@@ -1,5 +1,5 @@
-const DEFAULT_RETRY_COUNT = 3;
-const DEFAULT_RETRY_DELAY = 400;
+const DEFAULT_RETRY_COUNT = 5;
+const DEFAULT_RETRY_DELAY = 800;
 
 function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -10,12 +10,14 @@ function shouldRetry(error: unknown) {
 
   const message = error.message || "";
   return (
+    message.includes("500") ||
     message.includes("429") ||
     message.includes("502") ||
     message.includes("503") ||
     message.includes("504") ||
     message.includes("ETIMEDOUT") ||
-    message.includes("ECONNRESET")
+    message.includes("ECONNRESET") ||
+    message.includes("socket hang up")
   );
 }
 
