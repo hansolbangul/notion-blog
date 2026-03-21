@@ -25,7 +25,6 @@ export default function Footer() {
             <div className="flex flex-col gap-2 text-body14 text-ink">
               <a href="/">홈</a>
               <a href="/?tag=All">전체 글</a>
-              <a href="/page/profile">프로필</a>
             </div>
           </div>
 

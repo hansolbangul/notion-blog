@@ -20,6 +20,7 @@ import {
   createPostJsonLd,
   createPostMetadata,
 } from "@libs/seo";
+import { isExcludedPageSlug } from "@libs/content";
 
 type Props = {
   params: {
@@ -64,6 +65,8 @@ async function getPreFetch(slug: string): Promise<DehydratedState> {
 }
 
 const getFetch = cache(async (slug: string): Promise<FetchType> => {
+  if (isExcludedPageSlug(slug)) notFound();
+
   const posts = await getCached({ type: "Page" });
 
   const postDetail = posts.find((t: TPost) => t.slug === slug);

@@ -3,6 +3,11 @@ import { TPost, TPosts } from "@blog/notions/types";
 import { filterPosts } from "@blog/notions/utils/notion";
 
 const publicStatus = ["Public"] as const;
+export const EXCLUDED_PAGE_SLUGS = ["profile"] as const;
+
+export function isExcludedPageSlug(slug?: string) {
+  return !!slug && EXCLUDED_PAGE_SLUGS.includes(slug as (typeof EXCLUDED_PAGE_SLUGS)[number]);
+}
 
 export async function getAllPublishedContent() {
   const rawPosts = await getPosts();
@@ -15,7 +20,7 @@ export async function getAllPublishedContent() {
     pages: filterPosts(rawPosts, {
       acceptStatus: [...publicStatus],
       acceptType: ["Page"],
-    }),
+    }).filter((post) => !isExcludedPageSlug(post.slug)),
     libraries: filterPosts(rawPosts, {
       acceptStatus: [...publicStatus],
       acceptType: ["Library"],
