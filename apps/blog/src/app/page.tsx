@@ -18,18 +18,35 @@ export const revalidate = NOTION_REVALIDATE_SECONDS;
 export const metadata: Metadata = createHomeMetadata();
 
 async function getFetch() {
-  const posts = await getCached();
   const { queryKey } = postQueryOptions.all();
 
-  return {
-    dehydratedState: await getDehydratedQueries([
-      {
-        queryKey,
-        queryFn: () => posts,
-      },
-    ]),
-    tags: Object.keys(getAllSelectItemsFromPosts("tags", posts)),
-  };
+  try {
+    const posts = await getCached();
+
+    return {
+      dehydratedState: await getDehydratedQueries([
+        {
+          queryKey,
+          queryFn: () => posts,
+        },
+      ]),
+      tags: Object.keys(getAllSelectItemsFromPosts("tags", posts)),
+    };
+  } catch (error) {
+    console.error("[home:getFetch] failed to load cached posts", {
+      message: error instanceof Error ? error.message : String(error),
+    });
+
+    return {
+      dehydratedState: await getDehydratedQueries([
+        {
+          queryKey,
+          queryFn: () => [],
+        },
+      ]),
+      tags: [],
+    };
+  }
 }
 
 export default async function Page() {

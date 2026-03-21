@@ -1,9 +1,15 @@
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import {
   clearNotionPostsCache,
   clearNotionRecordMapCache,
 } from "@blog/notions/apis";
+import {
+  NOTION_CONTENT_CACHE_TAG,
+} from "@blog/notions/libs/react-query/getCached";
+import {
+  NOTION_RECORD_MAP_CACHE_TAG,
+} from "@blog/notions/apis/notion-client/getRecordMap";
 import { getAllPublishedContent, isIndexablePost } from "@libs/content";
 import { getPostPath } from "@libs/seo";
 
@@ -23,6 +29,8 @@ export async function GET(request: NextRequest) {
   try {
     clearNotionPostsCache();
     clearNotionRecordMapCache();
+    revalidateTag(NOTION_CONTENT_CACHE_TAG);
+    revalidateTag(NOTION_RECORD_MAP_CACHE_TAG);
 
     if (path) {
       revalidatePath(path);

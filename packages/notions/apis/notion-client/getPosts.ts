@@ -1,3 +1,6 @@
+import { mkdir, writeFile } from "fs/promises";
+import path from "path";
+
 import { NotionAPI } from "notion-client";
 import { idToUuid } from "notion-utils";
 
@@ -15,6 +18,11 @@ const maskPageId = (value?: string) => {
 
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production";
 const POSTS_CACHE_TTL = NOTION_REVALIDATE_SECONDS * 1000;
+const SNAPSHOT_FILE_PATH = path.join(
+  process.cwd(),
+  "public",
+  "notion-content-snapshot.json",
+);
 
 type CacheState = {
   expiresAt: number;
@@ -70,6 +78,33 @@ export function clearNotionPostsCache() {
   };
 }
 
+async function persistPostsSnapshot(posts: TPosts) {
+  if (process.env.NEXT_PHASE !== "phase-production-build") {
+    return;
+  }
+
+  try {
+    await mkdir(path.dirname(SNAPSHOT_FILE_PATH), { recursive: true });
+    await writeFile(
+      SNAPSHOT_FILE_PATH,
+      JSON.stringify(
+        {
+          generatedAt: new Date().toISOString(),
+          posts,
+        },
+        null,
+        2,
+      ),
+      "utf8",
+    );
+  } catch (error) {
+    console.warn("[notion:getPosts] failed to persist snapshot", {
+      path: SNAPSHOT_FILE_PATH,
+      message: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
 /**
  * @param {{ includePages: boolean }} - false: posts only / true: include pages
  */
@@ -93,6 +128,7 @@ export const getPosts = async (): Promise<TPosts> => {
     return postsCache.promise;
   }
 
+  const stalePosts = postsCache.value;
   const request = (async () => {
     let id = CONFIG.notionConfig.pageId as string;
     const configuredViewId = CONFIG.notionConfig.viewId as string | undefined;
@@ -277,12 +313,22 @@ export const getPosts = async (): Promise<TPosts> => {
         });
       }
 
+      await persistPostsSnapshot(posts);
+
       return posts;
     } catch (error) {
       console.error("[notion:getPosts] failed", {
         pageId: maskPageId(originalId),
         message: error instanceof Error ? error.message : String(error),
       });
+
+      if (stalePosts) {
+        console.warn("[notion:getPosts] serving stale posts", {
+          cachedCount: stalePosts.length,
+        });
+        return stalePosts;
+      }
+
       throw error;
     }
   })();

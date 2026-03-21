@@ -58,3 +58,4 @@ next-env.d.ts
 .pnp.*
 .yarn/*
 !.yarn/releases
+apps/blog/public/notion-content-snapshot.json
