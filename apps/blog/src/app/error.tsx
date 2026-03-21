@@ -19,11 +19,13 @@ export default function Error({
   const router = useRouter();
 
   return (
-    <div className="flex flex-col p-4 relative">
-      <div className="p-6 w-full fixed max-w-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <section className="flex min-h-[calc(100vh-18rem)] items-center justify-center py-10">
+      <div className="w-full max-w-[880px] border border-line bg-paper-strong p-6 shadow-editorial sm:p-8">
         <ErrorLottie />
-        <p className="mt-6 text-center">{error.message}</p>
-        <div className="flex space-x-4 mt-6">
+        <p className="mt-6 text-center text-body14 text-ink-soft">
+          {error.message}
+        </p>
+        <div className="mt-6 flex gap-4">
           <Button.Warring
             onClick={() => typeof window !== undefined && router.back()}
           >
@@ -33,6 +35,6 @@ export default function Error({
           <Button.Primary onClick={reset}>새로고침</Button.Primary>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

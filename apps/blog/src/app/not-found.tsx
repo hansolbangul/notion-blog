@@ -1,15 +1,11 @@
-import dynamic from "next/dynamic";
-
-const ErrorButtonWrap = dynamic(() => import("@app/ErrorButtonWrap"), {
-  ssr: false,
-});
+import ErrorButtonWrap from "@app/ErrorButtonWrap";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col p-4 relative">
-      <div className="p-6 w-full fixed max-w-[800px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <section className="flex min-h-[calc(100vh-18rem)] items-center justify-center py-10">
+      <div className="w-full max-w-[880px] border border-line bg-paper-strong p-6 shadow-editorial sm:p-8">
         <ErrorButtonWrap />
       </div>
-    </div>
+    </section>
   );
 }

@@ -8,7 +8,7 @@ export default function ErrorButtonWrap() {
   return (
     <>
       <NotFoundErrorLottie />
-      <div className="flex space-x-4 mt-6">
+      <div className="mt-6 flex gap-4">
         <Button.Warring
           onClick={() => typeof window !== undefined && window.history.back()}
         >
