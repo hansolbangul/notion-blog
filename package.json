@@ -1,6 +1,9 @@
 {
   "name": "notion-blog",
   "packageManager": "pnpm@9.9.0",
+  "engines": {
+    "node": "24.x"
+  },
   "private": true,
   "workspaces": [
     "apps/*",
