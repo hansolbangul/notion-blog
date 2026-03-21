@@ -48,6 +48,7 @@ const CONFIG = {
   },
   notionConfig: {
     pageId: process.env.NOTION_PAGE_ID,
+    viewId: process.env.V_ID,
   },
   isToolToggleVisible: true,
   sns: {
