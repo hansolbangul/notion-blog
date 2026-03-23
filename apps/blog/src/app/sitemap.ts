@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { NOTION_REVALIDATE_SECONDS } from "@blog/notions/constants";
 import {
   getAllPublishedContent,
   getContentLastModified,
@@ -8,7 +7,7 @@ import {
 } from "@libs/content";
 import { getAbsoluteUrl, getPostPath } from "@libs/seo";
 
-export const revalidate = NOTION_REVALIDATE_SECONDS;
+export const revalidate = 43200;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { posts, pages, libraries } = await getAllPublishedContent();

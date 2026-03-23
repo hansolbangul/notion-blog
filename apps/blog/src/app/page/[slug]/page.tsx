@@ -17,9 +17,9 @@ import {
 import { isExcludedPageSlug } from "@libs/content";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 type FetchType = {
@@ -28,8 +28,9 @@ type FetchType = {
 };
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: Props): Promise<Metadata> {
+  const { slug } = await params;
   if (isExcludedPageSlug(slug)) notFound();
 
   const posts = await getCached({ type: "Page" });
@@ -64,7 +65,8 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
 });
 
 export default async function PageContent({ params }: Props) {
-  const { post, recordMap } = await getFetch(params.slug);
+  const { slug } = await params;
+  const { post, recordMap } = await getFetch(slug);
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "홈", path: "/" },

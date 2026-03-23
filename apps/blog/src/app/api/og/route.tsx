@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import { getAbsoluteImageUrl } from "@libs/seo";
 import type { TPostType } from "@blog/notions/types";

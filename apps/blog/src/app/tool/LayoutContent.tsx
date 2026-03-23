@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import { useGetPosts } from "@blog/notions/service/post/usePostService";
 import RecommendSwiper from "@app/(feature)/home/recommendSwiper";
+import { TPosts } from "@blog/notions/types";
 
 export default function LayoutContent({
   children,
+  posts,
 }: {
   children: React.ReactNode;
+  posts: TPosts;
 }) {
-  const { data: posts } = useGetPosts();
-
   return (
     <>
       <RecommendSwiper

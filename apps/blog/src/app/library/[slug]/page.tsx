@@ -16,9 +16,9 @@ import {
 } from "@libs/seo";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 type FetchType = {
@@ -27,8 +27,9 @@ type FetchType = {
 };
 
 export async function generateMetadata({
-  params: { slug },
+  params,
 }: Props): Promise<Metadata> {
+  const { slug } = await params;
   const posts = await getCached({ type: "Library" });
   const post = posts.find((t: TPost) => t.slug === slug);
   if (!post) notFound();
@@ -59,7 +60,8 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
 });
 
 export default async function PageContent({ params }: Props) {
-  const { post, recordMap } = await getFetch(params.slug);
+  const { slug } = await params;
+  const { post, recordMap } = await getFetch(slug);
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "홈", path: "/" },

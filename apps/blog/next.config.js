@@ -2,6 +2,14 @@
 const nextConfig = {
   reactStrictMode: false,
   transpilePackages: ["@blog/notions"],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      canvas: false,
+    };
+
+    return config;
+  },
   images: {
     domains: [
       "www.notion.so",

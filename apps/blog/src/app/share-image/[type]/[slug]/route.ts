@@ -23,21 +23,22 @@ export async function GET(
   {
     params,
   }: {
-    params: {
+    params: Promise<{
       type: string;
       slug: string;
-    };
+    }>;
   },
 ) {
-  const postType = typeMap[params.type];
+  const { type, slug } = await params;
+  const postType = typeMap[type];
 
-  if (!params.slug || !postType) {
+  if (!slug || !postType) {
     return NextResponse.redirect(getFallbackImage(request));
   }
 
   try {
     const posts = await getCached({ type: postType });
-    const post = posts.find((item) => item.slug === params.slug);
+    const post = posts.find((item) => item.slug === slug);
     const sourceImage = post?.thumbnail?.replace(/&amp;/g, "&");
 
     if (!sourceImage) {
@@ -68,8 +69,8 @@ export async function GET(
     });
   } catch (error) {
     console.error("[share-image-route] failed to resolve image", {
-      type: params.type,
-      slug: params.slug,
+      type,
+      slug,
       message: error instanceof Error ? error.message : String(error),
     });
 

@@ -1,9 +1,8 @@
 import { ReactNode } from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
-import { NOTION_DETAIL_REVALIDATE_SECONDS } from "@blog/notions/constants";
 import { isExcludedPageSlug } from "@libs/content";
 
-export const revalidate = NOTION_DETAIL_REVALIDATE_SECONDS;
+export const revalidate = 43200;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return <>{children}</>;
