@@ -7,7 +7,7 @@ import getCached from "@blog/notions/libs/react-query/getCached";
 import type { Metadata } from "next";
 import { createHomeJsonLd, createHomeMetadata } from "@libs/seo";
 
-export const revalidate = 43200;
+export const revalidate = 10800;
 
 export const metadata: Metadata = createHomeMetadata();
 

@@ -7,7 +7,7 @@ import {
 } from "@libs/content";
 import { getAbsoluteUrl, getPostPath } from "@libs/seo";
 
-export const revalidate = 43200;
+export const revalidate = 10800;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { posts, pages, libraries } = await getAllPublishedContent();

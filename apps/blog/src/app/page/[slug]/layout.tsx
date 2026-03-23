@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import { isExcludedPageSlug } from "@libs/content";
 
-export const revalidate = 43200;
+export const revalidate = 10800;
 
 export default function Layout({ children }: { children: ReactNode }) {
   return <>{children}</>;
