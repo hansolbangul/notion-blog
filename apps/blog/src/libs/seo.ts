@@ -129,7 +129,7 @@ export function getPostSocialImage(post: TPost) {
   const kind =
     type === "Page" ? "page" : type === "Library" ? "library" : "post";
   return getAbsoluteUrl(
-    `/api/share-image?type=${encodeURIComponent(kind)}&slug=${encodeURIComponent(post.slug)}`,
+    `/share-image/${encodeURIComponent(kind)}/${encodeURIComponent(post.slug)}`,
   );
 }
 
