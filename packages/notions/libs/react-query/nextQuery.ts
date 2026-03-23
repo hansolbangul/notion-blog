@@ -1,5 +1,9 @@
-import { HydrationBoundary, dehydrate, QueryKey } from "@tanstack/react-query";
-import queryClient from "./queryClient";
+import {
+  HydrationBoundary,
+  dehydrate,
+  QueryClient,
+  QueryKey,
+} from "@tanstack/react-query";
 
 interface QueryProps<ResponseType = unknown> {
   queryKey: QueryKey;
@@ -7,13 +11,15 @@ interface QueryProps<ResponseType = unknown> {
 }
 
 export async function getDehydratedQueries<Q extends QueryProps[]>(queries: Q) {
+  const queryClient = new QueryClient();
+
   await Promise.all(
     queries.map(({ queryKey, queryFn }) =>
       queryClient.prefetchQuery({ queryKey, queryFn }),
     ),
   );
 
-  return dehydrate(queryClient); // queries 대신 state 전체를 반환
+  return dehydrate(queryClient);
 }
 
 export const Hydrate = HydrationBoundary;
