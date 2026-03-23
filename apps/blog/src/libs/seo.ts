@@ -124,6 +124,15 @@ export function getPostImage(post: TPost) {
   return getAbsoluteImageUrl(post.thumbnail);
 }
 
+export function getPostSocialImage(post: TPost) {
+  const type = post.type?.[0];
+  const kind =
+    type === "Page" ? "page" : type === "Library" ? "library" : "post";
+  return getAbsoluteUrl(
+    `/api/share-image?type=${encodeURIComponent(kind)}&slug=${encodeURIComponent(post.slug)}`,
+  );
+}
+
 export function toIsoDate(value?: string) {
   if (!value) return undefined;
   const parsed = new Date(value);
@@ -350,7 +359,7 @@ export function createPostMetadata(post: TPost) {
     description,
     pathname: getPostPath(post),
     keywords: [...(post.tags || []), ...(post.category || [])],
-    image: getPostImage(post),
+    image: getPostSocialImage(post),
     type: "article",
     publishedTime: getPublishedDate(post),
     modifiedTime: getModifiedDate(post),
@@ -412,7 +421,7 @@ export function createPostJsonLd(post: TPost) {
       "@type": "WebPage",
       "@id": getPostUrl(post),
     },
-    image: [getPostImage(post)],
+    image: [getPostSocialImage(post)],
     datePublished: getPublishedDate(post),
     dateModified: getModifiedDate(post),
     articleSection: post.category?.[0] || post.type?.[0] || "Frontend",
