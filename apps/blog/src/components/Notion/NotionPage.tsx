@@ -1,9 +1,8 @@
 "use client";
 import NotionThumbnail from "./NotionItem/Thumbnail";
-import { useParams } from "next/navigation";
-import { useGetPostDetail } from "@blog/notions/service/post/usePostService";
 import NotionTemplate from "@app/(component)/notion/page/NotionTemplate";
 import PostProgressGuide from "./NotionItem/PostProgressGuide";
+import { PostDetail } from "@blog/notions/types";
 
 type NavigationPost = {
   slug: string;
@@ -11,15 +10,12 @@ type NavigationPost = {
 } | null;
 
 type Props = {
+  post: PostDetail;
   prev: NavigationPost;
   next: NavigationPost;
 };
 
-export default function NotionPage({ prev, next }: Props) {
-  const params = useParams();
-
-  const { data: post } = useGetPostDetail(params.slug);
-
+export default function NotionPage({ post, prev, next }: Props) {
   return (
     <>
       <NotionTemplate post={post}>

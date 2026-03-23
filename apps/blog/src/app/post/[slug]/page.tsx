@@ -5,15 +5,9 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import NotionPage from "@/src/components/Notion/NotionPage";
 import JsonLd from "@components/Seo/JsonLd";
-import { DehydratedState } from "@tanstack/react-query";
 import { ExtendedRecordMap } from "notion-types";
-import { TPost, TPosts } from "@blog/notions/types";
-import postQueryOptions from "@blog/notions/service/post/postService";
+import { PostDetail, TPost } from "@blog/notions/types";
 import { getRecordMap } from "@blog/notions/apis";
-import {
-  getDehydratedQueries,
-  Hydrate,
-} from "@blog/notions/libs/react-query/nextQuery";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import {
   createBreadcrumbJsonLd,
@@ -28,7 +22,6 @@ type Props = {
 };
 
 type FetchType = {
-  posts: TPosts;
   post: TPost;
   prev: {
     slug: string;
@@ -39,7 +32,6 @@ type FetchType = {
     title: string;
   } | null;
   recordMap: ExtendedRecordMap | null;
-  thumbnail: string;
 };
 
 export async function generateMetadata({
@@ -49,28 +41,6 @@ export async function generateMetadata({
   const post = posts.find((t: TPost) => t.slug === slug);
   if (!post) notFound();
   return createPostMetadata(post);
-}
-
-async function getPreFetch(slug: string): Promise<DehydratedState> {
-  const { queryKey: postQueryKey } = postQueryOptions.all();
-
-  const { queryKey: postDetailQueryKey } = postQueryOptions.detail(slug);
-
-  const { recordMap, post, posts } = await getFetch(slug);
-
-  return await getDehydratedQueries([
-    {
-      queryKey: postQueryKey,
-      queryFn: () => posts,
-    },
-    {
-      queryKey: postDetailQueryKey,
-      queryFn: () => ({
-        ...post,
-        recordMap,
-      }),
-    },
-  ]);
 }
 
 const getFetch = cache(async (slug: string): Promise<FetchType> => {
@@ -107,16 +77,13 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
           title: nextPost.title,
         }
       : null,
-    posts,
     post: postDetail,
     recordMap,
-    thumbnail: postDetail.thumbnail || "",
   };
 });
 
 export default async function PostContent({ params }: Props) {
-  const { post, prev, next } = await getFetch(params.slug);
-  const { recordMap } = await getFetch(params.slug);
+  const { post, prev, next, recordMap } = await getFetch(params.slug);
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "홈", path: "/" },
@@ -148,15 +115,20 @@ export default async function PostContent({ params }: Props) {
     );
   }
 
-  const dehydratedState = await getPreFetch(params.slug);
-
   return (
-    <Hydrate state={dehydratedState}>
-      <div className="mt-4">
-        <JsonLd data={breadcrumbJsonLd} />
-        <JsonLd data={createPostJsonLd(post)} />
-        <NotionPage prev={prev} next={next} />
-      </div>
-    </Hydrate>
+    <div className="mt-4">
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={createPostJsonLd(post)} />
+      <NotionPage
+        post={
+          {
+            ...post,
+            recordMap,
+          } as PostDetail
+        }
+        prev={prev}
+        next={next}
+      />
+    </div>
   );
 }

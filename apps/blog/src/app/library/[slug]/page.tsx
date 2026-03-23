@@ -3,16 +3,10 @@ import "react-notion-x/src/styles.css";
 import { Metadata } from "next";
 import { cache } from "react";
 import { notFound } from "next/navigation";
-import { DehydratedState } from "@tanstack/react-query";
 import { ExtendedRecordMap } from "notion-types";
-import { TPost, TPosts } from "@blog/notions/types";
+import { PostDetail, TPost } from "@blog/notions/types";
 import { getRecordMap } from "@blog/notions/apis";
-import {
-  getDehydratedQueries,
-  Hydrate,
-} from "@blog/notions/libs/react-query/nextQuery";
 import getCached from "@blog/notions/libs/react-query/getCached";
-import pageQueryOptions from "@blog/notions/service/page/pageService";
 import NotionInfoPage from "@app/(component)/notion/page/NotionInfoPage";
 import JsonLd from "@components/Seo/JsonLd";
 import {
@@ -28,10 +22,8 @@ type Props = {
 };
 
 type FetchType = {
-  posts: TPosts;
   post: TPost;
   recordMap: ExtendedRecordMap | null;
-  thumbnail: string;
 };
 
 export async function generateMetadata({
@@ -41,28 +33,6 @@ export async function generateMetadata({
   const post = posts.find((t: TPost) => t.slug === slug);
   if (!post) notFound();
   return createPostMetadata(post);
-}
-
-async function getPreFetch(slug: string): Promise<DehydratedState> {
-  const { queryKey: pageQueryKey } = pageQueryOptions.all();
-
-  const { queryKey: pageDetailQueryKey } = pageQueryOptions.detail(slug);
-
-  const { recordMap, post, posts } = await getFetch(slug);
-
-  return await getDehydratedQueries([
-    {
-      queryKey: pageQueryKey,
-      queryFn: () => posts,
-    },
-    {
-      queryKey: pageDetailQueryKey,
-      queryFn: () => ({
-        ...post,
-        recordMap,
-      }),
-    },
-  ]);
 }
 
 const getFetch = cache(async (slug: string): Promise<FetchType> => {
@@ -83,10 +53,8 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
   }
 
   return {
-    posts,
     post: postDetail,
     recordMap,
-    thumbnail: postDetail.thumbnail || "",
   };
 });
 
@@ -123,15 +91,18 @@ export default async function PageContent({ params }: Props) {
     );
   }
 
-  const dehydratedState = await getPreFetch(params.slug);
-
   return (
-    <Hydrate state={dehydratedState}>
-      <div className="mt-4">
-        <JsonLd data={breadcrumbJsonLd} />
-        <JsonLd data={createPostJsonLd(post)} />
-        <NotionInfoPage />
-      </div>
-    </Hydrate>
+    <div className="mt-4">
+      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={createPostJsonLd(post)} />
+      <NotionInfoPage
+        post={
+          {
+            ...post,
+            recordMap,
+          } as PostDetail
+        }
+      />
+    </div>
   );
 }
