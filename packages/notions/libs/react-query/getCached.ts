@@ -20,7 +20,7 @@ export const NOTION_CONTENT_CACHE_TAG = "notion-content";
 const DATA_CACHE_REVALIDATE_SECONDS = NOTION_REVALIDATE_SECONDS + 300;
 const SNAPSHOT_FILE_PATH = path.join(
   process.cwd(),
-  "public",
+  ".cache",
   "notion-content-snapshot.json",
 );
 
@@ -53,7 +53,7 @@ function getRuntimeCachedContent(type: TPostType) {
       const posts = await getPosts();
       return filterPosts(posts, filterOptionsByType[cachedType]);
     },
-    ["notion-content-by-type"],
+    ["notion-content-by-type-v2"],
     {
       revalidate: DATA_CACHE_REVALIDATE_SECONDS,
       tags: [NOTION_CONTENT_CACHE_TAG],

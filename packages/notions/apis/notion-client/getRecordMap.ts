@@ -1,5 +1,5 @@
 import { unstable_cache } from "next/cache"
-import { NotionAPI } from "notion-client"
+import { NotionAPI } from "./client"
 import { NOTION_DETAIL_REVALIDATE_SECONDS } from "../../constants"
 import { retryNotionRequest } from "./retryNotionRequest"
 
@@ -44,7 +44,7 @@ function getRuntimeCachedRecordMap(pageId: string) {
 
       return recordMap
     },
-    ["notion-record-map"],
+    ["notion-record-map-v2"],
     {
       revalidate: RUNTIME_RECORD_MAP_REVALIDATE_SECONDS,
       tags: [NOTION_RECORD_MAP_CACHE_TAG],

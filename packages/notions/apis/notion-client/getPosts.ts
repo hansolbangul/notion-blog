@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 
-import { NotionAPI } from "notion-client";
+import { NotionAPI } from "./client";
 import { idToUuid } from "notion-utils";
 
 import { NOTION_REVALIDATE_SECONDS } from "../../constants";
@@ -20,7 +20,7 @@ const isNotionDebugEnabled = process.env.NODE_ENV !== "production";
 const POSTS_CACHE_TTL = NOTION_REVALIDATE_SECONDS * 1000;
 const SNAPSHOT_FILE_PATH = path.join(
   process.cwd(),
-  "public",
+  ".cache",
   "notion-content-snapshot.json",
 );
 
@@ -90,7 +90,7 @@ async function persistPostsSnapshot(posts: TPosts) {
       JSON.stringify(
         {
           generatedAt: new Date().toISOString(),
-          posts,
+          posts: posts.filter((post) => post.status?.[0] === "Public"),
         },
         null,
         2,
@@ -253,7 +253,7 @@ export const getPosts = async (): Promise<TPosts> => {
             configuredViewId: maskPageId(configuredViewId),
           },
         );
-        return [];
+        throw new Error("Notion collection or view is unavailable");
       }
 
       const pageIds = viewBlockIds;

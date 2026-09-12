@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  outputFileTracingIncludes: { "/*": ["./.cache/notion-content-snapshot.json"] },
   transpilePackages: ["@blog/notions"],
   webpack: (config) => {
     config.resolve.alias = {

@@ -12,23 +12,11 @@ export const revalidate = 10800;
 export const metadata: Metadata = createHomeMetadata();
 
 async function getFetch() {
-  try {
-    const posts = await getCached();
-
-    return {
-      posts,
-      tags: Object.keys(getAllSelectItemsFromPosts("tags", posts)),
-    };
-  } catch (error) {
-    console.error("[home:getFetch] failed to load cached posts", {
-      message: error instanceof Error ? error.message : String(error),
-    });
-
-    return {
-      posts: [],
-      tags: [],
-    };
-  }
+  const posts = await getCached();
+  return {
+    posts,
+    tags: Object.keys(getAllSelectItemsFromPosts("tags", posts)),
+  };
 }
 
 export default async function Page() {

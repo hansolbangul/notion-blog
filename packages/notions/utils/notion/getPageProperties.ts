@@ -1,5 +1,5 @@
 import { getTextContent, getDateValue } from "notion-utils"
-import { NotionAPI } from "notion-client"
+import { NotionAPI } from "../../apis/notion-client/client"
 import { BlockMap, CollectionPropertySchemaMap } from "notion-types"
 import { customMapImageUrl } from "./customMapImageUrl"
 import { retryNotionRequest } from "../../apis/notion-client/retryNotionRequest"
