@@ -17,6 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = getContentLastModified(indexableContent);
 
   const staticRoutes: MetadataRoute.Sitemap = [
+    { url: getAbsoluteUrl("/services") },
     {
       url: getAbsoluteUrl("/"),
       lastModified,
