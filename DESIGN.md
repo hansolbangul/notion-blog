@@ -1,31 +1,32 @@
-# 데굴데굴 — Frontend Journal
+# istp.builders — The builder's workbench
 
-Mode: editorial.
-Visual thesis: A Korean developer's journal with paper-white space, confident black typography, fine rules and one cobalt accent.
+Editorial technical blog, led by the owner's supplied box-head character.
+A warm paper surface, charcoal ink, cardboard artwork and muted green tape make a quiet, practical workspace.
 
-## References
+## Brand
 
-- https://getdesign.md/wired/design-md — magazine hierarchy, thin dividers, flat surfaces.
-- https://getdesign.md/vercel/design-md — precise spacing and restrained developer-facing navigation.
-  These are references, not copied branding. Korean reading comfort takes priority over the reference's Latin display fonts.
+Name: istp.builders. Destination domain: https://istp.builders.
+Use /brand/icon.png as the icon. /brand/character.png is the original turnaround; reveal front/side/back through CSS windows. Preserve original artwork and proportions. No competing invented mascot or logo. Characters appear in the intro, small author note, reading sidebar and end of an article.
 
-## Reset
+## System
 
-Remove nested search cards, shadows, tinted gradients, enormous tag clouds and image-overlay headlines. Preserve real posts, thumbnails, routing, search, tags and pagination. Define color, type, spacing and motion globally.
+Paper #f7f5ef; ink #262724; muted #6b6d64; line #dcded3; green ink #52672b; tape #c5d88a. Green is the only interface accent. Code syntax gets its own accessible palette. Korean system sans and system monospace. 4px spacing base. Flat editorial surfaces, 1px rules, no decorative shadows. Corners: icons 7–9px, code 8px, other surfaces square.
 
-## Tokens
+## Homepage
 
-Canvas #fafaf8; ink #17191c; muted #65686d; rule #dedfdd; accent #2455dc. No shadows. Square surfaces; circles only in the original rolling-dot wordmark. 4px spacing unit. Content max-width 1200px; 40px desktop / 20px mobile gutters.
-System Korean sans for interface and reading, Georgia italic for the small English editorial phrase. Masthead 112px desktop / 64px mobile, feature title 40px / 29px, list title 23px / 21px, body 16px and article body 18px with 1.85 line height.
-
-## Composition
-
-Compact sticky navigation, large Korean masthead, an edition rule, one featured story with its real image, then an archive list and a narrow topics/author column. No subscription or artificial statistics. Counts come from published posts. On mobile everything becomes one column, and topic navigation remains available.
-
-## Interaction
-
-180ms link/arrow response, staggered entrance up to 500ms, sticky navigation. Respect reduced motion. Search and topic filters reset pagination. Visible keyboard focus, 44px controls, readable empty state, semantic headings and labelled search.
+One brand introduction, then directly to the archive. No repeated featured post, fake statistics, redundant promotional copy, subscription funnels or floating tool launcher. Keep functional search, topics and pagination. Counts are derived from real published posts. Reveal the original thumbnail color on hover.
 
 ## Article
 
-Constrain long-form text to 760px, allow code to scroll within its box, maintain image aspect ratios and generous paragraph rhythm.
+One semantic h1 outside the Notion renderer. Title, short summary, author/date and reading time from the complete body. Readable 760px body, 17px text, 1.95 line height; 16px on mobile. Sticky desktop table of contents; collapsible mobile contents. Heading anchors align below the header. A thin reading progress indicator replaces the intrusive floating recommendation panel.
+Code: dark charcoal, syntax highlighting, exact-source copy, language label, line numbers, optional wrapping, keyboard-scrollable overflow. Unsupported languages remain escaped plain text. No horizontal page overflow. Inline code uses a quiet green surface. Tables scroll locally. Comments are optional disclosure. Previous/next navigation sits after the article.
+
+## Accessibility & motion
+
+Visible focus, named controls, status for copy, reduced-motion support. One short entrance and subtle interactive color/arrow changes. Decorative characters never cover text or controls.
+
+## Reference lineage
+
+https://getdesign.md/wired/design-md — editorial hierarchy and minimal containers.
+https://getdesign.md/vercel/design-md — legible developer navigation.
+The owner's character, Korean readability and minimal content take priority over those references.

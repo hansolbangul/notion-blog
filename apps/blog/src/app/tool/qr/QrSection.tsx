@@ -7,7 +7,7 @@ import downloadQr from "@blog/utils/downloadQr";
 
 export default function QrSection() {
   const [isDisabled, setIsDisabled] = useState(false);
-  const [qrText, setQrText] = useState("https://blog.hansolbangul.com");
+  const [qrText, setQrText] = useState("https://istp.builders");
 
   const onChangeHandler = (e: ChangeEvent<HTMLFormElement>) => {
     const target = e.target as unknown as HTMLInputElement;

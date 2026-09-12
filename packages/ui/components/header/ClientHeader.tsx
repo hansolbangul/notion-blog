@@ -5,21 +5,19 @@ export default function ClientHeader() {
   return (
     <>
       <div className="journal-nav">
-        <a
-          href="/"
-          className="journal-wordmark"
-          aria-label="데굴데굴 블로그 홈"
-        >
-          <span className="rolling-mark" aria-hidden="true">
-            <i />
-            <i />
-          </span>
-          <strong>BANGUL</strong>
-          <span className="nav-caption">A FRONTEND JOURNAL</span>
+        <a href="/" className="journal-wordmark" aria-label="istp.builders 홈">
+          <img
+            className="brand-icon"
+            src="/brand/icon.png"
+            alt=""
+            width="38"
+            height="38"
+          />
+          <strong>istp.builders</strong>
         </a>
         <nav aria-label="주 메뉴" className="desktop-nav">
-          <a href="/#archive">글 모음</a>
-          <a href="/#about">소개</a>
+          <a href="/#archive">기록</a>
+
           <a href="/tool/letter-count">도구</a>
           <a
             href="https://github.com/hansolbangul"
@@ -44,8 +42,8 @@ export default function ClientHeader() {
           aria-label="모바일 메뉴"
           onClick={() => setOpen(false)}
         >
-          <a href="/#archive">글 모음</a>
-          <a href="/#about">소개</a>
+          <a href="/#archive">기록</a>
+
           <a href="/tool/letter-count">도구</a>
           <a href="https://github.com/hansolbangul">GitHub ↗</a>
         </nav>

@@ -1,6 +1,7 @@
 "use client";
 import React, { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
+import Character from "@blog/ui/components/brand/Character";
 import { TPosts } from "@blog/notions/types";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -30,7 +31,10 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
         .includes(query.trim().toLowerCase()),
   );
   const total = Math.max(1, Math.ceil(filtered.length / 6));
-  const page = Math.max(1, Math.min(total, Number(params.get("page")) || 1));
+  const page = Math.max(
+    1,
+    Math.min(total, Math.floor(Number(params.get("page"))) || 1),
+  );
   const change = (tag: string, nextPage = 1) => {
     const p = new URLSearchParams();
     if (tag !== "All") p.set("tag", tag);
@@ -43,9 +47,9 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
       <div className="archive-main">
         <div className="archive-heading">
           <h2>
-            글 모음 <sup>{posts.length}</sup>
+            기록 <sup>{posts.length}</sup>
           </h2>
-          <span className="eyebrow">THE ARCHIVE</span>
+          <span className="eyebrow">RECENT NOTES</span>
         </div>
         <div className="archive-controls">
           <label className="journal-search">
@@ -63,7 +67,7 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
             </svg>
             <input
               aria-label="글 검색"
-              placeholder="어떤 이야기를 찾고 있나요?"
+              placeholder="제목, 키워드로 찾아보기"
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);
@@ -116,7 +120,8 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
         </div>
         {!filtered.length && (
           <div className="archive-empty">
-            <h3>아직 찾지 못했어요.</h3>
+            <Character pose="back" />
+            <h3>아직 없는 기록이네요.</h3>
             <p>다른 검색어를 입력하거나 주제 필터를 해제해 보세요.</p>
             <button
               onClick={() => {
@@ -183,26 +188,24 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
             {allTags ? "주제 접기 −" : "모든 주제 보기 +"}
           </button>
         </section>
-        <section id="about" className="author-note">
-          <span className="eyebrow">BEHIND THE NOTES</span>
-          <span className="author-monogram" aria-hidden="true">
-            h.
-          </span>
-          <h2>안녕하세요, 지한솔입니다.</h2>
-          <p>
-            더 나은 개발 경험을 고민하는
-            <br />
-            프론트엔드 개발자입니다.
-            <br />
-            직접 부딪히며 배운 것들을 씁니다.
-          </p>
-          <a
-            href="https://github.com/hansolbangul"
-            target="_blank"
-            rel="noreferrer"
-          >
-            만들고 있는 것들 ↗
-          </a>
+        <section id="about" className="builder-note">
+          <Character pose="side" />
+          <div>
+            <span className="eyebrow">THE BUILDER</span>
+            <h2>지한솔</h2>
+            <p>
+              직접 만든 것과
+              <br />
+              만들면서 배운 것.
+            </p>
+            <a
+              href="https://github.com/hansolbangul"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub ↗
+            </a>
+          </div>
         </section>
       </aside>
     </section>
@@ -215,77 +218,27 @@ export default function Home({
   posts: TPosts;
   tags: string[];
 }) {
-  const featured = posts[0];
   return (
-    <div className="journal-home">
-      <section className="journal-masthead">
-        <div>
-          <p className="eyebrow">CODE, CURIOSITY & THE IN-BETWEEN</p>
+    <div className="builder-home">
+      <section className="builder-hero">
+        <div className="builder-hero-copy">
+          <p className="eyebrow">A DEVELOPER’S WORKBENCH</p>
           <h1>
-            데굴데굴<span>.</span>
+            istp<span>.</span>builders
           </h1>
+          <p className="hero-description">직접 만들고, 부딪히고, 기록합니다.</p>
+          <div className="hero-topics">
+            <span>Frontend</span>
+            <span>DX</span>
+            <span>Side projects</span>
+          </div>
         </div>
-        <div className="masthead-note">
-          <p>
-            Learning,
-            <br />
-            one commit at a time.
-          </p>
-          <span>조금씩 더 나은 코드를 향해 굴러가는 기록.</span>
+        <div className="hero-character">
+          <span className="tape-note">일단, 만들어보자.</span>
+          <Character />
         </div>
       </section>
-      <div className="edition-rule">
-        <span>프론트엔드 개발 기록</span>
-        <span>REACT · TYPESCRIPT · WEB</span>
-        <span>BY HANSOL JI</span>
-      </div>
-      {featured && (
-        <section className="lead-story">
-          <Link href={`/post/${featured.slug}`} className="lead-copy">
-            <div className="eyebrow">
-              <span className="blue-dot" />
-              LATEST ENTRY{" "}
-              <span className="entry-number">
-                / {String(posts.length).padStart(3, "0")}
-              </span>
-            </div>
-            <h2>{featured.title}</h2>
-            <p>{featured.summary}</p>
-            <div className="lead-bottom">
-              <time>
-                {date(featured.date?.start_date || featured.createdTime)}
-              </time>
-              <span className="read-link">
-                이야기 읽기 <b>↗</b>
-              </span>
-            </div>
-          </Link>
-          <Link
-            href={`/post/${featured.slug}`}
-            className="lead-visual"
-            aria-label={featured.title}
-          >
-            {featured.thumbnail && (
-              <img
-                src={featured.thumbnail}
-                alt={featured.title}
-                fetchPriority="high"
-              />
-            )}
-            <span className="image-caption">
-              <span>ENGINEERING NOTES</span>
-              <span>
-                {featured.tags
-                  ?.filter((t) => t !== "Recommend")
-                  .slice(0, 2)
-                  .join(" / ")
-                  .toUpperCase()}
-              </span>
-            </span>
-          </Link>
-        </section>
-      )}
-      <Suspense fallback={<p>글 목록을 불러오는 중입니다.</p>}>
+      <Suspense fallback={<p>기록을 불러오는 중입니다.</p>}>
         <Archive posts={posts} tags={tags} />
       </Suspense>
     </div>

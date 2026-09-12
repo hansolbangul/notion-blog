@@ -18,10 +18,12 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const kind = searchParams.get("kind") || "home";
   const slug = searchParams.get("slug");
-  let title = searchParams.get("title") || "데굴데굴 블로그";
+  let title = searchParams.get("title") || "istp.builders";
   let eyebrow = searchParams.get("eyebrow") || "Frontend Archive";
   const imageParam = searchParams.get("image");
-  let thumbnail: string | null = imageParam ? getAbsoluteImageUrl(imageParam) : null;
+  let thumbnail: string | null = imageParam
+    ? getAbsoluteImageUrl(imageParam)
+    : null;
   const fontData = await font;
 
   if (
@@ -47,6 +49,9 @@ export async function GET(request: Request) {
     eyebrow = "Frontend Archive";
   }
 
+  const icon = await readFile(
+    path.join(process.cwd(), "public/brand/icon.png"),
+  );
   return new ImageResponse(
     (
       <div
@@ -54,224 +59,76 @@ export async function GET(request: Request) {
           display: "flex",
           width: "100%",
           height: "100%",
-          position: "relative",
-          overflow: "hidden",
-          background:
-            "linear-gradient(135deg, #f7f4ec 0%, #fffdf7 45%, #f3ece1 100%)",
-          color: "#1f1a14",
+          background: "#f7f5ef",
+          color: "#262724",
+          padding: "54px 64px",
+          flexDirection: "column",
           fontFamily: "Jua",
         }}
       >
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <img
+            src={`data:image/png;base64,${icon.toString("base64")}`}
+            width={64}
+            height={64}
+            style={{ borderRadius: 14 }}
+            alt=""
+          />
+          <span style={{ fontSize: 30 }}>istp.builders</span>
+          <span style={{ marginLeft: "auto", fontSize: 18, color: "#52672b" }}>
+            {eyebrow}
+          </span>
+        </div>
         <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(circle at top left, rgba(203, 121, 61, 0.16), transparent 32%), radial-gradient(circle at bottom right, rgba(91, 60, 34, 0.12), transparent 28%)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: 42,
-            left: 48,
-            right: 48,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
+          style={{ display: "flex", flex: 1, alignItems: "center", gap: 42 }}
         >
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: 10,
+              flex: 1,
+              gap: 25,
             }}
           >
+            <div style={{ width: 65, height: 7, background: "#c5d88a" }} />
             <div
               style={{
-                fontSize: 24,
-                letterSpacing: "0.28em",
-                textTransform: "uppercase",
-                color: "#7d6753",
+                fontSize: title.length > 45 ? 45 : 58,
+                lineHeight: 1.3,
+                wordBreak: "keep-all",
               }}
             >
-              {eyebrow}
-            </div>
-            <div
-              style={{
-                fontSize: 34,
-                color: "#3a3026",
-              }}
-            >
-              hansolbangul.com
+              {title}
             </div>
           </div>
-
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 92,
-              height: 92,
-              border: "2px solid rgba(58, 48, 38, 0.12)",
-              background: "rgba(255,255,255,0.72)",
-              boxShadow: "12px 12px 0 rgba(58, 48, 38, 0.08)",
-              fontSize: 28,
-              color: "#b15f2b",
-            }}
-          >
-            OG
-          </div>
-        </div>
-
-        {thumbnail ? (
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              display: "flex",
-              width: "100%",
-              height: "100%",
-              padding: "156px 56px 56px",
-              gap: 28,
-              alignItems: "stretch",
-            }}
-          >
-            <div
-              style={{
-                position: "relative",
-                display: "flex",
-                flex: "0 0 43%",
-                overflow: "hidden",
-                border: "2px solid rgba(58, 48, 38, 0.08)",
-                boxShadow: "18px 18px 0 rgba(58, 48, 38, 0.08)",
-                background: "#efe8dc",
-              }}
-            >
-              <img
-                src={thumbnail}
-                alt={title}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                flex: 1,
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                gap: 24,
-              }}
-            >
-              <div
-                style={{
-                  width: 164,
-                  height: 8,
-                  background: "#b15f2b",
-                }}
-              />
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 18,
-                  padding: "34px 36px",
-                  background: "rgba(255,255,255,0.86)",
-                  border: "2px solid rgba(58, 48, 38, 0.08)",
-                  boxShadow: "18px 18px 0 rgba(58, 48, 38, 0.08)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 60,
-                    lineHeight: 1.18,
-                    letterSpacing: "-0.03em",
-                    wordBreak: "keep-all",
-                  }}
-                >
-                  {title}
-                </div>
-                <div
-                  style={{
-                    fontSize: 28,
-                    color: "#6f5d4e",
-                  }}
-                >
-                  데굴데굴 블로그 · 프론트엔드 개발 아카이브
-                </div>
-              </div>
-            </div>
-          </div>
-        ) : (
-          <div
-            style={{
-              position: "relative",
-              zIndex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              width: "100%",
-              padding: "156px 56px 56px",
-              gap: 24,
-            }}
-          >
-            <div
-              style={{
-                width: 164,
-                height: 8,
-                background: "#b15f2b",
-              }}
+          {thumbnail && (
+            <img
+              src={thumbnail}
+              width={260}
+              height={240}
+              style={{ objectFit: "cover", borderRadius: 4 }}
+              alt=""
             />
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 18,
-                padding: "34px 36px",
-                background: "rgba(255,255,255,0.84)",
-                border: "2px solid rgba(58, 48, 38, 0.08)",
-                boxShadow: "18px 18px 0 rgba(58, 48, 38, 0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: 70,
-                  lineHeight: 1.18,
-                  letterSpacing: "-0.03em",
-                  wordBreak: "keep-all",
-                }}
-              >
-                {title}
-              </div>
-              <div
-                style={{
-                  fontSize: 28,
-                  color: "#6f5d4e",
-                }}
-              >
-                데굴데굴 블로그 · 프론트엔드 개발 아카이브
-              </div>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            paddingTop: 25,
+            borderTop: "1px solid #dcded3",
+            fontSize: 22,
+            color: "#6b6d64",
+          }}
+        >
+          <span>직접 만들고, 부딪히고, 기록합니다.</span>
+          <span>HANSOL JI ↗</span>
+        </div>
       </div>
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: "Jua",
-          data: fontData,
-          style: "normal",
-        },
-      ],
+      fonts: [{ name: "Jua", data: fontData, style: "normal", weight: 400 }],
     },
   );
 }

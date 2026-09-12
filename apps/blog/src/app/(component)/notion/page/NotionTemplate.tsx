@@ -1,25 +1,26 @@
 "use client";
-
+import { useState } from "react";
 import NotionRender from "@components/Notion/NotionItem/NotionRender";
 import Comment from "@components/Utteranc/Comment";
-import { PostDetail } from "@blog/notions/types";
-
-interface Props {
+import type { PostDetail } from "@blog/notions/types";
+export default function NotionTemplate({
+  post,
+}: {
   post?: PostDetail;
   children?: React.ReactNode;
-}
-
-export default function NotionTemplate({ post, children }: Props) {
+}) {
+  const [commentsOpen, setCommentsOpen] = useState(false);
   if (!post) return null;
   return (
     <>
-      <div className="-mt-4">
-        {children}
-        <NotionRender post={post} blockMap={post.recordMap} />
-        <>
-          <Comment post={post} />
-        </>
-      </div>
+      <NotionRender post={post} blockMap={post.recordMap} />
+      <details
+        className="article-comments"
+        onToggle={(event) => setCommentsOpen(event.currentTarget.open)}
+      >
+        <summary>댓글 열기</summary>
+        {commentsOpen && <Comment post={post} />}
+      </details>
     </>
   );
 }

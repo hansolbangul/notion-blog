@@ -3,11 +3,11 @@ import type { TPost } from "@blog/notions/types";
 import CONFIG from "@blog/notions/site.config";
 
 const siteUrl = CONFIG.url.replace(/\/$/, "");
-const defaultOgImage = `${siteUrl}/main_img.png`;
+const defaultOgImage = `${siteUrl}/brand/icon.png`;
 const siteName = CONFIG.blog.title;
-const siteTitle = "데굴데굴 블로그 | 프론트엔드 개발 아카이브";
+const siteTitle = "istp.builders | 프론트엔드 개발 아카이브";
 const defaultDescription =
-  "프론트엔드 개발 기록과 실험, Notion 기반 아카이브를 정리하는 데굴데굴 블로그입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.";
+  "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 istp.builders입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.";
 const creatorName = CONFIG.user.name || "hansolbangul";
 const creatorProfile = CONFIG.user.profile || siteUrl;
 const defaultSocialImage = getAbsoluteUrl("/api/og");
@@ -262,8 +262,8 @@ export function createSiteMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
-    imageWidth: 1024,
-    imageHeight: 1024,
+    imageWidth: 1254,
+    imageHeight: 1254,
     imageType: "image/png",
     type: "website",
   });
@@ -287,8 +287,8 @@ export function createSiteMetadata(): Metadata {
         }
       : undefined,
     icons: {
-      icon: "/favicon.ico",
-      shortcut: "/favicon.ico",
+      icon: "/brand/icon.png",
+      shortcut: "/brand/icon.png",
     },
   };
 }
@@ -310,8 +310,8 @@ export function createHomeMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
-    imageWidth: 1024,
-    imageHeight: 1024,
+    imageWidth: 1254,
+    imageHeight: 1254,
     imageType: "image/png",
     type: "website",
   });

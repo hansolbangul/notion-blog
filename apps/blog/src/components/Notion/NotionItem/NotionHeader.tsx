@@ -1,104 +1,65 @@
 "use client";
-
-import TagIcon from "@components/Post/PostItem/TagIcon";
-import Toast from "@components/Toast/Toast";
-import React, { Suspense, useState } from "react";
-import { IoShareSocialSharp } from "react-icons/io5";
-import { TPost } from "@blog/notions/types";
-import { usePathname } from "next/navigation";
-import { getPostReadingMinutes } from "@libs/reading-time";
-
-type Props = {
+import { useState } from "react";
+import type { TPost } from "@blog/notions/types";
+import Link from "next/link";
+export default function NotionHeader({
+  post,
+  minutes,
+}: {
   post: TPost;
-};
-
-export default function NotionHeader({ post }: Props) {
-  const pathName = usePathname();
-  const readingMinutes = getPostReadingMinutes(post);
-
-  const isPostSlug = pathName.startsWith("/post");
-
-  if (!isPostSlug) return null;
-  const [visible, setVisible] = useState(false);
+  minutes?: number;
+}) {
   const [message, setMessage] = useState("");
-
-  const copyUrl = async () => {
-    if (visible) return;
-    const href = window.location.href;
-    const clipboard = await navigator.clipboard.readText();
-
-    if (clipboard === href) {
-      setTime("이미 저장하였습니다.");
-    } else {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        setTime("클립보드에 저장하였습니다.");
-      } catch {
-        setTime("클립보드에 저장 실패하였습니다.");
-      }
-    }
-  };
-
-  const setTime = (message: string) => {
-    setTimeout(() => {
-      setVisible(false);
-    }, 3000);
-    setMessage(message);
-    setVisible(true);
-  };
-
   return (
-    <div className="flex flex-col gap-8 border-y border-line py-8 md:py-10">
-      <h1 className="inline-block max-w-3xl font-display text-[38px] leading-[1.08] text-ink custom:text-[52px]">
-        {post.title}
-      </h1>
-      <div className="flex flex-wrap items-end gap-6 pt-2 text-base">
-        <div className="flex flex-col gap-1">
-          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-            생성일
-          </span>
-          <span className="font-medium text-ink">
-            {new Intl.DateTimeFormat("ko").format(
-              new Date(post.date.start_date),
-            )}
-          </span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-            태그
-          </span>
-          <span className="flex flex-wrap gap-2">
-            {post.tags?.slice(0, 2).map((tag) => (
-              <Suspense key={tag}>
-                <TagIcon isRouter={false} key={tag} tag={tag} />
-              </Suspense>
-            ))}
-          </span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-            작성자
-          </span>
-          <span className="font-medium text-ink">
-            {post.author ? post.author[0].name : "미등록"}
-          </span>
-        </div>
-        <div className="flex flex-col gap-1">
-          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-            읽는 시간
-          </span>
-          <span className="font-medium text-ink">약 {readingMinutes}분</span>
-        </div>
+    <header className="article-header">
+      <Link className="article-back" href="/#archive">
+        ← 모든 기록
+      </Link>
+      <div className="article-tags">
+        {post.tags
+          ?.filter((t) => t !== "Recommend")
+          .slice(0, 3)
+          .map((t) => (
+            <Link href={`/?tag=${encodeURIComponent(t)}#archive`} key={t}>
+              {t}
+            </Link>
+          ))}
+      </div>
+      <h1>{post.title}</h1>
+      {post.summary && <p className="article-deck">{post.summary}</p>}
+      <div className="article-byline">
+        <img src="/brand/icon.png" alt="" width="32" height="32" />
+        <span>지한솔</span>
+        <span className="byline-separator">/</span>
+        <time dateTime={post.date?.start_date || post.createdTime}>
+          {(post.date?.start_date || post.createdTime)
+            .slice(0, 10)
+            .replaceAll("-", ".")}
+        </time>
+        {minutes && (
+          <>
+            <span className="byline-separator">/</span>
+            <span>{minutes}분 읽기</span>
+          </>
+        )}
         <button
-          onClick={copyUrl}
-          className="ml-auto flex h-11 w-11 items-center justify-center border border-line bg-paper-strong text-lg text-ink shadow-panel"
           type="button"
+          onClick={async () => {
+            try {
+              await navigator.clipboard.writeText(window.location.href);
+              setMessage("링크 복사됨 ✓");
+            } catch {
+              setMessage("주소창의 링크를 복사해 주세요.");
+            }
+          }}
           aria-label="현재 글 주소 복사"
         >
-          <IoShareSocialSharp />
+          링크 복사 ↗
         </button>
+        <span role="status" className="copy-status">
+          {message}
+        </span>
       </div>
-      {visible && <Toast message={message} />}
-    </div>
+    </header>
   );
 }

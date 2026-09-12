@@ -4,11 +4,11 @@ const CONFIG = {
     age: "",
     profile: "",
   },
-  url: "https://hansolbangul.com",
+  url: "https://istp.builders",
   metadata: {
-    title: "데굴데굴 블로그 | 프론트엔드 개발 아카이브",
+    title: "istp.builders | 프론트엔드 개발 아카이브",
     description:
-      "프론트엔드 개발 기록과 실험, Notion 기반 아카이브를 정리하는 데굴데굴 블로그입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.",
+      "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 istp.builders입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.",
     keywords: [
       "프론트엔드 블로그",
       "프론트엔드 개발",
@@ -19,23 +19,23 @@ const CONFIG = {
       "TypeScript",
     ],
     openGraph: {
-      title: "데굴데굴 블로그",
+      title: "istp.builders",
       description:
-        "프론트엔드 개발 기록과 실험, Notion 기반 아카이브를 정리하는 공간입니다.",
+        "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 공간입니다.",
       images: [
         {
-          url: "https://hansolbangul.com/main_img.webp",
-          alt: "지한솔방울썸넬",
-          width: 1200,
-          height: 630,
+          url: "https://istp.builders/brand/icon.png",
+          alt: "istp.builders 박스 캐릭터",
+          width: 1254,
+          height: 1254,
         },
       ],
     },
   },
   blog: {
-    title: "데굴데굴 블로그",
+    title: "istp.builders",
     todayWords: ["hello world", "hansolbangul", "V-log"],
-    scheme: "dark",
+    scheme: "light",
   },
   utterances: {
     enable: true,
