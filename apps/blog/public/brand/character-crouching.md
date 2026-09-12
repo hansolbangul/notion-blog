@@ -1,0 +1,6 @@
+# Crouching recommendation mascot
+
+Generated with the built-in image_gen tool from the owner's original character turnaround. PNG alpha preserved; used in ReadingRecommendation.
+
+Prompt:
+Use case: illustration-story. Create a single website mascot PNG asset with a genuinely transparent background. Reference image: supplied turnaround of the owner's istp.builders box-head character. Preserve its identity exactly: large worn tan cardboard box head, black half-lidded eyes, tiny horizontal mouth, small lime green tape patch upper left of face, oversized charcoal black T-shirt, loose black pants, cream sneakers, hand drawn ink outline and subtle paper texture. Change the pose: full body crouching low in a compact squat, knees bent close to chest, elbows resting on knees, hands together in a shy pleading gesture, looking at the viewer as if asking to read another article. Endearing understated deadpan expression, not crying. Three-quarter front pose, all limbs and shoes visible, natural anatomy. One character only, centered and tightly framed with a little transparent padding, square canvas. No speech bubble, no lettering, no labels, no props, no scenery, no watermark. This asset will be displayed around 140px tall in a bottom recommendation widget. Retain legible silhouette and character fidelity.

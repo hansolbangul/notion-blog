@@ -30,3 +30,7 @@ Visible focus, named controls, status for copy, reduced-motion support. One shor
 https://getdesign.md/wired/design-md — editorial hierarchy and minimal containers.
 https://getdesign.md/vercel/design-md — legible developer navigation.
 The owner's character, Korean readability and minimal content take priority over those references.
+
+## End-of-reading invitation
+
+At 85% reading progress, a crouching mascot rises from the bottom with the Korean request “이것도 읽어주면 안돼요?”. Recommend at most two other published posts, ranked by shared topics; omit the current post. Dismissal lasts for the current article visit, Escape also dismisses, and hidden recommendations are not focusable. The desktop character sits beside the speech bubble; on mobile it sits above the bubble. Respect reduced motion and safe-area insets. Generated asset and exact prompt: `apps/blog/public/brand/character-crouching.png` and sibling `.md`.

@@ -31,12 +31,11 @@ type FetchType = {
     slug: string;
     title: string;
   } | null;
+  recommendations: { slug: string; title: string; tag?: string }[];
   recordMap: ExtendedRecordMap | null;
 };
 
-export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const posts = await getCached();
   const post = posts.find((t: TPost) => t.slug === slug);
@@ -78,6 +77,25 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
           title: nextPost.title,
         }
       : null,
+    recommendations: posts
+      .filter(
+        (candidate) =>
+          candidate.slug !== slug && candidate.type?.includes("Post"),
+      )
+      .map((candidate) => ({
+        candidate,
+        score:
+          candidate.tags?.filter(
+            (tag) => tag !== "Recommend" && postDetail.tags?.includes(tag),
+          ).length || 0,
+      }))
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 2)
+      .map(({ candidate }) => ({
+        slug: candidate.slug,
+        title: candidate.title,
+        tag: candidate.tags?.find((tag) => tag !== "Recommend"),
+      })),
     post: postDetail,
     recordMap,
   };
@@ -85,7 +103,7 @@ const getFetch = cache(async (slug: string): Promise<FetchType> => {
 
 export default async function PostContent({ params }: Props) {
   const { slug } = await params;
-  const { post, prev, next, recordMap } = await getFetch(slug);
+  const { post, prev, next, recordMap, recommendations } = await getFetch(slug);
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "홈", path: "/" },
@@ -128,6 +146,7 @@ export default async function PostContent({ params }: Props) {
             recordMap,
           } as PostDetail
         }
+        recommendations={recommendations}
         prev={prev}
         next={next}
       />
