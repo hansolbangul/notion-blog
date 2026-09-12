@@ -5,7 +5,7 @@ A warm paper surface, charcoal ink, cardboard artwork and muted green tape make 
 
 ## Brand
 
-Name: istp.builders. Destination domain: https://istp.builders.
+Name: istp.builders. Production domain: https://hansolbangul.com (the brand is independent of the host).
 Use /brand/icon.png as the icon. /brand/character.png is the original turnaround; reveal front/side/back through CSS windows. Preserve original artwork and proportions. No competing invented mascot or logo. Characters appear in the intro, small author note, reading sidebar and end of an article.
 
 ## System
@@ -34,3 +34,7 @@ The owner's character, Korean readability and minimal content take priority over
 ## End-of-reading invitation
 
 At 85% reading progress, a crouching mascot rises from the bottom with the Korean request “이것도 읽어주면 안돼요?”. Recommend at most two other published posts, ranked by shared topics; omit the current post. Dismissal lasts for the current article visit, Escape also dismisses, and hidden recommendations are not focusable. The desktop character sits beside the speech bubble; on mobile it sits above the bubble. Respect reduced motion and safe-area insets. Generated asset and exact prompt: `apps/blog/public/brand/character-crouching.png` and sibling `.md`.
+
+## Connected services
+
+A compact “만든 서비스” section follows the introduction, with equal prominence for 연당 (https://yeondang.hansolbangul.com) and Marry Me (https://marry.hansolbangul.com). The header links to /#services. Service links open in new tabs with accessible labels and preserve the current reading session. Two columns on desktop, simple separated rows on mobile.

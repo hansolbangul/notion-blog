@@ -238,6 +238,56 @@ export default function Home({
           <Character />
         </div>
       </section>
+      <section
+        id="services"
+        className="builder-services"
+        aria-labelledby="services-title"
+      >
+        <div className="services-heading">
+          <h2 id="services-title">만든 서비스</h2>
+          <span className="eyebrow">SIDE PROJECTS</span>
+        </div>
+        <div className="service-links">
+          <a
+            href="https://yeondang.hansolbangul.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="연당 — 운세와 궁합 서비스 (새 탭)"
+          >
+            <span className="service-number" aria-hidden="true">
+              01
+            </span>
+            <div>
+              <h3>
+                연당 <span className="service-hanja">緣堂</span>
+              </h3>
+              <p>오늘의 운세와 궁합, 나를 알아가는 시간.</p>
+              <span className="service-host">yeondang.hansolbangul.com</span>
+            </div>
+            <span className="service-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+          <a
+            href="https://marry.hansolbangul.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Marry Me — 모바일 청첩장 서비스 (새 탭)"
+          >
+            <span className="service-number" aria-hidden="true">
+              02
+            </span>
+            <div>
+              <h3>Marry Me</h3>
+              <p>우리의 사진과 이야기로 만드는 모바일 청첩장.</p>
+              <span className="service-host">marry.hansolbangul.com</span>
+            </div>
+            <span className="service-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </a>
+        </div>
+      </section>
       <Suspense fallback={<p>기록을 불러오는 중입니다.</p>}>
         <Archive posts={posts} tags={tags} />
       </Suspense>

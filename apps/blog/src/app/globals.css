@@ -1479,3 +1479,110 @@ input {
     transition: none;
   }
 }
+
+.builder-services {
+  padding: 27px 0 30px;
+  border-bottom: 1px solid var(--color-line);
+  scroll-margin-top: 96px;
+}
+.services-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+.services-heading h2 {
+  font-size: 14px;
+  font-weight: 650;
+}
+.service-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.service-links > a {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  min-width: 0;
+  padding: 5px 32px 5px 0;
+}
+.service-links > a + a {
+  border-left: 1px solid var(--color-line);
+  padding: 5px 0 5px 32px;
+}
+.service-number {
+  padding-top: 6px;
+  font: 10px var(--font-code);
+  color: var(--color-ink-soft);
+}
+.service-links h3 {
+  font-size: 25px;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.service-hanja {
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-accent);
+}
+.service-links p {
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 8px 0 10px;
+  word-break: keep-all;
+  color: var(--color-ink-soft);
+}
+.service-host {
+  font: 10px var(--font-code);
+  color: var(--color-ink-soft);
+  overflow-wrap: anywhere;
+}
+.service-arrow {
+  margin-left: auto;
+  padding-top: 3px;
+  color: var(--color-accent);
+  font-size: 23px;
+  transition: transform 180ms;
+}
+.service-links > a:hover h3 {
+  color: var(--color-accent);
+}
+.service-links > a:hover .service-arrow {
+  transform: translate(3px, -3px);
+}
+@media (max-width: 760px) {
+  .builder-services {
+    padding: 24px 0;
+    scroll-margin-top: 84px;
+  }
+  .services-heading {
+    margin-bottom: 18px;
+  }
+  .service-links {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .service-links > a {
+    padding: 0;
+    gap: 13px;
+  }
+  .service-links > a + a {
+    padding: 18px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-line);
+  }
+  .service-links h3 {
+    font-size: 23px;
+  }
+  .service-links p {
+    font-size: 12px;
+    margin: 5px 0 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-arrow {
+    transition: none;
+  }
+}

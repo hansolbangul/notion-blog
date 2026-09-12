@@ -17,6 +17,7 @@ export default function ClientHeader() {
         </a>
         <nav aria-label="주 메뉴" className="desktop-nav">
           <a href="/#archive">기록</a>
+          <a href="/#services">서비스</a>
 
           <a href="/tool/letter-count">도구</a>
           <a
@@ -43,6 +44,7 @@ export default function ClientHeader() {
           onClick={() => setOpen(false)}
         >
           <a href="/#archive">기록</a>
+          <a href="/#services">서비스</a>
 
           <a href="/tool/letter-count">도구</a>
           <a href="https://github.com/hansolbangul">GitHub ↗</a>
