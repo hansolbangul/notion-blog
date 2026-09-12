@@ -8,7 +8,7 @@ export default function ClientHeader() {
         <a href="/" className="journal-wordmark" aria-label="istp.builders 홈">
           <img
             className="brand-icon"
-            src="/api/og?kind=icon"
+            src="/api/og?kind=icon&v=3"
             alt=""
             width="38"
             height="38"

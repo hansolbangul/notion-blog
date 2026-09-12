@@ -3,7 +3,7 @@ import type { TPost } from "@blog/notions/types";
 import CONFIG from "@blog/notions/site.config";
 
 const siteUrl = CONFIG.url.replace(/\/$/, "");
-const defaultOgImage = `${siteUrl}/api/og?v=chibi-2`;
+const defaultOgImage = `${siteUrl}/api/og?v=chibi-3`;
 const siteName = CONFIG.blog.title;
 const siteTitle = "istp.builders | 프론트엔드 개발 아카이브";
 const defaultDescription =
@@ -47,7 +47,7 @@ const publisher = {
   url: siteUrl,
   logo: {
     "@type": "ImageObject",
-    url: `${siteUrl}/api/og?kind=icon`,
+    url: `${siteUrl}/api/og?kind=icon&v=3`,
   },
 };
 
@@ -293,8 +293,8 @@ export function createSiteMetadata(): Metadata {
         }
       : undefined,
     icons: {
-      icon: "/api/og?kind=icon",
-      shortcut: "/api/og?kind=icon",
+      icon: "/api/og?kind=icon&v=3",
+      shortcut: "/api/og?kind=icon&v=3",
     },
   };
 }

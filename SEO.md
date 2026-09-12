@@ -8,6 +8,6 @@ Routes: /robots.txt, /sitemap.xml, /feed.xml. They use the same public content s
 
 Google Search Console already has the domain property sc-domain:hansolbangul.com. Submit https://hansolbangul.com/sitemap.xml once; the same endpoint updates automatically afterward. The old blog subdomain sitemap had 80 invalid-date errors in the September 5, 2026 report; fixed by ISO date serialization. Existing reports may take time to refresh.
 
-Home Open Graph/Twitter image: /api/og?v=chibi-2, 1200×630. Uses the supplied laptop chibi artwork. Posts retain their Notion cover via /share-image/{type}/{slug}, falling back to the new mascot image. Social networks cache previews independently. Header/author icons and favicon use /api/og?kind=icon, a cached 96×96 PNG instead of the multi-megabyte embedded SVG.
+Home Open Graph/Twitter image: /api/og?v=chibi-3, 1200×630. Uses the supplied laptop chibi artwork. Posts retain their Notion cover via /share-image/{type}/{slug}, falling back to the new mascot image. Social networks cache previews independently. Header/author icons and favicon use /api/og?kind=icon, a cached 96×96 PNG instead of the multi-megabyte embedded SVG.
 
 Run `node scripts/check-seo.mjs http://localhost:3100` against the production build, or pass the production origin. This checks SSR article links and pagination, canonical URLs, JSON-LD, ISO sitemap dates, RSS, robots, missing article status and OG output. No ranking or indexing guarantee is implied.

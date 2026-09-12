@@ -17,7 +17,7 @@ for (const html of [home, second]) {
     "Article links must be server rendered",
   );
   assert.match(html, /application\/rss\+xml/);
-  assert.match(html, /chibi-2/);
+  assert.match(html, /chibi-3/);
   for (const match of html.matchAll(
     /<script type="application\/ld\+json">(.*?)<\/script>/gs,
   ))
@@ -50,7 +50,7 @@ const missing = await fetch(`${base}/post/seo-check-missing-post-20260913`, {
   headers: { "user-agent": "Googlebot" },
 });
 assert.equal(missing.status, 404);
-const og = await fetch(`${base}/api/og?v=chibi-2`);
+const og = await fetch(`${base}/api/og?v=chibi-3`);
 assert.equal(og.status, 200);
 assert.match(og.headers.get("content-type"), /image\/png/);
 const image = Buffer.from(await og.arrayBuffer());

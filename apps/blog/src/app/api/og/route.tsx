@@ -50,7 +50,7 @@ export async function GET(request: Request) {
   }
 
   const icon = await readFile(
-    path.join(process.cwd(), "public/brand/chibi-poses-v1.png"),
+    path.join(process.cwd(), "public/brand/chibi/poses-transparent.png"),
   );
   if (kind === "icon") {
     return new ImageResponse(

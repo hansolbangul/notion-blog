@@ -44,3 +44,7 @@ Interaction: one click on the complete service preview opens the actual service 
 Maintain apps/blog/src/libs/services.ts as the single source of truth. Add a service there and save its screenshot in public/services/. featuredOrder sets the selection priority, and HOME_SERVICE_LIMIT caps the homepage at two. Entries without featuredOrder appear only in the complete catalog. No search, filters, or carousel until the collection warrants them. On mobile the previews stack vertically. New-tab behavior is visible and included in accessible link names. Domain text is replaced with benefit-led descriptions and explicit calls to action.
 
 Preview images are screenshots of the actual public landing pages, captured 2026-09-13 with the browser tool. Sources: https://yeondang.hansolbangul.com and https://marry.hansolbangul.com. The latter currently brands itself as 메리와; preserve Marry Me as the project name and display the live name in its category.
+
+## Transparent character assets
+
+All mascots use individual alpha PNGs in public/brand/chibi/. The original supplied pixels are preserved by scripts/extract-chibi.py (Python + Pillow); paper background is removed with edge-connected segmentation. The full transparent sheet is used only inside the OG renderer. Footer has no large character decoration. Code captions contain a small coding pose beside the language, with copy/wrap controls kept separate.

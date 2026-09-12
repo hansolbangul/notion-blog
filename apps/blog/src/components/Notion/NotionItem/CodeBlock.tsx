@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Prism from "prismjs";
+import Character from "@blog/ui/components/brand/Character";
 import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-typescript";
@@ -48,7 +49,7 @@ export default function CodeBlock({ block }: { block: NotionCodeBlock }) {
     <figure className={`builder-code ${wrapped ? "is-wrapped" : ""}`}>
       <figcaption>
         <span className="code-language">
-          <i aria-hidden="true" />
+          <span aria-hidden="true"><Character pose="side" className="code-character" /></span>
           {rawLanguage}
         </span>
         <div>

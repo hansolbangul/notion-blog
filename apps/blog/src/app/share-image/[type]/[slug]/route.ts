@@ -15,7 +15,7 @@ const typeMap: Record<string, TPostType> = {
 const cacheControlValue = `public, max-age=0, s-maxage=${NOTION_DETAIL_REVALIDATE_SECONDS}, stale-while-revalidate=${NOTION_DETAIL_REVALIDATE_SECONDS}`;
 
 function getFallbackImage(request: NextRequest) {
-  return new URL(getAbsoluteUrl("/api/og?v=chibi-2"), request.url);
+  return new URL(getAbsoluteUrl("/api/og?v=chibi-3"), request.url);
 }
 
 export async function GET(

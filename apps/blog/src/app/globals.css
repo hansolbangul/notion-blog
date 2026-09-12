@@ -119,14 +119,14 @@ input {
   letter-spacing: 1.4px;
   color: var(--color-ink-soft);
 }
-/* Native SVG windows preserve each pose in the supplied chibi sheet. */
+/* Individual alpha PNGs keep the mascot independent of the page background. */
 .box-character {
   display: block;
   width: 100px;
   height: auto;
   flex-shrink: 0;
   pointer-events: none;
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
 }
 .builder-hero {
   display: flex;
@@ -483,14 +483,6 @@ input {
 .footer-inner > div + div > span {
   color: var(--color-ink-soft);
 }
-.footer-character {
-  width: 80px;
-  position: absolute;
-  right: 0;
-  bottom: 100%;
-  height: auto;
-  overflow: visible;
-}
 .builder-home {
   animation: appear 0.5s both;
 }
@@ -832,11 +824,11 @@ input {
   color: #d0d8c3;
   text-transform: lowercase;
 }
-.code-language i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-tape);
+.code-language .code-character {
+  width: 40px;
+  height: 48px;
+  margin-block: 5px;
+  mix-blend-mode: normal;
 }
 .builder-code figcaption > div {
   display: flex;
@@ -1186,9 +1178,6 @@ input {
   }
   .footer-inner > div + div {
     font-size: 9px;
-  }
-  .footer-character {
-    right: 18px;
   }
   .article-layout {
     display: block;
