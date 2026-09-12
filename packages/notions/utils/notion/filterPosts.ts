@@ -9,11 +9,6 @@ const initialOption: FilterPostsOptions = {
   acceptStatus: ["Public"],
   acceptType: ["Post"],
 };
-const current = new Date();
-const tomorrow = new Date(current);
-tomorrow.setDate(tomorrow.getDate() + 1);
-tomorrow.setHours(0, 0, 0, 0);
-
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production";
 
 export function filterPosts(
@@ -21,6 +16,7 @@ export function filterPosts(
   options: FilterPostsOptions = initialOption,
 ): TPosts {
   const { acceptStatus = ["Public"], acceptType = ["Post"] } = options;
+  const now = Date.now();
   let invalidDataCount = 0;
   let invalidStatusCount = 0;
   let invalidTypeCount = 0;
@@ -28,8 +24,12 @@ export function filterPosts(
   const filteredPosts = posts
     // filter data
     .filter((post) => {
-      const postDate = new Date(post?.date?.start_date || post.createdTime);
-      const isValid = !!post.title && !!post.slug && postDate <= tomorrow;
+      const value = post?.date?.start_date || post.createdTime;
+      // Date-only Notion publications start at midnight in the blog owner’s timezone.
+      const postDate = new Date(
+        /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00+09:00` : value,
+      );
+      const isValid = !!post.title && !!post.slug && postDate.getTime() <= now;
       if (!isValid) invalidDataCount += 1;
       return isValid;
     })

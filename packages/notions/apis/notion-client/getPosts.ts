@@ -4,7 +4,6 @@ import path from "path";
 import { NotionAPI } from "./client";
 import { idToUuid } from "notion-utils";
 
-import { NOTION_REVALIDATE_SECONDS } from "../../constants";
 import CONFIG from "../../site.config";
 import { TPosts } from "../../types";
 import getPageProperties from "../../utils/notion/getPageProperties";
@@ -17,7 +16,8 @@ const maskPageId = (value?: string) => {
 };
 
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production";
-const POSTS_CACHE_TTL = NOTION_REVALIDATE_SECONDS * 1000;
+// Only coalesce nearby calls; persistent caching is owned by getCached.
+const POSTS_CACHE_TTL = 10_000;
 const SNAPSHOT_FILE_PATH = path.join(
   process.cwd(),
   ".cache",

@@ -3,13 +3,13 @@ import type { TPost } from "@blog/notions/types";
 import CONFIG from "@blog/notions/site.config";
 
 const siteUrl = CONFIG.url.replace(/\/$/, "");
-const defaultOgImage = `${siteUrl}/api/og`;
+const defaultOgImage = `${siteUrl}/api/og?v=chibi-2`;
 const siteName = CONFIG.blog.title;
 const siteTitle = "istp.builders | 프론트엔드 개발 아카이브";
 const defaultDescription =
   "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 istp.builders입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.";
-const creatorName = CONFIG.user.name || "hansolbangul";
-const creatorProfile = CONFIG.user.profile || siteUrl;
+const creatorName = CONFIG.user.name || "지한솔";
+const creatorProfile = CONFIG.user.profile || `${siteUrl}/#about`;
 const defaultSocialImage = getAbsoluteUrl("/api/og");
 
 type SeoMetadataOptions = {
@@ -47,7 +47,7 @@ const publisher = {
   url: siteUrl,
   logo: {
     "@type": "ImageObject",
-    url: `${siteUrl}/brand/chibi-icon-v1.svg`,
+    url: `${siteUrl}/api/og?kind=icon`,
   },
 };
 
@@ -135,7 +135,9 @@ export function getPostSocialImage(post: TPost) {
 
 export function toIsoDate(value?: string) {
   if (!value) return undefined;
-  const parsed = new Date(value);
+  const parsed = new Date(
+    /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00+09:00` : value,
+  );
   if (Number.isNaN(parsed.getTime())) return undefined;
   return parsed.toISOString();
 }
@@ -187,10 +189,13 @@ export function createSeoMetadata({
       ];
 
   return {
+    // All URLs are absolute. Next 15 drops root query strings when metadataBase is set.
+    metadataBase: null,
     title,
     description: seoDescription,
     alternates: {
       canonical,
+      types: { "application/rss+xml": getAbsoluteUrl("/feed.xml") },
     },
     keywords,
     authors: resolvedAuthors,
@@ -200,10 +205,10 @@ export function createSeoMetadata({
     robots: noIndex
       ? {
           index: false,
-          follow: false,
+          follow: true,
           googleBot: {
             index: false,
-            follow: false,
+            follow: true,
             noimageindex: true,
           },
         }
@@ -279,6 +284,7 @@ export function createSiteMetadata(): Metadata {
     description: defaultDescription,
     alternates: {
       canonical: siteUrl,
+      types: { "application/rss+xml": getAbsoluteUrl("/feed.xml") },
     },
     referrer: "origin-when-cross-origin",
     verification: CONFIG.searchManager.google
@@ -287,19 +293,20 @@ export function createSiteMetadata(): Metadata {
         }
       : undefined,
     icons: {
-      icon: "/brand/chibi-icon-v1.svg",
-      shortcut: "/brand/chibi-icon-v1.svg",
+      icon: "/api/og?kind=icon",
+      shortcut: "/api/og?kind=icon",
     },
   };
 }
 
-export function createHomeMetadata(): Metadata {
+export function createHomeMetadata(page = 1, tag = ""): Metadata {
   return createSeoMetadata({
     title: {
-      absolute: siteTitle,
+      absolute: page > 1 ? `개발 기록 ${page}페이지 | ${siteName}` : siteTitle,
     },
     description: defaultDescription,
-    pathname: "/",
+    pathname: page > 1 ? `/?page=${page}` : "/",
+    noIndex: !!tag,
     keywords: [
       "프론트엔드 블로그",
       "프론트엔드 개발 기록",
@@ -409,11 +416,15 @@ export function createBreadcrumbJsonLd(items: BreadcrumbItem[]) {
 
 export function createPostJsonLd(post: TPost) {
   const authors =
-    post.author?.map((author) => author.name).filter(Boolean) || [creatorName];
+    post.author?.map((author) => author.name).filter(Boolean) || [];
+  if (!authors.length) authors.push(creatorName);
 
   return {
     "@context": "https://schema.org",
     "@type": post.type?.[0] === "Post" ? "BlogPosting" : "Article",
+    "@id": `${getPostUrl(post)}#article`,
+    inLanguage: "ko-KR",
+    isPartOf: { "@id": `${siteUrl}/#blog` },
     headline: post.title,
     description: shortenDescription(post.summary || post.title),
     url: getPostUrl(post),
@@ -429,6 +440,7 @@ export function createPostJsonLd(post: TPost) {
     author: authors.map((name) => ({
       "@type": "Person",
       name,
+      url: creatorProfile,
     })),
     publisher,
   };

@@ -1,18 +1,23 @@
 "use client";
-import React, { Suspense, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Link from "next/link";
 import FeaturedServices from "@components/Services/FeaturedServices";
 import Character from "@blog/ui/components/brand/Character";
 import { TPosts } from "@blog/notions/types";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const date = (value: string) =>
   new Date(value).toLocaleDateString("en-CA").replaceAll("-", ".");
-function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
-  const params = useSearchParams();
+type ArchiveProps = {
+  posts: TPosts;
+  tags: string[];
+  currentPage: number;
+  activeTag: string;
+};
+function Archive({ posts, tags, currentPage, activeTag }: ArchiveProps) {
   const router = useRouter();
   const [query, setQuery] = useState("");
-  const active = params.get("tag") || "All";
+  const active = activeTag;
   const counts = useMemo(
     () =>
       Object.fromEntries(
@@ -32,16 +37,15 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
         .includes(query.trim().toLowerCase()),
   );
   const total = Math.max(1, Math.ceil(filtered.length / 6));
-  const page = Math.max(
-    1,
-    Math.min(total, Math.floor(Number(params.get("page"))) || 1),
-  );
-  const change = (tag: string, nextPage = 1) => {
+  const page = Math.max(1, Math.min(total, Math.floor(currentPage) || 1));
+  const archiveUrl = (tag: string, nextPage = 1) => {
     const p = new URLSearchParams();
     if (tag !== "All") p.set("tag", tag);
     if (nextPage > 1) p.set("page", String(nextPage));
-    router.replace(`/?${p.toString()}#archive`, { scroll: false });
+    return `/${p.size ? `?${p.toString()}` : ""}#archive`;
   };
+  const change = (tag: string, nextPage = 1) =>
+    router.replace(archiveUrl(tag, nextPage), { scroll: false });
   const [allTags, setAllTags] = useState(false);
   return (
     <section id="archive" className="archive-layout">
@@ -136,22 +140,24 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
         )}
         {total > 1 && (
           <nav className="journal-pagination" aria-label="글 목록 페이지네이션">
-            <button
-              disabled={page === 1}
-              onClick={() => change(active, page - 1)}
-            >
-              ← 이전
-            </button>
+            {page > 1 ? (
+              <Link href={archiveUrl(active, page - 1)} scroll={false}>
+                ← 이전
+              </Link>
+            ) : (
+              <span aria-disabled="true">← 이전</span>
+            )}
             <span>
               {String(page).padStart(2, "0")}{" "}
               <span>/ {String(total).padStart(2, "0")}</span>
             </span>
-            <button
-              disabled={page === total}
-              onClick={() => change(active, page + 1)}
-            >
-              다음 →
-            </button>
+            {page < total ? (
+              <Link href={archiveUrl(active, page + 1)} scroll={false}>
+                다음 →
+              </Link>
+            ) : (
+              <span aria-disabled="true">다음 →</span>
+            )}
           </nav>
         )}
       </div>
@@ -215,10 +221,9 @@ function Archive({ posts, tags }: { posts: TPosts; tags: string[] }) {
 export default function Home({
   posts,
   tags,
-}: {
-  posts: TPosts;
-  tags: string[];
-}) {
+  currentPage,
+  activeTag,
+}: ArchiveProps) {
   return (
     <div className="builder-home">
       <section className="builder-hero">
@@ -240,9 +245,12 @@ export default function Home({
         </div>
       </section>
       <FeaturedServices />
-      <Suspense fallback={<p>기록을 불러오는 중입니다.</p>}>
-        <Archive posts={posts} tags={tags} />
-      </Suspense>
+      <Archive
+        posts={posts}
+        tags={tags}
+        currentPage={currentPage}
+        activeTag={activeTag}
+      />
     </div>
   );
 }

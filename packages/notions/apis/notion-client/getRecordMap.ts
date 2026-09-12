@@ -4,11 +4,11 @@ import { NOTION_DETAIL_REVALIDATE_SECONDS } from "../../constants"
 import { retryNotionRequest } from "./retryNotionRequest"
 
 const isNotionDebugEnabled = process.env.NODE_ENV !== "production"
-const RECORD_MAP_CACHE_TTL = NOTION_DETAIL_REVALIDATE_SECONDS * 1000
+const RECORD_MAP_CACHE_TTL = 10_000
 
 export const NOTION_RECORD_MAP_CACHE_TAG = "notion-record-map"
 const RUNTIME_RECORD_MAP_REVALIDATE_SECONDS =
-  NOTION_DETAIL_REVALIDATE_SECONDS + 300
+  NOTION_DETAIL_REVALIDATE_SECONDS
 
 type RecordMapCacheEntry = {
   expiresAt: number

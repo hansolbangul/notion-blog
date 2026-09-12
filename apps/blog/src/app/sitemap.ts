@@ -5,9 +5,9 @@ import {
   isIndexablePost,
   sortByRecent,
 } from "@libs/content";
-import { getAbsoluteUrl, getPostPath } from "@libs/seo";
+import { getAbsoluteUrl, getPostPath, getModifiedDate } from "@libs/seo";
 
-export const revalidate = 10800;
+export const revalidate = 60;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { posts, pages, libraries } = await getAllPublishedContent();
@@ -24,27 +24,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: getAbsoluteUrl("/tool/random"),
-      lastModified,
     },
     {
       url: getAbsoluteUrl("/tool/uuid"),
-      lastModified,
     },
     {
       url: getAbsoluteUrl("/tool/letter-count"),
-      lastModified,
     },
     {
       url: getAbsoluteUrl("/tool/qr"),
-      lastModified,
     },
   ];
 
   const contentRoutes: MetadataRoute.Sitemap = indexableContent.map((post) => ({
     url: getAbsoluteUrl(getPostPath(post)),
-    lastModified:
-      post.lastEditedTime || post.date?.start_date || post.createdTime,
+    lastModified: getModifiedDate(post),
   }));
 
-  return [...staticRoutes, ...contentRoutes];
+  return Array.from(
+    new Map(
+      [...staticRoutes, ...contentRoutes].map((entry) => [entry.url, entry]),
+    ).values(),
+  );
 }

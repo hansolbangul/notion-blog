@@ -4,12 +4,8 @@ import {
   clearNotionPostsCache,
   clearNotionRecordMapCache,
 } from "@blog/notions/apis";
-import {
-  NOTION_CONTENT_CACHE_TAG,
-} from "@blog/notions/libs/react-query/getCached";
-import {
-  NOTION_RECORD_MAP_CACHE_TAG,
-} from "@blog/notions/apis/notion-client/getRecordMap";
+import { NOTION_CONTENT_CACHE_TAG } from "@blog/notions/libs/react-query/getCached";
+import { NOTION_RECORD_MAP_CACHE_TAG } from "@blog/notions/apis/notion-client/getRecordMap";
 import { getAllPublishedContent, isIndexablePost } from "@libs/content";
 import { getPostPath } from "@libs/seo";
 
@@ -22,7 +18,10 @@ export async function GET(request: NextRequest) {
   const secret = searchParams.get("secret");
   const path = searchParams.get("path");
 
-  if (secret !== process.env.TOKEN_FOR_REVALIDATE) {
+  if (
+    !process.env.TOKEN_FOR_REVALIDATE ||
+    secret !== process.env.TOKEN_FOR_REVALIDATE
+  ) {
     return NextResponse.json({ message: "Invalid token" }, { status: 401 });
   }
 
@@ -41,6 +40,7 @@ export async function GET(request: NextRequest) {
     const targets = collectRevalidateTargets([
       "/",
       "/sitemap.xml",
+      "/feed.xml",
       ...[...posts, ...pages, ...libraries]
         .filter(isIndexablePost)
         .map((post) => getPostPath(post)),

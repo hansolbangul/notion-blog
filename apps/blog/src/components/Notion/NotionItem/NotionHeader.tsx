@@ -28,7 +28,7 @@ export default function NotionHeader({
       <h1>{post.title}</h1>
       {post.summary && <p className="article-deck">{post.summary}</p>}
       <div className="article-byline">
-        <img src="/brand/chibi-icon-v1.svg" alt="" width="32" height="32" />
+        <img src="/api/og?kind=icon" alt="" width="32" height="32" />
         <span>지한솔</span>
         <span className="byline-separator">/</span>
         <time dateTime={post.date?.start_date || post.createdTime}>

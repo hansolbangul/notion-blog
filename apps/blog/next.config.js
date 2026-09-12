@@ -1,7 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  outputFileTracingIncludes: { "/*": ["./.cache/notion-content-snapshot.json"] },
+  async redirects() {
+    return [
+      {
+        source: "/sitemap-0.xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "blog.hansolbangul.com" }],
+        destination: "https://hansolbangul.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
+  outputFileTracingIncludes: {
+    "/*": ["./.cache/notion-content-snapshot.json"],
+  },
   transpilePackages: ["@blog/notions"],
   webpack: (config) => {
     config.resolve.alias = {

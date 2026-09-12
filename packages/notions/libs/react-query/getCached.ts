@@ -17,7 +17,7 @@ interface Props {
 
 export const NOTION_CONTENT_CACHE_TAG = "notion-content";
 
-const DATA_CACHE_REVALIDATE_SECONDS = NOTION_REVALIDATE_SECONDS + 300;
+const DATA_CACHE_REVALIDATE_SECONDS = NOTION_REVALIDATE_SECONDS;
 const SNAPSHOT_FILE_PATH = path.join(
   process.cwd(),
   ".cache",
@@ -47,33 +47,36 @@ const filterOptionsByType: Record<TPostType, FilterPostsOptions> = {
   },
 };
 
+const getCachedContent = unstable_cache(
+  async (): Promise<TPosts> =>
+    filterPosts(await getPosts(), {
+      acceptStatus: ["Public"],
+      acceptType: ["Post", "Page", "Library", "Paper", "Project"],
+    }),
+  ["notion-published-content-v3"],
+  {
+    revalidate: DATA_CACHE_REVALIDATE_SECONDS,
+    tags: [NOTION_CONTENT_CACHE_TAG],
+  },
+);
+
 function getRuntimeCachedContent(type: TPostType) {
-  const getCachedContent = unstable_cache(
-    async (cachedType: TPostType): Promise<TPosts> => {
-      const posts = await getPosts();
-      return filterPosts(posts, filterOptionsByType[cachedType]);
-    },
-    ["notion-content-by-type-v2"],
-    {
-      revalidate: DATA_CACHE_REVALIDATE_SECONDS,
-      tags: [NOTION_CONTENT_CACHE_TAG],
-    },
-  );
+  return getCachedContent()
+    .then((posts) => filterPosts(posts, filterOptionsByType[type]))
+    .catch(async (error) => {
+      const snapshotPosts = await getSnapshotContent(type);
 
-  return getCachedContent(type).catch(async (error) => {
-    const snapshotPosts = await getSnapshotContent(type);
+      if (snapshotPosts) {
+        console.warn("[notion:getCached] serving snapshot fallback", {
+          type,
+          count: snapshotPosts.length,
+          message: error instanceof Error ? error.message : String(error),
+        });
+        return snapshotPosts;
+      }
 
-    if (snapshotPosts) {
-      console.warn("[notion:getCached] serving snapshot fallback", {
-        type,
-        count: snapshotPosts.length,
-        message: error instanceof Error ? error.message : String(error),
-      });
-      return snapshotPosts;
-    }
-
-    throw error;
-  });
+      throw error;
+    });
 }
 
 async function getSnapshotContent(type: TPostType): Promise<TPosts | null> {

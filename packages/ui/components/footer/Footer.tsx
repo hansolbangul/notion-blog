@@ -4,7 +4,7 @@ export default function Footer() {
     <footer className="journal-footer">
       <div className="journal-shell footer-inner">
         <div className="footer-brand">
-          <img src="/brand/chibi-icon-v1.svg" alt="" width="34" height="34" />
+          <img src="/api/og?kind=icon" alt="" width="34" height="34" />
           <strong>istp.builders</strong>
           <span>계속 만드는 중.</span>
         </div>

@@ -52,6 +52,129 @@ export async function GET(request: Request) {
   const icon = await readFile(
     path.join(process.cwd(), "public/brand/chibi-poses-v1.png"),
   );
+  if (kind === "icon") {
+    return new ImageResponse(
+      <div style={{ display: "flex", width: 96, height: 96, overflow: "hidden", position: "relative" }}>
+        <img src={`data:image/png;base64,${icon.toString("base64")}`} width={1254 * 96 / 310} height={1254 * 96 / 310} style={{ position: "absolute", left: -65 * 96 / 310, top: -100 * 96 / 310 }} alt="" />
+      </div>,
+      { width: 96, height: 96, headers: { "Cache-Control": "public, max-age=86400, s-maxage=86400" } },
+    );
+  }
+  if (kind === "home") {
+    return new ImageResponse(
+      (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            background: "#f7f5ef",
+            color: "#262724",
+            padding: "60px 64px",
+            fontFamily: "Jua",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              width: 650,
+              justifyContent: "center",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                fontSize: 22,
+                color: "#52672b",
+                marginBottom: 28,
+              }}
+            >
+              만들면서 배우는 개발자의 기록
+            </div>
+            <div style={{ display: "flex", fontSize: 78, letterSpacing: -3 }}>
+              istp.builders
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 29,
+                color: "#6b6d64",
+                marginTop: 24,
+              }}
+            >
+              직접 만들고, 부딪히고, 기록합니다.
+            </div>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 20,
+                color: "#52672b",
+                marginTop: 48,
+              }}
+            >
+              React · TypeScript · Next.js · Side projects
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              position: "absolute",
+              right: 44,
+              top: 60,
+              width: 380,
+              height: 460,
+              overflow: "hidden",
+            }}
+          >
+            <img
+              src={`data:image/png;base64,${icon.toString("base64")}`}
+              width={1254}
+              height={1254}
+              style={{ position: "absolute", left: -430, top: -155 }}
+              alt=""
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              position: "absolute",
+              right: 66,
+              top: 38,
+              padding: "13px 25px",
+              background: "#c5d88a",
+              transform: "rotate(4deg)",
+              fontSize: 24,
+            }}
+          >
+            일단, 만들어보자.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              position: "absolute",
+              bottom: 40,
+              left: 64,
+              right: 64,
+              borderTop: "1px solid #dcded3",
+              paddingTop: 22,
+              justifyContent: "space-between",
+              fontSize: 21,
+              color: "#6b6d64",
+            }}
+          >
+            <span>hansolbangul.com</span>
+            <span>오늘도 한 줄, 한 걸음.</span>
+          </div>
+        </div>
+      ),
+      {
+        ...size,
+        fonts: [{ name: "Jua", data: fontData, style: "normal", weight: 400 }],
+      },
+    );
+  }
   return new ImageResponse(
     (
       <div
