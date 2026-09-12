@@ -1,10 +1,13 @@
+// Set this to the new domain after its DNS and Vercel connection are ready.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hansolbangul.com";
+
 const CONFIG = {
   user: {
     name: "",
     age: "",
     profile: "",
   },
-  url: "https://istp.builders",
+  url: siteUrl,
   metadata: {
     title: "istp.builders | 프론트엔드 개발 아카이브",
     description:
@@ -24,7 +27,7 @@ const CONFIG = {
         "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 공간입니다.",
       images: [
         {
-          url: "https://istp.builders/brand/icon.png",
+          url: `${siteUrl}/brand/icon.png`,
           alt: "istp.builders 박스 캐릭터",
           width: 1254,
           height: 1254,
