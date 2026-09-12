@@ -7,10 +7,11 @@ type Props = {
 
 export default function NotionThumbnail({ thumbnail }: Props) {
   return (
-    <div className="w-full aspect-video custom:h-96 relative cursor-pointer">
+    <div className="w-full aspect-[2.4] relative mt-8 overflow-hidden">
       <Image
-        className={"w-full px-4 mt-5 rounded-lg"}
+        className={"w-full grayscale"}
         style={{ objectFit: "cover" }}
+        unoptimized
         fill
         src={thumbnail}
         alt="thumbnail"

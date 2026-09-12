@@ -1,53 +1,55 @@
 "use client";
-
 import { useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
-import { AnimatePresence, motion } from "framer-motion";
-import HeaderMenu from "./HeaderMenu";
-import CONFIG from "@blog/notions/site.config";
-
 export default function ClientHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
+  const [open, setOpen] = useState(false);
   return (
     <>
-      <div className="relative z-10 flex w-full items-center justify-between gap-4 py-4">
-        <a href="/" className="group flex min-w-0 flex-col">
-          <span className="text-[11px] uppercase tracking-editorial text-ink-soft">
-            frontend archive
-          </span>
-          <span className="truncate font-display text-[24px] leading-none text-ink custom:text-[30px]">
-            {CONFIG.blog.title}
-          </span>
-        </a>
-        <button
-          onClick={toggleMenu}
-          className="flex h-11 w-11 items-center justify-center border border-line bg-paper-strong text-[22px] text-ink shadow-panel focus:outline-none custom:hidden"
-          aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+      <div className="journal-nav">
+        <a
+          href="/"
+          className="journal-wordmark"
+          aria-label="데굴데굴 블로그 홈"
         >
-          {isMenuOpen ? <HiX /> : <HiMenu />}
-        </button>
-        <ul className="hidden custom:flex items-center gap-2">
-          <HeaderMenu />
-        </ul>
-      </div>
-      <AnimatePresence mode={"wait"}>
-        {isMenuOpen && (
-          <motion.ul
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="mb-4 flex w-full flex-col gap-2 overflow-hidden border border-line bg-paper-strong p-3 text-ink shadow-editorial custom:hidden"
+          <span className="rolling-mark" aria-hidden="true">
+            <i />
+            <i />
+          </span>
+          <strong>BANGUL</strong>
+          <span className="nav-caption">A FRONTEND JOURNAL</span>
+        </a>
+        <nav aria-label="주 메뉴" className="desktop-nav">
+          <a href="/#archive">글 모음</a>
+          <a href="/#about">소개</a>
+          <a href="/tool/letter-count">도구</a>
+          <a
+            href="https://github.com/hansolbangul"
+            target="_blank"
+            rel="noreferrer"
           >
-            <HeaderMenu />
-          </motion.ul>
-        )}
-      </AnimatePresence>
+            GitHub ↗
+          </a>
+        </nav>
+        <button
+          className="mobile-menu"
+          aria-expanded={open}
+          aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
+          onClick={() => setOpen(!open)}
+        >
+          {open ? "닫기 −" : "메뉴 +"}
+        </button>
+      </div>
+      {open && (
+        <nav
+          className="mobile-nav"
+          aria-label="모바일 메뉴"
+          onClick={() => setOpen(false)}
+        >
+          <a href="/#archive">글 모음</a>
+          <a href="/#about">소개</a>
+          <a href="/tool/letter-count">도구</a>
+          <a href="https://github.com/hansolbangul">GitHub ↗</a>
+        </nav>
+      )}
     </>
   );
 }
