@@ -27,10 +27,10 @@ const CONFIG = {
         "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 공간입니다.",
       images: [
         {
-          url: `${siteUrl}/brand/icon.png`,
+          url: `${siteUrl}/api/og`,
           alt: "istp.builders 박스 캐릭터",
-          width: 1254,
-          height: 1254,
+          width: 1200,
+          height: 630,
         },
       ],
     },

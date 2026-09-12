@@ -146,7 +146,7 @@ export default function NotionRender({
           />
         </div>
         <div className="article-end">
-          <Character pose="side" />
+          <Character pose="excited" />
           <div>
             <span className="eyebrow">END OF NOTE</span>
             <p>읽었으면, 이제 만들어볼 차례.</p>
@@ -165,7 +165,7 @@ export default function NotionRender({
             </>
           )}
           <div className="toc-character">
-            <Character />
+            <Character pose="thinking" />
             <span>천천히 읽어도 됩니다.</span>
           </div>
           <a className="back-top" href="#">

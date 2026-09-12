@@ -119,30 +119,14 @@ input {
   letter-spacing: 1.4px;
   color: var(--color-ink-soft);
 }
-/* Supplied artwork stays intact. Each pose is a CSS window into the turnaround sheet. */
+/* Native SVG windows preserve each pose in the supplied chibi sheet. */
 .box-character {
-  width: 160px;
-  aspect-ratio: 0.405;
-  background-image: url("/brand/character.png");
-  background-size: 400% auto;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  mix-blend-mode: multiply;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    #000 8%,
-    #000 92%,
-    transparent
-  );
+  display: block;
+  width: 100px;
+  height: auto;
   flex-shrink: 0;
   pointer-events: none;
-}
-.box-character-side {
-  background-position: 33.333% 0;
-}
-.box-character-back {
-  background-position: 100% 0;
+  mix-blend-mode: multiply;
 }
 .builder-hero {
   display: flex;
@@ -192,9 +176,9 @@ input {
   min-width: 190px;
 }
 .hero-character .box-character {
-  width: 108px;
-  margin-left: 50px;
-  margin-bottom: -32px;
+  width: 150px;
+  margin-left: 25px;
+  margin-bottom: -24px;
 }
 .tape-note {
   position: absolute;
@@ -395,7 +379,7 @@ input {
   border-top: 1px solid var(--color-line);
 }
 .builder-note .box-character {
-  width: 66px;
+  width: 78px;
 }
 .builder-note .eyebrow {
   font-size: 8px;
@@ -500,12 +484,12 @@ input {
   color: var(--color-ink-soft);
 }
 .footer-character {
-  width: 40px;
+  width: 80px;
   position: absolute;
   right: 0;
   bottom: 100%;
-  height: 70px;
-  overflow: hidden;
+  height: auto;
+  overflow: visible;
 }
 .builder-home {
   animation: appear 0.5s both;
@@ -673,7 +657,7 @@ input {
   padding-top: 18px;
 }
 .toc-character .box-character {
-  width: 53px;
+  width: 66px;
 }
 .toc-character > span {
   font-size: 10px;
@@ -964,7 +948,7 @@ input {
   border-top: 1px solid var(--color-line);
 }
 .article-end .box-character {
-  width: 58px;
+  width: 70px;
 }
 .article-end p {
   font-size: 17px;
@@ -1024,7 +1008,7 @@ input {
   }
   .hero-character .box-character {
     margin-left: 20px;
-    width: 100px;
+    width: 140px;
   }
   .archive-layout {
     gap: 36px;
@@ -1110,7 +1094,7 @@ input {
     padding: 0;
   }
   .hero-character .box-character {
-    width: 69px;
+    width: 90px;
     margin: 0 0 -5px;
   }
   .tape-note {
@@ -1334,7 +1318,7 @@ input {
 }
 .recommendation-mascot {
   width: 150px;
-  height: 190px;
+  height: auto;
   object-fit: contain;
   flex-shrink: 0;
   margin: 0 -6px -4px 0;
@@ -1445,7 +1429,7 @@ input {
   .recommendation-mascot {
     position: absolute;
     width: 90px;
-    height: 112px;
+    height: auto;
     right: 4px;
     bottom: calc(100% - 13px);
     margin: 0;
@@ -1499,8 +1483,8 @@ input {
   gap: 16px;
 }
 .services-introduction .box-character {
-  width: 27px;
-  height: 62px;
+  width: 43px;
+  height: auto;
 }
 .services-introduction h2 {
   font-size: 20px;
@@ -1678,8 +1662,8 @@ input {
     font-size: 18px;
   }
   .services-introduction .box-character {
-    width: 23px;
-    height: 54px;
+    width: 37px;
+    height: auto;
   }
   .services-introduction p {
     font-size: 10px;

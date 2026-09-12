@@ -50,7 +50,7 @@ export async function GET(request: Request) {
   }
 
   const icon = await readFile(
-    path.join(process.cwd(), "public/brand/icon.png"),
+    path.join(process.cwd(), "public/brand/chibi-poses-v1.png"),
   );
   return new ImageResponse(
     (
@@ -67,13 +67,28 @@ export async function GET(request: Request) {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <img
-            src={`data:image/png;base64,${icon.toString("base64")}`}
-            width={64}
-            height={64}
-            style={{ borderRadius: 14 }}
-            alt=""
-          />
+          <div
+            style={{
+              display: "flex",
+              width: 64,
+              height: 64,
+              overflow: "hidden",
+              position: "relative",
+              borderRadius: 14,
+            }}
+          >
+            <img
+              src={`data:image/png;base64,${icon.toString("base64")}`}
+              width={(1254 * 64) / 310}
+              height={(1254 * 64) / 310}
+              style={{
+                position: "absolute",
+                left: (-65 * 64) / 310,
+                top: (-100 * 64) / 310,
+              }}
+              alt=""
+            />
+          </div>
           <span style={{ fontSize: 30 }}>istp.builders</span>
           <span style={{ marginLeft: "auto", fontSize: 18, color: "#52672b" }}>
             {eyebrow}

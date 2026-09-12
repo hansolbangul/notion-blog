@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Character from "@blog/ui/components/brand/Character";
 import { useEffect, useState } from "react";
 
 export type RecommendedPost = { slug: string; title: string; tag?: string };
@@ -55,13 +56,7 @@ export default function ReadingRecommendation({
 
   return (
     <aside className="reading-recommendation" aria-label="이어서 읽을 글 추천">
-      <img
-        className="recommendation-mascot"
-        src="/brand/character-crouching.png"
-        width={180}
-        height={180}
-        alt="두 손을 모으고 쭈그려 앉은 박스 캐릭터"
-      />
+      <Character pose="crouching" className="recommendation-mascot" />
       <div className="recommendation-bubble">
         <button
           className="recommendation-close"

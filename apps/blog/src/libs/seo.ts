@@ -3,7 +3,7 @@ import type { TPost } from "@blog/notions/types";
 import CONFIG from "@blog/notions/site.config";
 
 const siteUrl = CONFIG.url.replace(/\/$/, "");
-const defaultOgImage = `${siteUrl}/brand/icon.png`;
+const defaultOgImage = `${siteUrl}/api/og`;
 const siteName = CONFIG.blog.title;
 const siteTitle = "istp.builders | 프론트엔드 개발 아카이브";
 const defaultDescription =
@@ -47,7 +47,7 @@ const publisher = {
   url: siteUrl,
   logo: {
     "@type": "ImageObject",
-    url: defaultOgImage,
+    url: `${siteUrl}/brand/chibi-icon-v1.svg`,
   },
 };
 
@@ -262,8 +262,8 @@ export function createSiteMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
-    imageWidth: 1254,
-    imageHeight: 1254,
+    imageWidth: 1200,
+    imageHeight: 630,
     imageType: "image/png",
     type: "website",
   });
@@ -287,8 +287,8 @@ export function createSiteMetadata(): Metadata {
         }
       : undefined,
     icons: {
-      icon: "/brand/icon.png",
-      shortcut: "/brand/icon.png",
+      icon: "/brand/chibi-icon-v1.svg",
+      shortcut: "/brand/chibi-icon-v1.svg",
     },
   };
 }
@@ -310,8 +310,8 @@ export function createHomeMetadata(): Metadata {
       "Notion 블로그",
     ],
     image: defaultOgImage,
-    imageWidth: 1254,
-    imageHeight: 1254,
+    imageWidth: 1200,
+    imageHeight: 630,
     imageType: "image/png",
     type: "website",
   });
