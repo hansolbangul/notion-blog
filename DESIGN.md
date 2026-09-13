@@ -48,3 +48,7 @@ Preview images are screenshots of the actual public landing pages, captured 2026
 ## Transparent character assets
 
 All mascots use individual alpha PNGs in public/brand/chibi/. The original supplied pixels are preserved by scripts/extract-chibi.py (Python + Pillow); paper background is removed with edge-connected segmentation. The full transparent sheet is used only inside the OG renderer. Footer has no large character decoration. Code captions contain a small coding pose beside the language, with copy/wrap controls kept separate.
+
+## Instagram comics
+
+Visual thesis: a small illustrated reading room; preserve original square artwork and cream paper, with only a quiet reading toolbar. Content: post title and short summary, consecutive image sequence, then story context and service/next episode links. Interaction: vertical reading by default; optional horizontal scroll-snap panels with keyboard arrows, swipe, counter, and explicit previous/next buttons. No autoplay. Respect reduced motion. Apply to top-level consecutive image runs in posts tagged 인스타툰, preserving all other Notion blocks in order. Captions are available as readable transcripts, and all panels render on the server.

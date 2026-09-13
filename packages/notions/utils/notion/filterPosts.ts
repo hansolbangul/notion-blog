@@ -35,14 +35,14 @@ export function filterPosts(
     })
     // filter status
     .filter((post) => {
-      const postStatus = post.status[0];
+      const postStatus = post.status?.[0];
       const isAccepted = acceptStatus.includes(postStatus);
       if (!isAccepted) invalidStatusCount += 1;
       return isAccepted;
     })
     // filter type
     .filter((post) => {
-      const postType = post.type[0];
+      const postType = post.type?.[0];
       const isAccepted = acceptType.includes(postType);
       if (!isAccepted) invalidTypeCount += 1;
       return isAccepted;

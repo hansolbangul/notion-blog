@@ -15,6 +15,7 @@ import { getEstimatedReadingMinutes } from "@libs/reading-time";
 import Character from "@blog/ui/components/brand/Character";
 import NotionHeader from "./NotionHeader";
 import CodeBlock from "./CodeBlock";
+import ComicReader, { type ComicPanel } from "./ComicReader";
 const Pdf = dynamic(
   () => import("react-notion-x/build/third-party/pdf").then((m) => m.Pdf),
   { ssr: false },
@@ -44,6 +45,33 @@ export default function NotionRender({
 }) {
   const root =
     blockMap.block[post.id]?.value || Object.values(blockMap.block)[0]?.value;
+  const comicParts = useMemo(() => {
+    if (!post.tags?.includes("인스타툰") || !root?.content) return null;
+    const parts: { ids: string[]; panels: ComicPanel[] }[] = [];
+    for (const id of root.content) {
+      const block = blockMap.block[id]?.value;
+      const source =
+        block?.type === "image"
+          ? (block.properties?.source || []).map((part) => part[0]).join("")
+          : "";
+      const src = blockMap.signed_urls?.[id] || source;
+      const isImage = !!src && /^https?:\/\//.test(src);
+      const last = parts[parts.length - 1];
+      const part =
+        last && Boolean(last.panels.length) === isImage
+          ? last
+          : { ids: [], panels: [] };
+      if (part !== last) parts.push(part);
+      part.ids.push(id);
+      if (isImage)
+        part.panels.push({
+          id,
+          src,
+          caption: getTextContent(block.properties?.caption || []),
+        });
+    }
+    return parts.some((p) => p.panels.length > 1) ? parts : null;
+  }, [blockMap, post.tags, root]);
   const toc = useMemo(
     () => (root ? getPageTableOfContents(root as PageBlock, blockMap) : []),
     [root, blockMap],
@@ -120,7 +148,7 @@ export default function NotionRender({
         aria-hidden="true"
       />
       <div className="article-primary">
-        <NotionHeader post={post} minutes={minutes} />
+        <NotionHeader post={post} minutes={comicParts ? undefined : minutes} />
         {toc.length > 0 && (
           <details className="mobile-toc">
             <summary>
@@ -130,20 +158,45 @@ export default function NotionRender({
           </details>
         )}
         <div className="article-body">
-          <NotionRenderer
-            recordMap={blockMap}
-            fullPage={false}
-            darkMode={false}
-            disableHeader
-            showCollectionViewDropdown={false}
-            mapPageUrl={(id) => `https://www.notion.so/${id.replace(/-/g, "")}`}
-            components={{
-              Code: CodeBlock,
-              Modal,
-              Pdf,
-              Collection: ArticleCollection,
-            }}
-          />
+          {(comicParts || [{ ids: root?.content || [], panels: [] }]).map(
+            (part, index) => {
+              if (part.panels.length > 1)
+                return <ComicReader key={part.ids[0]} panels={part.panels} />;
+              const recordMap =
+                comicParts && root
+                  ? ({
+                      ...blockMap,
+                      block: {
+                        ...blockMap.block,
+                        [root.id]: {
+                          ...blockMap.block[root.id],
+                          value: { ...root, content: part.ids },
+                        },
+                      },
+                    } as ExtendedRecordMap)
+                  : blockMap;
+              return (
+                <div key={index}>
+                  <NotionRenderer
+                    recordMap={recordMap}
+                    fullPage={false}
+                    darkMode={false}
+                    disableHeader
+                    showCollectionViewDropdown={false}
+                    mapPageUrl={(id) =>
+                      `https://www.notion.so/${id.replace(/-/g, "")}`
+                    }
+                    components={{
+                      Code: CodeBlock,
+                      Modal,
+                      Pdf,
+                      Collection: ArticleCollection,
+                    }}
+                  />
+                </div>
+              );
+            },
+          )}
         </div>
         <div className="article-end">
           <Character pose="excited" />
