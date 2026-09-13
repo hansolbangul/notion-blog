@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState, type ComponentProps } from "react";
-import { NotionRenderer } from "react-notion-x";
+import { NotionRenderer, defaultMapImageUrl } from "react-notion-x";
 import "react-notion-x/src/styles.css";
 import "katex/dist/katex.min.css";
 import dynamic from "next/dynamic";
@@ -54,7 +54,13 @@ export default function NotionRender({
         block?.type === "image"
           ? (block.properties?.source || []).map((part) => part[0]).join("")
           : "";
-      const src = blockMap.signed_urls?.[id] || source;
+      const src =
+        blockMap.signed_urls?.[id] ||
+        (source &&
+          (/^https?:\/\//.test(source)
+            ? source
+            : defaultMapImageUrl(source, block))) ||
+        "";
       const isImage = !!src && /^https?:\/\//.test(src);
       const last = parts[parts.length - 1];
       const part =
