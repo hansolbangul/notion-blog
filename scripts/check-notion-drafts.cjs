@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const { createRequire } = require('node:module');
+const req = createRequire(require('node:path').resolve('apps/blog/package.json'));
+const ts = req('typescript');
+const source = fs.readFileSync('packages/notions/utils/notion/filterPosts.ts', 'utf8');
+const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+const exportsForTest = {};
+new Function('exports', compiled)(exportsForTest);
+const valid = {title:'Published',slug:'published',createdTime:'2020-01-01',status:['Public'],type:['Post']};
+const drafts = [{...valid,status:undefined},{...valid,type:undefined},{...valid,status:['Private']},{...valid,slug:''},{...valid,date:{start_date:'2999-01-01'}}];
+assert.deepEqual(exportsForTest.filterPosts([...drafts, valid]), [valid]);
+console.log('Incomplete, private, and future Notion drafts are excluded without crashing.');

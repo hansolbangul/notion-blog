@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 export type ComicPanel = { id: string; src: string; caption: string };
 
@@ -10,6 +11,7 @@ export default function ComicReader({ panels }: { panels: ComicPanel[] }) {
   useEffect(() => {
     const el = track.current;
     if (!el || mode !== "slides") return;
+    el.scrollLeft = 0;
     const update = () =>
       setCurrent(
         Math.max(
@@ -57,8 +59,10 @@ export default function ComicReader({ panels }: { panels: ComicPanel[] }) {
             type="button"
             aria-pressed={mode === "slides"}
             onClick={() => {
-              setMode("slides");
-              setCurrent(0);
+              if (mode !== "slides") {
+                setMode("slides");
+                setCurrent(0);
+              }
             }}
           >
             한 컷씩
@@ -86,12 +90,23 @@ export default function ComicReader({ panels }: { panels: ComicPanel[] }) {
       >
         {panels.map((panel, i) => (
           <figure className="comic-panel" key={panel.id}>
-            <img
-              src={panel.src}
-              alt={panel.caption || `인스타툰 ${i + 1}번째 컷`}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-            />
+            {panel.src.startsWith("https://hansolbangul.com/instatoon/") ? (
+              <Image
+                src={new URL(panel.src).pathname}
+                width={1254}
+                height={1254}
+                sizes="(max-width: 720px) calc(100vw - 40px), 680px"
+                alt={panel.caption || `인스타툰 ${i + 1}번째 컷`}
+                priority={i === 0}
+              />
+            ) : (
+              <img
+                src={panel.src}
+                alt={panel.caption || `인스타툰 ${i + 1}번째 컷`}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            )}
             <figcaption>
               {String(i + 1).padStart(2, "0")}{" "}
               <span>/ {String(panels.length).padStart(2, "0")}</span>
