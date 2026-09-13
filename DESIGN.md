@@ -52,3 +52,7 @@ All mascots use individual alpha PNGs in public/brand/chibi/. The original suppl
 ## Instagram comics
 
 Visual thesis: a small illustrated reading room; preserve original square artwork and cream paper, with only a quiet reading toolbar. Content: post title and short summary, consecutive image sequence, then story context and service/next episode links. Interaction: vertical reading by default; optional horizontal scroll-snap panels with keyboard arrows, swipe, counter, and explicit previous/next buttons. No autoplay. Respect reduced motion. Apply to top-level consecutive image runs in posts tagged 인스타툰, preserving all other Notion blocks in order. Captions are available as readable transcripts, and all panels render on the server.
+
+## Continuous webtoon reading
+
+Visual thesis: a centered, uninterrupted strip of original artwork, full viewport width on phones. Content: compact title and summary, full episode without panel numbers or controls, then optional transcript and service/episode links. Interaction: native vertical scrolling only; no carousel or decorative side rail. Blank Notion paragraphs do not split the strip, and native attachments use the same image resolver as normal Notion images.

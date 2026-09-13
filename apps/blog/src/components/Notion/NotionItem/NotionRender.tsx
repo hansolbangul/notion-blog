@@ -50,6 +50,12 @@ export default function NotionRender({
     const parts: { ids: string[]; panels: ComicPanel[] }[] = [];
     for (const id of root.content) {
       const block = blockMap.block[id]?.value;
+      if (
+        block?.type === "text" &&
+        !getTextContent(block.properties?.title || []).trim() &&
+        !block.content?.length
+      )
+        continue;
       const source =
         block?.type === "image"
           ? (block.properties?.source || []).map((part) => part[0]).join("")
@@ -76,7 +82,7 @@ export default function NotionRender({
           caption: getTextContent(block.properties?.caption || []),
         });
     }
-    return parts.some((p) => p.panels.length > 1) ? parts : null;
+    return parts.some((p) => p.panels.length > 0) ? parts : null;
   }, [blockMap, post.tags, root]);
   const toc = useMemo(
     () => (root ? getPageTableOfContents(root as PageBlock, blockMap) : []),
@@ -147,7 +153,9 @@ export default function NotionRender({
     </nav>
   );
   return (
-    <div className="article-layout">
+    <div
+      className={`article-layout${comicParts ? " article-layout--webtoon" : ""}`}
+    >
       <div
         className="article-progress"
         style={{ transform: `scaleX(${progress / 100})` }}
@@ -155,7 +163,7 @@ export default function NotionRender({
       />
       <div className="article-primary">
         <NotionHeader post={post} minutes={comicParts ? undefined : minutes} />
-        {toc.length > 0 && (
+        {!comicParts && toc.length > 0 && (
           <details className="mobile-toc">
             <summary>
               이 글의 목차 <span>＋</span>
@@ -166,7 +174,7 @@ export default function NotionRender({
         <div className="article-body">
           {(comicParts || [{ ids: root?.content || [], panels: [] }]).map(
             (part, index) => {
-              if (part.panels.length > 1)
+              if (part.panels.length > 0)
                 return <ComicReader key={part.ids[0]} panels={part.panels} />;
               const recordMap =
                 comicParts && root
@@ -207,31 +215,47 @@ export default function NotionRender({
         <div className="article-end">
           <Character pose="excited" />
           <div>
-            <span className="eyebrow">END OF NOTE</span>
-            <p>읽었으면, 이제 만들어볼 차례.</p>
-            <a href="/#archive">다른 기록 보기 ↗</a>
+            <span className="eyebrow">
+              {comicParts ? "END OF EPISODE" : "END OF NOTE"}
+            </span>
+            <p>
+              {comicParts
+                ? "다음 이야기도 같이 읽어요."
+                : "읽었으면, 이제 만들어볼 차례."}
+            </p>
+            <a
+              href={
+                comicParts
+                  ? "/?tag=%EC%9D%B8%EC%8A%A4%ED%83%80%ED%88%B0#archive"
+                  : "/#archive"
+              }
+            >
+              {comicParts ? "인스타툰 모아보기 ↗" : "다른 기록 보기 ↗"}
+            </a>
           </div>
         </div>
       </div>
-      <aside className="article-toc">
-        <div className="toc-sticky">
-          {toc.length > 0 && (
-            <>
-              <div className="toc-title">
-                이 글의 목차 <span>{Math.round(progress)}%</span>
-              </div>
-              {contents}
-            </>
-          )}
-          <div className="toc-character">
-            <Character pose="thinking" />
-            <span>천천히 읽어도 됩니다.</span>
+      {!comicParts && (
+        <aside className="article-toc">
+          <div className="toc-sticky">
+            {toc.length > 0 && (
+              <>
+                <div className="toc-title">
+                  이 글의 목차 <span>{Math.round(progress)}%</span>
+                </div>
+                {contents}
+              </>
+            )}
+            <div className="toc-character">
+              <Character pose="thinking" />
+              <span>천천히 읽어도 됩니다.</span>
+            </div>
+            <a className="back-top" href="#">
+              맨 위로 ↑
+            </a>
           </div>
-          <a className="back-top" href="#">
-            맨 위로 ↑
-          </a>
-        </div>
-      </aside>
+        </aside>
+      )}
     </div>
   );
 }
