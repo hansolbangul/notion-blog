@@ -52,7 +52,6 @@ const CONFIG = {
     pageId: process.env.NOTION_PAGE_ID,
     viewId: process.env.V_ID,
   },
-  isToolToggleVisible: true,
   sns: {
     github: "https://github.com/hansolbangul",
     linkedin: "https://www.linkedin.com/in/hansolbangul/",

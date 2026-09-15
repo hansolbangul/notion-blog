@@ -19,7 +19,6 @@ export default function ClientHeader() {
           <a href="/#archive">기록</a>
           <a href="/services">서비스</a>
 
-          <a href="/tool/letter-count">도구</a>
           <a
             href="https://github.com/hansolbangul"
             target="_blank"
@@ -46,7 +45,6 @@ export default function ClientHeader() {
           <a href="/#archive">기록</a>
           <a href="/services">서비스</a>
 
-          <a href="/tool/letter-count">도구</a>
           <a href="https://github.com/hansolbangul">GitHub ↗</a>
         </nav>
       )}

@@ -22,18 +22,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: getAbsoluteUrl("/"),
       lastModified,
     },
-    {
-      url: getAbsoluteUrl("/tool/random"),
-    },
-    {
-      url: getAbsoluteUrl("/tool/uuid"),
-    },
-    {
-      url: getAbsoluteUrl("/tool/letter-count"),
-    },
-    {
-      url: getAbsoluteUrl("/tool/qr"),
-    },
   ];
 
   const contentRoutes: MetadataRoute.Sitemap = indexableContent.map((post) => ({
