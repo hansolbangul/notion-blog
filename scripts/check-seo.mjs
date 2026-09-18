@@ -65,3 +65,86 @@ assert.ok(avatarBytes.length < 100_000, "Avatar should be lightweight");
 console.log(
   `SEO checks passed: ${urls.length} sitemap URLs, SSR pagination, article metadata, RSS, robots, 404, 1200×630 OG.`,
 );
+
+// Crawl every published URL, not just a representative article. This checks
+// our invariants; Google Rich Results and Search Console are separate checks.
+if (process.argv.includes("--all")) {
+  const descriptions = new Map();
+  const titles = new Map();
+  let cursor = 0;
+  async function worker() {
+    while (cursor < urls.length) {
+      const url = urls[cursor++];
+      const html = await read(new URL(url).pathname);
+      const title = html.match(/<title>(.*?)<\/title>/s)?.[1];
+      const description = html.match(
+        /<meta name="description" content="([^"]*)"/,
+      )?.[1];
+      assert.ok(title && description, `Missing search metadata: ${url}`);
+      assert.ok(
+        !titles.has(title),
+        `Duplicate title: ${url}, ${titles.get(title)}`,
+      );
+      assert.ok(
+        !descriptions.has(description),
+        `Duplicate description: ${url}, ${descriptions.get(description)}`,
+      );
+      titles.set(title, url);
+      descriptions.set(description, url);
+      assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, `H1: ${url}`);
+      assert.ok(
+        html.includes(`rel="canonical" href="${url}"`),
+        `Canonical mismatch: ${url}`,
+      );
+      assert.ok(
+        !/<meta name="(?:robots|googlebot)" content="[^"]*noindex/.test(html),
+        `Unexpected noindex: ${url}`,
+      );
+      for (const [, json] of html.matchAll(
+        /<script type="application\/ld\+json">(.*?)<\/script>/gs,
+      )) {
+        const data = JSON.parse(json);
+        if (["BlogPosting", "Article"].includes(data["@type"])) {
+          for (const field of [
+            "headline",
+            "description",
+            "url",
+            "author",
+            "image",
+            "datePublished",
+            "dateModified",
+          ])
+            assert.ok(data[field]?.length, `Missing article ${field}: ${url}`);
+          assert.equal(data.url, url);
+          assert.ok(data.author.every((author) => author.name && author.url));
+          assert.ok(data.image.every((image) => /^https:\/\//.test(image)));
+          assert.ok(Number.isFinite(Date.parse(data.datePublished)));
+          assert.ok(Number.isFinite(Date.parse(data.dateModified)));
+        }
+      }
+    }
+  }
+  await Promise.all(Array.from({ length: 4 }, worker));
+  const tagged = await read("/?tag=React");
+  assert.match(tagged, /<meta name="robots" content="[^"]*noindex/);
+  console.log(
+    `Full crawl passed: ${urls.length} pages, unique titles/descriptions, self canonicals, one H1, article fields, and filtered-page noindex.`,
+  );
+}
+
+for (const [tag] of home.matchAll(/<img\b[^>]*class="story-thumb"[^>]*>/g)) {
+  const source = tag.match(/src="([^"]+)"/)?.[1]?.replaceAll("&amp;", "&");
+  assert.ok(source, "Thumbnail source missing");
+  const optimized = new URL(source, base);
+  optimized.searchParams.set("w", "256");
+  const response = await fetch(optimized, {
+    headers: { accept: "image/webp" },
+  });
+  assert.equal(response.status, 200, `Broken thumbnail: ${optimized}`);
+  assert.match(response.headers.get("content-type"), /image\/webp/);
+  assert.ok(
+    (await response.arrayBuffer()).byteLength < 60_000,
+    "Thumbnail exceeds transfer budget",
+  );
+}
+console.log("Homepage thumbnails load as optimized WebP under 60 KB each.");

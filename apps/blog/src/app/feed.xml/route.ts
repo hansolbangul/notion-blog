@@ -3,7 +3,12 @@ import {
   isIndexablePost,
   sortByRecent,
 } from "@libs/content";
-import { getPostUrl, getPublishedDate, SEO_DEFAULTS } from "@libs/seo";
+import {
+  getPostUrl,
+  getPublishedDate,
+  getPostDescription,
+  SEO_DEFAULTS,
+} from "@libs/seo";
 
 export const revalidate = 60;
 const xml = (text: string) =>
@@ -28,7 +33,7 @@ export async function GET() {
     .map((post) => {
       const url = xml(getPostUrl(post));
       const published = getPublishedDate(post);
-      return `<item><title>${xml(post.title)}</title><link>${url}</link><guid isPermaLink="true">${url}</guid><description>${xml(post.summary || post.title)}</description>${published ? `<pubDate>${new Date(published).toUTCString()}</pubDate>` : ""}</item>`;
+      return `<item><title>${xml(post.title)}</title><link>${url}</link><guid isPermaLink="true">${url}</guid><description>${xml(getPostDescription(post))}</description>${published ? `<pubDate>${new Date(published).toUTCString()}</pubDate>` : ""}</item>`;
     })
     .join("");
   return new Response(

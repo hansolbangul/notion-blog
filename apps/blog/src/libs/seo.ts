@@ -5,7 +5,7 @@ import CONFIG from "@blog/notions/site.config";
 const siteUrl = CONFIG.url.replace(/\/$/, "");
 const defaultOgImage = `${siteUrl}/api/og?v=chibi-3`;
 const siteName = CONFIG.blog.title;
-const siteTitle = "istp.builders | 프론트엔드 개발 아카이브";
+const siteTitle = "istp.builders | React·TypeScript·Next.js 개발 기록";
 const defaultDescription =
   "프론트엔드 개발 기록과 실험, 개발 아카이브를 정리하는 istp.builders입니다. React, TypeScript, Next.js, CSS, 브라우저와 개발 생산성에 관한 글을 다룹니다.";
 const creatorName = CONFIG.user.name || "지한솔";
@@ -68,6 +68,19 @@ function shortenDescription(value?: string) {
   const description = normalizeText(value) || defaultDescription;
   if (description.length <= 170) return description;
   return `${description.slice(0, 167).trimEnd()}...`;
+}
+
+// Include the article subject when Notion summaries reuse a generic template.
+export function getPostDescription(post: TPost) {
+  const title = normalizeText(post.title);
+  const summary = normalizeText(post.summary);
+  return shortenDescription(
+    !summary
+      ? title
+      : summary.includes(title)
+        ? summary
+        : `${title} — ${summary}`,
+  );
 }
 
 export function getAbsoluteUrl(pathname: string = "/") {
@@ -304,7 +317,10 @@ export function createHomeMetadata(page = 1, tag = ""): Metadata {
     title: {
       absolute: page > 1 ? `개발 기록 ${page}페이지 | ${siteName}` : siteTitle,
     },
-    description: defaultDescription,
+    description:
+      page > 1
+        ? `프론트엔드 개발 기록 ${page}페이지. React, TypeScript, Next.js와 웹 개발 실험을 이어서 살펴보세요.`
+        : defaultDescription,
     pathname: page > 1 ? `/?page=${page}` : "/",
     noIndex: !!tag,
     keywords: [
@@ -358,7 +374,7 @@ export function createToolMetadata({
 export function createPostMetadata(post: TPost) {
   const authors =
     post.author?.map((author) => author.name).filter(Boolean) || [];
-  const description = post.summary || post.title;
+  const description = getPostDescription(post);
   const section = post.category?.[0] || post.type?.[0] || "Post";
 
   return createSeoMetadata({
@@ -426,7 +442,7 @@ export function createPostJsonLd(post: TPost) {
     inLanguage: "ko-KR",
     isPartOf: { "@id": `${siteUrl}/#blog` },
     headline: post.title,
-    description: shortenDescription(post.summary || post.title),
+    description: getPostDescription(post),
     url: getPostUrl(post),
     mainEntityOfPage: {
       "@type": "WebPage",

@@ -1762,3 +1762,22 @@ input {
     margin-left: calc((100% - 100vw) / 2);
   }
 }
+
+/* Readable controls and reliable touch targets on small screens. */
+.journal-pagination > a,
+.mobile-nav > a,
+.more-topics,
+.all-services-link,
+.article-back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.journal-search button { min-width: 44px; min-height: 44px; }
+@media (max-width: 760px) {
+  .journal-search input { font-size: 16px; }
+  .mobile-menu, .mobile-nav, .topic-row, .more-topics,
+  .journal-pagination, .all-services-link { font-size: 14px; }
+  .topic-row { min-height: 44px; }
+  .story-meta, .story-copy > p { font-size: 13px; }
+}

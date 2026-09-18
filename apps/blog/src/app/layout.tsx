@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import NextQueryProvider from "@app/NextQueryProvider";
 import BodyLayout from "@app/BodyLayout";
+import Script from "next/script";
 import CONFIG from "@/site.config";
 import { createSiteMetadata } from "@libs/seo";
 
@@ -17,11 +18,11 @@ export default function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-2465657218123782" />
         {CONFIG.analytics.google && (
-          <script
-            async
+          <Script
+            strategy="lazyOnload"
             src={CONFIG.analytics.google}
             crossOrigin="anonymous"
-          ></script>
+          />
         )}
       </head>
       <body className="font-body text-ink antialiased">

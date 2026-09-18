@@ -55,7 +55,29 @@ export default async function Page({ searchParams }: Props) {
     <Container.Col>
       <JsonLd data={createHomeJsonLd()} />
       <Home
-        posts={posts}
+        posts={posts.map(
+          ({
+            id,
+            slug,
+            title,
+            summary,
+            tags,
+            thumbnail,
+            date,
+            createdTime,
+          }) => ({
+            id,
+            slug,
+            title,
+            summary,
+            tags,
+            date,
+            createdTime,
+            thumbnail: thumbnail
+              ? `/share-image/post/${encodeURIComponent(slug)}`
+              : undefined,
+          }),
+        )}
         tags={tags}
         currentPage={page}
         activeTag={params.tag || "All"}

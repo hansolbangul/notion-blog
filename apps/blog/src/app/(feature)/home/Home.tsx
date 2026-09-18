@@ -1,15 +1,27 @@
 "use client";
 import React, { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import FeaturedServices from "@components/Services/FeaturedServices";
 import Character from "@blog/ui/components/brand/Character";
-import { TPosts } from "@blog/notions/types";
+import { TPost } from "@blog/notions/types";
 import { useRouter } from "next/navigation";
 
 const date = (value: string) =>
   new Date(value).toLocaleDateString("en-CA").replaceAll("-", ".");
+export type ArchivePost = Pick<
+  TPost,
+  | "id"
+  | "slug"
+  | "title"
+  | "summary"
+  | "tags"
+  | "thumbnail"
+  | "date"
+  | "createdTime"
+>;
 type ArchiveProps = {
-  posts: TPosts;
+  posts: ArchivePost[];
   tags: string[];
   currentPage: number;
   activeTag: string;
@@ -98,6 +110,7 @@ function Archive({ posts, tags, currentPage, activeTag }: ArchiveProps) {
               href={`/post/${post.slug}`}
               key={post.id}
               className="story-row"
+              prefetch={false}
             >
               <div className="story-copy">
                 <div className="story-meta">
@@ -110,8 +123,11 @@ function Archive({ posts, tags, currentPage, activeTag }: ArchiveProps) {
                 <p>{post.summary}</p>
               </div>
               {post.thumbnail && (
-                <img
+                <Image
                   src={post.thumbnail}
+                  width={240}
+                  height={180}
+                  sizes="(max-width: 760px) 80px, 120px"
                   alt=""
                   className="story-thumb"
                   loading="lazy"

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { NOTION_DETAIL_REVALIDATE_SECONDS } from "@blog/notions/constants";
 import getCached from "@blog/notions/libs/react-query/getCached";
 import type { TPostType } from "@blog/notions/types";
+import { resolveThumbnail } from "@libs/thumbnail";
 import { getAbsoluteUrl } from "@libs/seo";
 
 export const runtime = "nodejs";
@@ -39,7 +40,7 @@ export async function GET(
   try {
     const posts = await getCached({ type: postType });
     const post = posts.find((item) => item.slug === slug);
-    const sourceImage = post?.thumbnail?.replace(/&amp;/g, "&");
+    const sourceImage = post ? await resolveThumbnail(post) : undefined;
 
     if (!sourceImage) {
       return NextResponse.redirect(getFallbackImage(request));
@@ -53,9 +54,14 @@ export async function GET(
         revalidate: NOTION_DETAIL_REVALIDATE_SECONDS,
       },
       redirect: "follow",
+      signal: AbortSignal.timeout(15_000),
     });
 
-    if (!imageResponse.ok || !imageResponse.body) {
+    if (
+      !imageResponse.ok ||
+      !imageResponse.body ||
+      !imageResponse.headers.get("content-type")?.startsWith("image/")
+    ) {
       return NextResponse.redirect(getFallbackImage(request));
     }
 
