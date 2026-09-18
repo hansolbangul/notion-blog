@@ -7,8 +7,7 @@ import Character from "@blog/ui/components/brand/Character";
 import { TPost } from "@blog/notions/types";
 import { useRouter } from "next/navigation";
 
-const date = (value: string) =>
-  new Date(value).toLocaleDateString("en-CA").replaceAll("-", ".");
+import { formatPostDate } from "@libs/date";
 export type ArchivePost = Pick<
   TPost,
   | "id"
@@ -117,7 +116,7 @@ function Archive({ posts, tags, currentPage, activeTag }: ArchiveProps) {
                   <span>
                     {post.tags?.find((t) => t !== "Recommend") || "DEVELOPMENT"}
                   </span>
-                  <time>{date(post.date?.start_date || post.createdTime)}</time>
+                  <time>{formatPostDate(post.date?.start_date || post.createdTime)}</time>
                 </div>
                 <h3>{post.title}</h3>
                 <p>{post.summary}</p>
