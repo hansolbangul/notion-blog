@@ -5,7 +5,7 @@ import { createSeoMetadata } from "@libs/seo";
 
 export const metadata = createSeoMetadata({
   title: "만든 서비스",
-  description: "연당과 Marry Me, 직접 만들고 운영하는 서비스를 둘러보세요.",
+  description: "연당과 아우어 OUR, 직접 만들고 운영하는 서비스를 둘러보세요.",
   pathname: "/services",
 });
 

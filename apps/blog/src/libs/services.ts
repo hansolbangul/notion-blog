@@ -25,14 +25,14 @@ export const services: ConnectedService[] = [
   },
   {
     id: "marry-me",
-    name: "Marry Me",
-    category: "모바일 청첩장 · 메리와",
-    description: "우리의 사진과 이야기로 만드는 모바일 청첩장.",
+    name: "아우어 OUR",
+    category: "모바일 청첩장 빌더",
+    description: "색감부터 사진 배치, 음악까지. 두 사람의 취향으로 만드는 모바일 청첩장.",
     href: "https://marry.hansolbangul.com",
-    preview: "/services/marry-me.jpg",
+    preview: "/services/our.jpg",
     previewAlt:
-      "메리와의 이름과 예식 날짜로 청첩장을 시작하는 실제 서비스 화면",
-    action: "청첩장 둘러보기",
+      "아우어 OUR의 웨딩 사진과 모바일 청첩장 만들기 안내가 보이는 실제 서비스 화면",
+    action: "아우어 둘러보기",
     featuredOrder: 2,
   },
 ];

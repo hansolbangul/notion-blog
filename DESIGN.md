@@ -43,7 +43,7 @@ Interaction: one click on the complete service preview opens the actual service 
 
 Maintain apps/blog/src/libs/services.ts as the single source of truth. Add a service there and save its screenshot in public/services/. featuredOrder sets the selection priority, and HOME_SERVICE_LIMIT caps the homepage at two. Entries without featuredOrder appear only in the complete catalog. No search, filters, or carousel until the collection warrants them. On mobile the previews stack vertically. New-tab behavior is visible and included in accessible link names. Domain text is replaced with benefit-led descriptions and explicit calls to action.
 
-Preview images are screenshots of the actual public landing pages, captured 2026-09-13 with the browser tool. Sources: https://yeondang.hansolbangul.com and https://marry.hansolbangul.com. The latter currently brands itself as 메리와; preserve Marry Me as the project name and display the live name in its category.
+Preview images are screenshots of the actual public landing pages, captured 2026-09-13 with the browser tool. Sources: https://yeondang.hansolbangul.com and https://marry.hansolbangul.com. The wedding builder was refreshed from its live site on 2026-09-19: display its current brand 아우어 OUR and explain customizable colors, photo layouts and music. Its preview is /services/our.jpg, a screenshot of the current landing page. The internal marry-me ID and marry.hansolbangul.com destination remain stable.
 
 ## Transparent character assets
 
